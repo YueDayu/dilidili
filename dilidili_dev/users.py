@@ -52,7 +52,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    follow_users = models.ManyToManyField("User", related_name="follow_person")
+    follow_users = models.ManyToManyField("User", related_name="following_users")
     like_videos = models.ManyToManyField("Video", related_name="like_videos")
     collection_videos = models.ManyToManyField("Video", related_name="collection_videos")
 
