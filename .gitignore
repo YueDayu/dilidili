@@ -58,3 +58,6 @@ target/
 
 #PyCharm file
 .idea/
+
+#process file
+dilidili_dev/migrations/
