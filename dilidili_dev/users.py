@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import os
 from dilidili import settings
-from dilidili_dev.models import Video
+# from dilidili_dev.models import Video
 
 
 class UserManager(BaseUserManager):
