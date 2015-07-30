@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import os
 from dilidili import settings
+from dilidili_dev.models import Video
+
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, name, password, image=None, describe=None):
@@ -50,7 +52,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    follow_users = models.ManyToManyField("User")
+    follow_users = models.ManyToManyField("User", related_name="follow_person")
     like_videos = models.ManyToManyField("Video", related_name="like_videos")
     collection_videos = models.ManyToManyField("Video", related_name="collection_videos")
 

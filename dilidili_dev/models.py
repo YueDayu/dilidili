@@ -1,48 +1,61 @@
 from django.db import models
-from .users import *
+from dilidili_dev.users import User
 
-#models
+# models
 class Video(models.Model):
-	name = models.CharField(max_length = 100)
-	url = models.URLField()
-	image = models.ImageField()#å†checkä¸€ä¸‹ImageFieldçš„PILåº“ç‰ˆæœ¬æ”¯æŒé—®é¢˜
-	describe = models.CharField(max_length = 200)
-	tag = models.CharField(max_length = 84)#æ¯ä¸ªtagå…è®¸20ä¸ªå­—ç¬¦ï¼Œæ¯ä¸ªè§†é¢‘å…è®¸æ·»åŠ 4ä¸ªtagï¼Œtagé—´ç”¨'#'åˆ†éš”
-	play = models.IntegerField()#æ’­æ”¾æ¬¡æ•°
-	money = models.IntegerField()#ç¡¬å¸æ•°
-	owner = models.OneToOneField(User)
-	time = models.DateTimeField(auto_now=False, auto_now_add=True)#è®°å½•ä¸Šä¼ æ—¶é—´
-	status = models.BooleanField()#å®¡æ ¸ä¸­ã€å·²å®¡æ ¸ï¼Œè¦ä¸è¦ç”¨IntegerFieldåˆ†å‡ºæ›´å¤šçŠ¶æ€ï¼Ÿ
+    name = models.CharField(max_length=100)
+    video = models.FileField(upload_to='videos')
+    image = models.ImageField()
+    describe = models.CharField(max_length=200)
+    tag = models.CharField(max_length=84)  # Ã¿¸ötagÔÊĞí20¸ö×Ö·û£¬Ã¿¸öÊÓÆµÔÊĞíÌí¼Ó4¸ötag£¬tag¼äÓÃ'#'·Ö¸ô
+    play = models.IntegerField(default=0)  # ²¥·Å´ÎÊı
+    money = models.IntegerField(default=0)  # Ó²±ÒÊı
+    owner = models.OneToOneField(User)
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # ¼ÇÂ¼ÉÏ´«Ê±¼ä
+    status = models.IntegerField(default=0)  # ÉóºËÖĞ0¡¢ÒÑÉóºË1¡¢½û²¥2
+
 
 class Bullet(models.Model):
-	video = models.ForeignKey(Video)
-	user = models.ForeignKey(User)
-	time = models.IntegerField()#è®°å½•æ·»åŠ æ—¶é—´ï¼Œç›¸å¯¹äºè§†é¢‘å¼€å§‹æ—¶é—´çš„æ¯«ç§’æ•°ã€‚
-	content = models.CharField(max_length = 200)
-	color = models.CharField(max_length = 6)#å°±ç”¨6ä½16è¿›åˆ¶è¡¨ç¤ºï¼Ÿ
+    video = models.ForeignKey(Video)
+    user = models.ForeignKey(User)
+    time = models.IntegerField(default=0)  # ¼ÇÂ¼Ìí¼ÓÊ±¼ä£¬Ïà¶ÔÓÚÊÓÆµ¿ªÊ¼Ê±¼äµÄÖ¡Êı¡£
+    send_date = models.DateTimeField(auto_now=False, auto_now_add=True)  # ÉÏ´«Ê±¼ä£¬ÓÃÀ´ÅĞ¶ÏÂÖÑ¯
+    content = models.CharField(max_length=200)
+    color = models.CharField(max_length=10)  # µ¯Ä»ÑÕÉ«
+
 
 class Comment(models.Model):
-	video = models.ForeignKey(Video)
-	user = models.ForeignKey(User)
-	content = models.CharField(max_length = 200)
-	time = models.DateTimeField(auto_now=False, auto_now_add=True)
+    video = models.ForeignKey(Video)
+    user = models.ForeignKey(User)
+    content = models.CharField(max_length=400)
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)
+
 
 class Message(models.Model):
-	user_from = models.ManyToManyField(User, related_name="user_from")
-	user_to = models.ManyToManyField(User, related_name="user_to")
-	status = models.BooleanField()
-	time = models.DateTimeField(auto_now=False, auto_now_add=True)#è®°å½•åˆ›å»ºæ—¶é—´
+    user_from = models.ManyToManyField(User, related_name="user_from")
+    user_to = models.ManyToManyField(User, related_name="user_to")
+    status = models.BooleanField(default=False)  # ÒÑ¶Á Î´¶Á
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # ¼ÇÂ¼´´½¨Ê±¼ä
+
 
 class Category(models.Model):
-	name = models.CharField(max_length = 40)
-	video_list = models.ManyToManyField(Video)
+    name = models.CharField(max_length=40)
+    video_list = models.ManyToManyField(Video)
+
 
 class Album(models.Model):
-	name = models.CharField(max_length = 40)
-	describe = models.CharField(max_length = 200)
-	video_list = models.ManyToManyField(Video, through="AlbumVideo")
+    image = models.ImageField()
+    tag = models.CharField(max_length=84)  # Ã¿¸ötagÔÊĞí20¸ö×Ö·û£¬Ã¿¸öÊÓÆµÔÊĞíÌí¼Ó4¸ötag£¬tag¼äÓÃ'#'·Ö¸ô
+    play = models.IntegerField(default=0)  # ²¥·Å´ÎÊı
+    money = models.IntegerField(default=0)  # Ó²±ÒÊı
+    owner = models.OneToOneField(User)
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # ¼ÇÂ¼ÉÏ´«Ê±¼ä
+    name = models.CharField(max_length=40)
+    describe = models.CharField(max_length=200)
+    video_list = models.ManyToManyField(Video, through="AlbumVideo")
+
 
 class AlbumVideo(models.Model):
-	album = models.ForeignKey(Album)
-	video = models.ForeignKey(Video)
-	video_number = models.IntegerField() #videoåœ¨albumä¸­çš„åºå·
+    album = models.ForeignKey(Album)
+    video = models.ForeignKey(Video)
+    video_number = models.IntegerField()  # videoÔÚalbumÖĞµÄĞòºÅ
