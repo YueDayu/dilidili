@@ -5,7 +5,6 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import os
 from dilidili import settings
 
-
 class UserManager(BaseUserManager):
     def create_user(self, username, email, name, password, image=None, describe=None):
         if not username:
@@ -50,6 +49,10 @@ class User(AbstractBaseUser):
     money = models.IntegerField(default=100)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
+    follow_users = models.ManyToManyField("User")
+    like_videos = models.ManyToManyField("Video", related_name="like_videos")
+    collection_videos = models.ManyToManyField("Video", related_name="collection_videos")
 
     objects = UserManager()
 
