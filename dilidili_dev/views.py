@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
 from django.contrib import auth
 from dilidili_dev.users import User
@@ -51,6 +52,6 @@ def register(request):
                                                                   'describe': describe})
     return render(request, "registration/register.html")
 
-
+@require_http_methods(["GET"])
 def index(request):
     return render(request, "index/index.html")
