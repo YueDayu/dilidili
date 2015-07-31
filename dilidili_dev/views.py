@@ -50,3 +50,7 @@ def register(request):
                                                                   'email': email,
                                                                   'describe': describe})
     return render(request, "registration/register.html")
+
+
+def index(request):
+    return render(request, "base.html")
