@@ -8,185 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
-    <title>Jumbotron Template for Bootstrap</title>
-
+    <title>DiliDili</title>
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
-    <style>
-		/* Move down content because we have a fixed navbar that is 50px tall */
-		body {
-		  padding-top: 0px;
-		  padding-bottom: 0px;
-		}
-		.dd-nav-text{
-			font-family:'Microsoft YaHei';
-			font-size:20px;
-		}
-		.demo_line_01{
-			padding: 0 20px 0;
-			margin: 30px 0;
-			line-height: 2px;
-			border-left: 400px solid #ddd;
-			border-right: 400px solid #ddd;
-			box-shadow: 0 0 6px #ccc;
-			text-align: center;
-		}
-		.demo_line_01 p{
-			font-size:30px;
-			text-shadow: 1px 1px 5px #004c7e;
-		}
-		.dd-search{
-			padding:20px;
-		}
-		.grid {
-	position: relative;
-	margin: 0 auto;
-	padding: 1em 0 4em;
-	max-width: 1000px;
-	list-style: none;
-	text-align: center;
-}
-
-/* Common style */
-.grid figure {
-	position: relative;
-	float: left;
-	overflow: hidden;
-
-	min-width: 250px;
-	height: 150px;
-	width: 48%;
-	text-align: center;
-	cursor: pointer;
-	background:black;
-}
-
-.grid figure img {
-	position: relative;
-	display: block;
-	width:250px;
-	height:150px;
-	opacity: 0.8;
-	
-}
-
-.grid figure figcaption {
-	padding: 2em;
-	color: #fff;
-	text-transform: uppercase;
-	font-size: 1.25em;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-
-.grid figure figcaption::before,
-.grid figure figcaption::after {
-	pointer-events: none;
-}
-
-.grid figure figcaption,
-.grid figure figcaption > a {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
-/* Anchor will cover the whole item by default */
-/* For some effects it will show as a button */
-.grid figure figcaption > a {
-	z-index: 1000;
-	text-indent: 200%;
-	white-space: nowrap;
-	font-size: 0;
-	opacity: 0;
-}
-
-.grid figure h2 {
-	font-family:Microsoft YaHei;
-	word-spacing: -0.15em;
-	font-size:20px;
-	font-weight: 300;
-}
-
-.grid figure h2 span {
-	font-weight: 800;
-}
-
-.grid figure h2,
-.grid figure p {
-	margin: 0;
-}
-
-.grid figure p {
-	font-family:Microsoft YaHei;
-	letter-spacing: 1px;
-	font-size: 80%;
-}
-figure.effect-sadie figcaption::before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: -webkit-linear-gradient(top, rgba(72,76,97,0) 0%, rgba(72,76,97,0.8) 75%);
-	background: linear-gradient(to bottom, rgba(72,76,97,0) 0%, rgba(72,76,97,0.8) 75%);
-	content: '';
-	opacity: 0;
-	-webkit-transform: translate3d(0,50%,0);
-	transform: translate3d(0,50%,0);
-}
-
-figure.effect-sadie h2 {
-	position: absolute;
-	top: 90%;
-	left: 0;
-	width: 100%;
-	color: white;
-	-webkit-transition: -webkit-transform 0.35s, color 0.35s;
-	transition: transform 0.35s, color 0.35s;
-	-webkit-transform: translate3d(0,-50%,0);
-	transform: translate3d(0,-50%,0);
-}
-
-figure.effect-sadie figcaption::before,
-figure.effect-sadie p {
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-}
-
-figure.effect-sadie p {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 2em;
-	width: 100%;
-	opacity: 0;
-	-webkit-transform: translate3d(0,10px,0);
-	transform: translate3d(0,10px,0);
-}
-
-figure.effect-sadie:hover h2 {
-	color: #fff;
-	-webkit-transform: translate3d(0,-50%,0) translate3d(0,-100px,0);
-	transform: translate3d(0,-50%,0) translate3d(0,-100px,0);
-}
-
-figure.effect-sadie:hover figcaption::before ,
-figure.effect-sadie:hover p {
-	opacity: 1;
-	-webkit-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
-}
-	</style>
-
+	<link href="css/dd-style.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="ie-emulation-modes-warning.js"></script>
+    <script src="js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -255,7 +84,7 @@ figure.effect-sadie:hover p {
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-1 col-md-offset-1">
-        <h2 class = "dd-nav-text">动画</h2>
+        <h2 class = "dd-nav-text"><a href = "#">动画</a></h2>
       </div>
       <div class="col-md-1">
         <h2 class = "dd-nav-text">番剧</h2>
@@ -289,10 +118,10 @@ figure.effect-sadie:hover p {
     </div>
 	</div>
 	<!-- ANIMATION -->
-	<div class = "demo_line_01"><p>ANIMATION</p></div>
+	<div class = "dd-line"><p>ANIMATION</p></div>
 	<div class = "row">
 		<div class ="col-md-3">
-			<div class = "grid">
+			<div class = "dd-grid">
 				<figure class="effect-sadie">
 						<img src="0.jpg" alt="img02"/>
 						<figcaption>
@@ -304,7 +133,7 @@ figure.effect-sadie:hover p {
 			</div>
 		</div>
 		<div class ="col-md-3">
-			<div class = "grid">
+			<div class = "dd-grid">
 				<figure class="effect-sadie">
 						<img src="0.jpg" alt="img02"/>
 						<figcaption>
@@ -316,7 +145,7 @@ figure.effect-sadie:hover p {
 			</div>
 		</div>
 		<div class ="col-md-3">
-			<div class = "grid">
+			<div class = "dd-grid">
 				<figure class="effect-sadie">
 						<img src="0.jpg" alt="img02"/>
 						<figcaption>
@@ -328,7 +157,7 @@ figure.effect-sadie:hover p {
 			</div>
 		</div>
 		<div class ="col-md-3">
-			<div class = "grid">
+			<div class = "dd-grid">
 				<figure class="effect-sadie">
 						<img src="0.jpg" alt="img02"/>
 						<figcaption>
@@ -354,6 +183,6 @@ figure.effect-sadie:hover p {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
