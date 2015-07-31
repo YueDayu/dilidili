@@ -76,7 +76,7 @@ class MyUserAdmin(UserAdmin):
         ),
     )
     search_fields = ('username',)
-    ordering = ('username',)
+    ordering = ('id', 'username',)
     filter_horizontal = ()
 
 # Now register the new UserAdmin...

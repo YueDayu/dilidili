@@ -41,8 +41,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     id = models.AutoField(primary_key=True, unique=True)
     username = models.CharField(max_length=50, unique=True, db_index=True)
-    email = models.EmailField(max_length=254)
-    name = models.CharField(max_length=50, db_index=True)
+    email = models.EmailField(max_length=254, unique=True)
+    name = models.CharField(max_length=50, db_index=True, unique=True)
     image = models.ImageField(
         upload_to='photos',
         default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
