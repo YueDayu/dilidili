@@ -3,7 +3,7 @@
 {% block title %}-用户注册{% endblock %}
 
 {% block content %}
-    <form action="" method="post">{% csrf_token %}
+    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
         <p>
             <label for="id_username">用户名:</label>
             <input id="id_username" maxlength="50" name="username" type="text"/>
