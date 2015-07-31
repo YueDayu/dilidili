@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+	
+{% block content %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="container">
+	<div id="myCarousel" class="carousel slide">
+	   <!-- 轮播（Carousel）指标 -->
+	   <ol class="carousel-indicators">
+		  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		  <li data-target="#myCarousel" data-slide-to="1"></li>
+		  <li data-target="#myCarousel" data-slide-to="2"></li>
+	   </ol>   
+	   <!-- 轮播（Carousel）项目 -->
+	   <div class="carousel-inner">
+		  <div class="item active">
+			 <img src="../../static/images/aa.jpg" alt="First slide">
+		  </div>
+		  <div class="item">
+			 <img src="../../static/images/aa.jpg" alt="Second slide">
+		  </div>
+		  <div class="item">
+			 <img src="../../static/images/aa.jpg" alt="Third slide">
+		  </div>
+	   </div>
+	   <!-- 轮播（Carousel）导航 -->
+	   <a class="carousel-control left" href="#myCarousel" 
+		  data-slide="prev">&lsaquo;</a>
+	   <a class="carousel-control right" href="#myCarousel" 
+		  data-slide="next">&rsaquo;</a>
+	</div>
+	</div>
+    <div class="container">
+	
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-1 col-md-offset-1">
+        <h2 class = "dd-nav-text"><a href = "#">动画</a></h2>
+      </div>
+      <div class="col-md-1">
+        <h2 class = "dd-nav-text">番剧</h2>
+        
+      </div>
+      <div class="col-md-1">
+        <h2 class = "dd-nav-text">音乐</h2>
+        
+      </div>
+	  <div class="col-md-1">
+	  	<h2 class = "dd-nav-text">舞蹈</h2>
+	  	</div>
+	  <div class="col-md-1">
+	  	<h2 class = "dd-nav-text">游戏</h2>
+	  
+	  	</div>
+	  <div class="col-md-1">
+	  	<h2 class = "dd-nav-text">科技</h2>
+	  </div>
+	  <div class ="col-md-3 col-md-offset-2">
+	  <div class = "dd-search">
+		<div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+			</button>
+          </span>
+		</div>
+	  </div>
+    </div>
+	</div>
+	<!-- ANIMATION -->
+	<div class = "dd-line"><p>ANIMATION</p></div>
+	<div class = "row">
+		<div class ="col-md-3">
+			<div class = "dd-grid">
+				<figure class="effect-sadie">
+						<img src="../../static/images/0.jpg" alt="img02"/>
+						<figcaption>
+							<h2>【AMV】灰姑娘的毒苹果</h2>
+							<p>up主:请你次苹果 <br>播放量:2500</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+			</div>
+		</div>
+		<div class ="col-md-3">
+			<div class = "dd-grid">
+				<figure class="effect-sadie">
+						<img src="../../static/images/0.jpg" alt="img02"/>
+						<figcaption>
+							<h2>【AMV】灰姑娘的毒苹果</h2>
+							<p>up主:请你次苹果 <br>播放量:2500</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>			
+			</div>
+		</div>
+		<div class ="col-md-3">
+			<div class = "dd-grid">
+				<figure class="effect-sadie">
+						<img src="../../static/images/0.jpg" alt="img02"/>
+						<figcaption>
+							<h2>【AMV】灰姑娘的毒苹果</h2>
+							<p>up主:请你次苹果 <br>播放量:2500</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>			
+			</div>
+		</div>
+		<div class ="col-md-3">
+			<div class = "dd-grid">
+				<figure class="effect-sadie">
+						<img src="../../static/images/0.jpg" alt="img02"/>
+						<figcaption>
+							<h2>【AMV】灰姑娘的毒苹果</h2>
+							<p>up主:请你次苹果 <br>播放量:2500</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+			</div>
+		</div>
+	</div>
+    <hr>
+
+      <footer>
+        <p>&copy; Company 2015</p>
+      </footer>
+    </div> <!-- /container -->
+{% endblock %}
+

@@ -53,4 +53,4 @@ def register(request):
 
 
 def index(request):
-    return render(request, "base.html")
+    return render(request, "index/index.html")
