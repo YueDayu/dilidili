@@ -19,15 +19,16 @@ def login(request):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         user = auth.authenticate(username=username, password=password)
-        if user is not None and user.is_active:
-            auth.login(request, user)
-            return HttpResponseRedirect('/')
-        else:
-            if not user.is_active:
-                error_msg = "该用户已经被禁止登陆"
+        if user is not None:
+            # print(dir(user))
+            if user.is_active:
+                auth.login(request, user)
+                return HttpResponseRedirect('/')
             else:
-                error_msg = "用户名或密码不正确"
-            return render(request, "registration/login.html", {'error': error_msg,
+                return render(request, "registration/login.html", {'error': "该用户已经被禁止登陆",
+                                                                   'username': username})
+        else:
+            return render(request, "registration/login.html", {'error': "用户名或密码不正确",
                                                                'username': username})
     else:
         return render(request, "registration/login.html")
