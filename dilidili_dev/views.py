@@ -40,10 +40,13 @@ def register(request):
                 error_msg = "密码长度小于6位"
             elif User.objects.filter(username=username):
                 error_msg = "用户名已经存在"
+                username = ""
             elif User.objects.filter(email=email):
                 error_msg = "邮箱已经注册"
+                email = ""
             elif User.objects.filter(name=name):
                 error_msg = "昵称已经被使用"
+                name = ""
             return render(request, "registration/register.html", {'error': error_msg,
                                                                   'username': username,
                                                                   'name': name,
