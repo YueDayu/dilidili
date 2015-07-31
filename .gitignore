@@ -61,3 +61,6 @@ target/
 
 #process file
 dilidili_dev/migrations/
+
+#media files
+media/
