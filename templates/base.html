@@ -5,6 +5,8 @@
     <title>dilidili{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="../static/styles/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../static/styles/main.css"/>
+    {% block extracss %}{% endblock %}
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -69,7 +71,10 @@
         <p><span class="glyphicon glyphicon-heart"></span> Welcome to dilidili!</p>
     </div>
 {% endblock %}
+
 <script src="../static/scripts/jquery.min.js"></script>
 <script src="../static/scripts/bootstrap.min.js"></script>
+{% block extrascripts %}{% endblock %}
+
 </body>
 </html>

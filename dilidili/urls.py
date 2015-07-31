@@ -18,6 +18,7 @@ from django.contrib import admin
 import dilidili.settings as settings
 
 urlpatterns = [
+    url(r'^$', 'dilidili_dev.views.index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^register/', 'dilidili_dev.views.register'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
