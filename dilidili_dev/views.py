@@ -12,8 +12,9 @@ def register(request):
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid() and request.POST['password1'] and len(request.POST['password1']) >= 6:
             form.save()
-            user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
-            auth.login(request, user)
+            # user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
+            # auth.login(request, user)
+            # TODO: 注册后自动登陆
             return HttpResponseRedirect("/admin")
         else:
             username = request.POST['username'] if request.POST['username'] else ""
