@@ -51,6 +51,10 @@ class User(AbstractBaseUser):
     money = models.IntegerField(default=100)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    # Permissions
+    can_comment = models.BooleanField(default=True)
+    can_upload = models.BooleanField(default=True)
+    can_bullet = models.BooleanField(default=True)
 
     follow_users = models.ManyToManyField("User", related_name="following_users")
     like_videos = models.ManyToManyField("Video", related_name="like_videos")
