@@ -4,31 +4,38 @@
 
 {% block content %}
     {% if error %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        <div class="alert alert-danger" role="alert">{{ error }}</div>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> {{ error }}
+        </div>
     {% endif %}
     <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
         <p>
             <label for="id_username">用户名:</label>
             <input id="id_username" maxlength="50" name="username" type="text" value="{{ username }}"/>
         </p>
+
         <p>
             <label for="id_password1">密码:</label>
             <input id="id_password1" name="password1" type="password" maxlength="128"/>
         </p>
+
         <p>
             <label for="id_password2">重复密码:</label>
             <input id="id_password2" name="password2" type="password"/>
         </p>
+
         <p>
             <label for="id_name">昵称:</label>
             <input id="id_name" maxlength="50" name="name" type="text" value="{{ name }}"/>
         </p>
+
         <p>
             <label for="id_email">邮箱:</label>
             <input id="id_email" maxlength="254" name="email" type="email" value="{{ email }}"/>
         </p>
+
         <p>
             <label for="id_describe">自我描述:</label>
             <input id="id_describe" maxlength="254" name="describe" type="text" value="{{ describe }}"/>
