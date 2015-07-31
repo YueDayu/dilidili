@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}-用户注册{% endblock %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <p>
+            <label for="id_username">用户名:</label>
+            <input id="id_username" maxlength="50" name="username" type="text"/>
+        </p>
+        <p>
+            <label for="id_password1">密码:</label>
+            <input id="id_password1" name="password1" type="password"/>
+        </p>
+        <p>
+            <label for="id_password2">重复密码:</label>
+            <input id="id_password2" name="password2" type="password"/>
+        </p>
+        <p>
+            <label for="id_name">昵称:</label>
+            <input id="id_name" maxlength="50" name="name" type="text"/>
+        </p>
+        <p>
+            <label for="id_email">邮箱:</label>
+            <input id="id_email" maxlength="254" name="email" type="email"/>
+        </p>
+        <p>
+            <label for="id_describe">自我描述:</label>
+            <input id="id_describe" maxlength="254" name="describe" type="text"/>
+        </p>
+        <p>
+            <label for="id_image">头像:</label>
+            <input id="id_image" name="image" type="file"/>
+        </p>
+        <input type="submit" value="创建用户">
+    </form>
+{% endblock %}

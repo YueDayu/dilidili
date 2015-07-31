@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dilidili{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css"/>
+</head>
+<body>
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+{% block footer %}
+    <div class="footer">
+    <p><span class="glyphicon glyphicon-heart"></span> Welcome to dilidili!</p>
+  </div>
+{% endblock %}
+</body>
+</html>
