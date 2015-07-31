@@ -5,3 +5,11 @@
     width: 100%;
     padding: 19px 15px 0 15px;
 }
+
+html, body {
+    font-family: "Roboto", "Microsoft YaHei", "÷ÚÌו", "ËÎÌו", sans-serif;
+}
+
+.navbar{
+	background-color: rgba(23,23,23,1);
+}
