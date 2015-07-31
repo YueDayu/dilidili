@@ -7,16 +7,15 @@ from dilidili_dev.users import User
 
 
 def register(request):
-    # if request.user.is_authenticated():
-    #     return HttpResponseRedirect("/admin")
+    if request.user.is_authenticated():
+        return HttpResponseRedirect("/")
     if request.method == 'POST':
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid() and request.POST['password1'] and len(request.POST['password1']) >= 6:
             form.save()
-            # user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
-            # auth.login(request, user)
-            # TODO: 注册后自动登陆
-            return HttpResponseRedirect("/admin")
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
+            auth.login(request, user)
+            return HttpResponseRedirect("/")
         else:
             username = request.POST['username'] if request.POST['username'] else ""
             password1 = request.POST['password1'] if request.POST['password1'] else ""
@@ -51,6 +50,7 @@ def register(request):
                                                                   'email': email,
                                                                   'describe': describe})
     return render(request, "registration/register.html")
+
 
 @require_http_methods(["GET"])
 def index(request):

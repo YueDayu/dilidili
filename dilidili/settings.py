@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'dilidili.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "mysql.connector.django",
+        "ENGINE": "django.db.backends.mysql",
         "NAME": "dilidili",
         "USER": "root",
-        "PASSWORD": "123456",
+        "PASSWORD": "PASSWORE",
         "HOST": "127.0.0.1",
         "PORT": "3306",
     }
