@@ -71,4 +71,4 @@ def personal(request, user_id):
 
 @require_http_methods(["GET"])
 def home(request):
-    return render(request, 'home/home.html')
+    return render(request, 'home/home.html', {'user': request.user })

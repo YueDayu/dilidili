@@ -4,6 +4,14 @@
 
 {% block extracss %}
 <link href="/static/styles/dd-style.css" rel="stylesheet">
+<style>
+	body{
+		background: url(/static/images/bg.jpg) no-repeat 0 0;
+	}
+	.dd-user-banner{
+		height:60px;
+	}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +21,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class ="col-md-2 sidebar">
+		<div class ="col-md-2 col-sm-3 sidebar">
 			<ul class="nav nav-sidebar" style ="background-color:white;">
 				<li class="active"><a href="#">主页 <span class="sr-only">(current)</span></a></li>
 				<li><a href="#">上传视频</a></li>
@@ -23,45 +31,45 @@
 				<li><a href="#">消息中心</a></li>
 			</ul>
 		</div>
-		<div class ="col-md-10" style ="background-color:white;">
+		<div class ="col-md-10 col-sm-9" style ="background-color:white;">
 			<div class="dd-user-info">
-			<div class="dd-user-title">
-				<p>我的信息</p>
-			</div>
-			<div id="main-content" class="box-inner clearfix">
-				<div class="profile-face">
-					<a href="" target="_blank">
-						<div class="mask">更换头像</div>
-						<img src="hehe.jpg"/>
-					</a>
+				<div class="dd-user-title">
+					<p>我的信息</p>
 				</div>
-				<div class="profile-infor">
-					<div class="profile-infor-l1">
-						<h3>狐狸君</h3>
+				<div id="main-content" class="box-inner clearfix">
+					<div class="profile-face">
+						<a href="" target="_blank">
+							<div class="mask">更换头像</div>
+							<img src={{ user.image.url }}/>
+						</a>
 					</div>
-					<div class="profile-infor-l2">
+					<div class="profile-infor">
+						<div class="profile-infor-l1">
+							<h3>{{ user.name }}</h3>
+						</div>
+						<div class="profile-infor-l2">
+						</div>
 					</div>
+				
 				</div>
-			
-			</div>
 			</div>
 			<div class="dd-user-info">
-			<div class="dd-user-title">
-				<p>我上传的视频</p>
-				<!----按照大禹的参数放视频------>
-			</div>
-			</div>
-			<div class="dd-user-info">
-			<div class="dd-user-title">
-				<p>我收藏的视频</p>
-				<!----按照大禹的参数放视频------>
-			</div>
+				<div class="dd-user-title">
+					<p>我上传的视频</p>
+					<!----按照大禹的参数放视频------>
+				</div>
 			</div>
 			<div class="dd-user-info">
-			<div class="dd-user-title">
-				<p>动态更新</p>
-				<!----按照大禹的参数放视频------>
+				<div class="dd-user-title">
+					<p>我收藏的视频</p>
+					<!----按照大禹的参数放视频------>
+				</div>
 			</div>
+			<div class="dd-user-info">
+				<div class="dd-user-title">
+					<p>动态更新</p>
+					<!----按照大禹的参数放视频------>
+				</div>
 			</div>
 		</div>
 	</div>
