@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
 from django.contrib import auth
@@ -58,3 +58,11 @@ def register(request):
 @require_http_methods(["GET"])
 def index(request):
     return render(request, "index/index.html")
+
+@require_http_methods(["GET"])
+def personal(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        raise Http404("User does not exist")
+    return render(request, 'personal/personal.html', {'user': user})

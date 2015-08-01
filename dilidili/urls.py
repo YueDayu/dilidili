@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^register/', 'dilidili_dev.views.register'),
     url(r'^logout/', 'dilidili_dev.logout_in.logout'),
     url(r'^login/', 'dilidili_dev.logout_in.login'),
+    url(r'^personal/(?P<user_id>[0-9]+)/$', 'dilidili_dev.views.personal'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}-个人主页{% endblock %}
+
+{% block content %}
+<p>user_id={{ user.pk }}</p>
+<p>avatar: </p>
+<p>username={{ user.username }}</p>
+<p>nickname={{ user.name }}</p>
+<p>email={{ user.email }}</p>
+<p>avatar: <img src={{ user.image.url }}/></p>
+<p>discribe={{ user.discribe }}</p>
+<p>money={{ user.money }}</p>
+
+
+{% endblock %}
