@@ -71,4 +71,7 @@ def personal(request, user_id):
 
 @require_http_methods(["GET"])
 def home(request):
-    return render(request, 'home/home.html', {'user': request.user })
+    if request.user.is_authenticated():
+        return render(request, 'home/home.html', {'user': request.user})
+    else:
+        return render(request, "registration/login.html", {'error': "请登录"})
