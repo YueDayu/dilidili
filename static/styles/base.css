@@ -12,4 +12,5 @@ html, body {
 
 .navbar{
 	background-color: rgba(23,23,23,1);
+    border-color: rgba(23,23,23,1);
 }

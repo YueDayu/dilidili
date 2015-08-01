@@ -3,43 +3,54 @@
 {% block title %}-用户注册{% endblock %}
 
 {% block content %}
-    {% if error %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <strong>Error!</strong> {{ error }}
-        </div>
-    {% endif %}
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <p>
-            <label for="id_username">用户名:</label>
-            <input id="id_username" maxlength="50" name="username" type="text" value="{{ username }}"/>
-        </p>
+    <div class="center">
+    <div class="register_base panel panel-default ">
+        <h2>用户注册</h2>
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
+        <form class="form-base" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <p>
-            <label for="id_password1">密码:</label>
-            <input id="id_password1" name="password1" type="password" maxlength="128"/>
-        </p>
+            <div class="m-row">
+                <label for="id_username">用户名:</label>
+                <input type="text" class="form-control" placeholder="Username" id="id_username" maxlength="50" name="username" value="{{ username }}">
+            </div>
 
-        <p>
-            <label for="id_password2">重复密码:</label>
-            <input id="id_password2" name="password2" type="password"/>
-        </p>
+            <div class="m-row">
+                <label for="id_password1">密码:</label>
+                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password1" name="password1" maxlength="128">
+            </div>
 
-        <p>
-            <label for="id_name">昵称:</label>
-            <input id="id_name" maxlength="50" name="name" type="text" value="{{ name }}"/>
-        </p>
+            <div class="m-row">
+                <label for="id_password2">重复密码:</label>
+                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password2" name="password2">
+            </div>
 
-        <p>
-            <label for="id_email">邮箱:</label>
-            <input id="id_email" maxlength="254" name="email" type="email" value="{{ email }}"/>
-        </p>
+            <div class="m-row">
+                <label for="id_name">昵称:</label>
+                <input type="text" class="form-control" placeholder="不超过10字" id="id_name" maxlength="50" name="name" value="{{ name }}">
+            </div>
 
-        <p>
-            <label for="id_describe">自我描述:</label>
-            <input id="id_describe" maxlength="254" name="describe" type="text" value="{{ describe }}"/>
-        </p>
-        <input type="submit" value="创建用户">
-    </form>
+            <div class="m-row">
+                <label for="id_email">邮箱:</label>
+                <input class="form-control" placeholder="email" id="id_email" maxlength="254" name="email" type="email" value="{{ email }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_describe">自我描述:</label>
+                <input type="text" class="form-control" placeholder="不超过100字" id="id_describe" maxlength="254" name="describe" value="{{ describe }}">
+            </div>
+            <input type="submit" class="btn btn-success m-btn" value="创建用户">
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="../../static/styles/register.css"/>
 {% endblock %}

@@ -3,23 +3,35 @@
 {% block title %}-登陆{% endblock %}
 
 {% block content %}
-    {% if error %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <strong>Error!</strong> {{ error }}
-        </div>
-    {% endif %}
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <p>
-            <label for="id_username">用户名:</label>
-            <input id="id_username" maxlength="50" name="username" type="text" value="{{ username }}"/>
-        </p>
+    <div class="center">
+    <div class="register_base panel panel-default ">
+        <h2>用户登陆</h2>
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
+        <form class="form-base" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <p>
-            <label for="id_password">密码:</label>
-            <input id="id_password" name="password" type="password" maxlength="128"/>
-        </p>
-        <input type="submit" value="登陆">
-    </form>
+            <div class="m-row">
+                <label for="id_username">用户名:</label>
+                <input type="text" class="form-control" placeholder="Username" id="id_username" maxlength="50" name="username" value="{{ username }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_password">密码:</label>
+                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password" name="password" maxlength="128">
+            </div>
+
+            <input type="submit" class="btn btn-success m-btn" value="登陆">
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="../../static/styles/register.css"/>
 {% endblock %}
