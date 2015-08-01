@@ -15,7 +15,7 @@ def register(request):
             form.save()
             user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
             auth.login(request, user)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/home/")
         else:
             username = request.POST['username'] if request.POST['username'] else ""
             password1 = request.POST['password1'] if request.POST['password1'] else ""
@@ -73,5 +73,12 @@ def personal(request, user_id):
 def home(request):
     if request.user.is_authenticated():
         return render(request, 'home/home.html', {'user': request.user})
+    else:
+        return render(request, "registration/login.html", {'error': "请登录"})
+
+@require_http_methods(["GET"])
+def upload(request):
+    if request.user.is_authenticated():
+        return render(request, 'upload/upload.html')
     else:
         return render(request, "registration/login.html", {'error': "请登录"})
