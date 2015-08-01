@@ -3,80 +3,98 @@
 {% block title %}-个人中心{% endblock %}
 
 {% block extracss %}
-<link href="/static/styles/dd-style.css" rel="stylesheet">
-<style>
-	body{
-		background: url(/static/images/bg.jpg) no-repeat 0 0;
-	}
-	.dd-user-banner{
-		height:60px;
-	}
-</style>
+    <link href="/static/styles/home.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-	<div class="dd-user-banner">
-		<div class="banner-233" style="block">
-			<a href="javascript:void(0);" style="display: block; width: 100%; height: 100%;"></a>
-		</div>
-	</div>
-	<div class="row">
-		<div class ="col-md-2 col-sm-3 sidebar">
-			<ul class="nav nav-sidebar" style ="background-color:white;">
-				<li class="active"><a href="#">主页 <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">上传视频</a></li>
-	            <li><a href="#">收藏夹</a></li>
-	            <li><a href="#">专辑</a></li>
-				<li><a href="#">我的关注</a></li>
-				<li><a href="#">消息中心</a></li>
-			</ul>
-		</div>
-		<div class ="col-md-10 col-sm-9" style ="background-color:white;">
-			<div class="dd-user-info">
-				<div class="dd-user-title">
-					<p>我的信息</p>
-				</div>
-				<div id="main-content" class="box-inner clearfix">
-					<div class="profile-face">
-						<a href="" target="_blank">
-							<div class="mask">更换头像</div>
-							<img src={{ user.image.url }}/>
-						</a>
-					</div>
-					<div class="profile-infor">
-						<div class="profile-infor-l1">
-							<h3>{{ user.name }}</h3>
-						</div>
-						<div class="profile-infor-l2">
-						</div>
-					</div>
-				
-				</div>
-			</div>
-			<div class="dd-user-info">
-				<div class="dd-user-title">
-					<p>我上传的视频</p>
-					<!----按照大禹的参数放视频------>
-				</div>
-			</div>
-			<div class="dd-user-info">
-				<div class="dd-user-title">
-					<p>我收藏的视频</p>
-					<!----按照大禹的参数放视频------>
-				</div>
-			</div>
-			<div class="dd-user-info">
-				<div class="dd-user-title">
-					<p>动态更新</p>
-					<!----按照大禹的参数放视频------>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="dd-user-banner">
+        <div class="banner-233" style="display: block;">
+            <a href="javascript:void(0);" style="display: block; width: 100%; height: 100%;">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+            <ul class="nav nav-sidebar" style="background-color:white;">
+                <li class="active"><a href="#">主页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">上传视频</a></li>
+                <li><a href="#">收藏夹</a></li>
+                <li><a href="#">专辑</a></li>
+                <li><a href="#">我的关注</a></li>
+                <li><a href="#">消息中心</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-sm-9" style="background-color:white;">
+            <div class="dd-user-info">
+                <div class="dd-user-title">
+                    <p>我的信息</p>
+                </div>
+                <div id="main-content" class="box-inner clearfix">
+                    <div class="profile-face">
+                        <a id="photo" data-toggle="modal" data-target="#myModal" target="_blank">
+                            <div class="mask">更换头像</div>
+                            <img src={{ user.image.url }}/>
+                        </a>
+                    </div>
+                    <div class="profile-infor">
+                        <div class="profile-infor-l1">
+                            <h3>{{ user.name }}</h3>
+                        </div>
+                        <div class="profile-infor-l2">
+                            <h4>{{ user.describe }}</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="dd-user-info">
+                <div class="dd-user-title">
+                    <p>我上传的视频</p>
+                    <!----按照大禹的参数放视频------>
+                </div>
+            </div>
+            <div class="dd-user-info">
+                <div class="dd-user-title">
+                    <p>我收藏的视频</p>
+                    <!----按照大禹的参数放视频------>
+                </div>
+            </div>
+            <div class="dd-user-info">
+                <div class="dd-user-title">
+                    <p>动态更新</p>
+                    <!----按照大禹的参数放视频------>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    hahaha
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extrascripts %}
-	<script>
-		$(".banner-233").click(function () {$(this).stop().fadeOut('fast', function() {$(this).fadeIn('fast');});});
-	</script>
+    <script>
+        $(".banner-233").click(function () {
+            $(this).stop().fadeOut('fast', function () {
+                $(this).fadeIn('fast');
+            });
+        });
+    </script>
 {% endblock %}
