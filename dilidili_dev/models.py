@@ -1,17 +1,22 @@
 from django.db import models
 from dilidili_dev.users import User
+from dilidili import settings
+import os
 
 # models
 # 视频model
 class Video(models.Model):
     name = models.CharField(max_length=100)
     video = models.FileField(upload_to='videos')
-    image = models.ImageField()
+    image = models.ImageField(
+        upload_to='images', 
+        default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
+    )
     describe = models.CharField(max_length=200)
     tag = models.CharField(max_length=84)  # 每个tag允许20个字符，每个视频允许添加4个tag，tag间用'#'分隔
     play = models.IntegerField(default=0)  # 播放次数
     money = models.IntegerField(default=0)  # 硬币数
-    owner = models.OneToOneField('User')
+    owner = models.ForeignKey('User')
     time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 记录上传时间
     status = models.IntegerField(default=0)  # 审核中0、已审核1、禁播2
 
@@ -52,7 +57,7 @@ class Category(models.Model):
 class Album(models.Model):
     image = models.ImageField()
     money = models.IntegerField(default=0)  # 硬币数，计算从专辑页面加硬币的情况
-    owner = models.OneToOneField('User')
+    owner = models.ForeignKey('User')
     time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 记录上传时间
     name = models.CharField(max_length=40)
     describe = models.CharField(max_length=200)
@@ -69,4 +74,4 @@ class AlbumVideo(models.Model):
 # 首页视频
 class BestVideo(models.Model):
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
-    video = models.OneToOneField('Video')
+    video = models.ForeignKey('Video')

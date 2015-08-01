@@ -2,13 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
+from dilidili_dev.video_upload import VideoUploadForm
+from dilidili_dev.models import Video
 from django.contrib import auth
 from dilidili_dev.users import User
 
 
 def register(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/home/")
     if request.method == 'POST':
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid() and request.POST['password1'] and len(request.POST['password1']) >= 6:
@@ -74,11 +76,23 @@ def home(request):
     if request.user.is_authenticated():
         return render(request, 'home/home.html', {'user': request.user})
     else:
-        return render(request, "registration/login.html", {'error': "请登录"})
+        return HttpResponseRedirect("/login/")
 
-@require_http_methods(["GET"])
+
+@require_http_methods(["GET", "POST"])
 def upload(request):
     if request.user.is_authenticated():
-        return render(request, 'upload/upload.html')
+        if request.method == 'GET':
+            return render(request, 'upload/upload.html')
+        else:
+            form = VideoUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                video = form.save(commit=False)
+                video.status = 4
+                video.owner = request.user
+                video.save()
+                return HttpResponseRedirect("/home/")
+            else:
+                return render(request, 'upload/upload.html', {'error': form.errors, 'video': request.POST })
     else:
-        return render(request, "registration/login.html", {'error': "请登录"})
+        return HttpResponseRedirect("/login/")

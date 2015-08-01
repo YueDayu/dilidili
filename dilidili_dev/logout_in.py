@@ -12,7 +12,7 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 
-def login(request):
+def login(request, error_msg=""):
     if request.user.is_authenticated():
         return HttpResponseRedirect("/")
     if request.method == 'POST':
@@ -31,4 +31,4 @@ def login(request):
             return render(request, "registration/login.html", {'error': "用户名或密码不正确",
                                                                'username': username})
     else:
-        return render(request, "registration/login.html")
+        return render(request, "registration/login.html", context=error_msg or {})

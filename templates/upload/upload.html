@@ -5,7 +5,7 @@
 {% block content %}
     <div class="center">
     <div class="panel panel-default ">
-        <h2>用户注册</h2>
+        <h2>上传视频</h2>
         {% if error %}
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
@@ -13,39 +13,28 @@
                 <strong>Error!</strong> {{ error }}
             </div>
         {% endif %}
-        <form class="form-base" action="" method="post" enctype="">
-            {% csrf_token %}
-
+        <form class="form-base" action="" method="post"  enctype="multipart/form-data"> {% csrf_token %}
             <div class="m-row">
-                <label for="id_username">用户名:</label>
-                <input type="text" class="form-control" placeholder="Username" id="id_username" maxlength="50" name="username" value="{{ username }}">
+                <label for="id_video">文件:</label>
+                <input type="file" accept="video/*" class="form-control" id="id_video" name="video">
             </div>
 
             <div class="m-row">
-                <label for="id_password1">密码:</label>
-                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password1" name="password1" maxlength="128">
+                <label for="id_image">缩略图</label>
+                <input type="file" accept="image/*" class="form-control" id="id_image" name="image">
             </div>
 
             <div class="m-row">
-                <label for="id_password2">重复密码:</label>
-                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password2" name="password2">
+                <label for="id_name">标题:</label>
+                <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name" value={{ video.name }}>
             </div>
 
             <div class="m-row">
-                <label for="id_name">昵称:</label>
-                <input type="text" class="form-control" placeholder="不超过10字" id="id_name" maxlength="50" name="name" value="{{ name }}">
+                <label for="id_description">描述</label>
+                <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value={{ video.describe }}>
             </div>
 
-            <div class="m-row">
-                <label for="id_email">邮箱:</label>
-                <input class="form-control" placeholder="email" id="id_email" maxlength="254" name="email" type="email" value="{{ email }}">
-            </div>
-
-            <div class="m-row">
-                <label for="id_describe">自我描述:</label>
-                <input type="text" class="form-control" placeholder="不超过100字" id="id_describe" maxlength="254" name="describe" value="{{ describe }}">
-            </div>
-            <input type="submit" class="btn btn-success m-btn" value="创建用户">
+            <input type="submit" class="btn btn-success m-btn" value="上传">
         </form>
     </div>
     </div>
