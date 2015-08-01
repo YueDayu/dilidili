@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}-用户注册{% endblock %}
+{% block title %}-上传视频{% endblock %}
 
 {% block content %}
     <div class="center">
-    <div class="register_base panel panel-default ">
+    <div class="panel panel-default ">
         <h2>用户注册</h2>
         {% if error %}
             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -13,7 +13,7 @@
                 <strong>Error!</strong> {{ error }}
             </div>
         {% endif %}
-        <form class="form-base" action="" method="post" enctype="multipart/form-data">
+        <form class="form-base" action="" method="post" enctype="">
             {% csrf_token %}
 
             <div class="m-row">
@@ -49,8 +49,4 @@
         </form>
     </div>
     </div>
-{% endblock %}
-
-{% block extracss %}
-    <link rel="stylesheet" type="text/css" href="/static/styles/register.css"/>
 {% endblock %}

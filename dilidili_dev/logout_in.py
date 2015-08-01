@@ -23,7 +23,7 @@ def login(request):
             # print(dir(user))
             if user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/home/')
             else:
                 return render(request, "registration/login.html", {'error': "该用户已经被禁止登陆",
                                                                    'username': username})
