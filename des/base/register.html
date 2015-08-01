@@ -15,7 +15,7 @@
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/base_style.css" rel="stylesheet">
-  <link href="css/login_style.css" rel="stylesheet">
+  <link href="css/register_style.css" rel="stylesheet">
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -56,22 +56,41 @@
     </div>
   </div>
   <!-- end topbar -->
-  <div class="login_mainbody">
-    <div class="container login_base">
-      <form class="login_form" action="" method="post" enctype="multipart/form-data">
-        <div class="panel-heading"><h3 class="panel-title">Panel title</h3></div>
-        <p>
-            <label for="id_username">用户名:</label>
-            <input id="id_username" maxlength="50" name="username" type="text" value="username"/>
-        </p>
+  <div class="register_mainbody">
+  </div>
+  <div class="container register_base">
+    <form class="register_form panel panel-default"action="" method="post" enctype="multipart/form-data">
+      <p>
+          <label for="id_username">用户名:</label>
+          <input id="id_username" maxlength="50" name="username" type="text" value="{{ username }}"/>
+      </p>
 
-        <p>
-            <label for="id_password">密 码: </label>
-            <input id="id_password" name="password" type="password" maxlength="128"/>
-        </p>
-        <input type="submit" value="登陆">
-      </form>
-    </div>
+      <p>
+          <label for="id_password1">密码:</label>
+          <input id="id_password1" name="password1" type="password" maxlength="128"/>
+      </p>
+
+      <p>
+          <label for="id_password2">重复密码:</label>
+          <input id="id_password2" name="password2" type="password"/>
+      </p>
+
+      <p>
+          <label for="id_name">昵称:</label>
+          <input id="id_name" maxlength="50" name="name" type="text" value="{{ name }}"/>
+      </p>
+
+      <p>
+          <label for="id_email">邮箱:</label>
+          <input id="id_email" maxlength="254" name="email" type="email" value="{{ email }}"/>
+      </p>
+
+      <p>
+          <label for="id_describe">自我描述:</label>
+          <input id="id_describe" maxlength="254" name="describe" type="text" value="{{ describe }}"/>
+      </p>
+      <input type="submit" value="创建用户">
+  </form>
   </div>
 </body>
 </html>

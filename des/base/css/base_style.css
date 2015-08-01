@@ -3,7 +3,7 @@
 	background-color: rgba(23,23,23,1);
 	border: none;
 	height: 50px;
-	z-index: 100;
+	z-index: 1000;
 }
 
 .menu{
