@@ -59,6 +59,7 @@ def register(request):
 def index(request):
     return render(request, "index/index.html")
 
+
 @require_http_methods(["GET"])
 def personal(request, user_id):
     try:
@@ -66,3 +67,8 @@ def personal(request, user_id):
     except User.DoesNotExist:
         raise Http404("User does not exist")
     return render(request, 'personal/personal.html', {'user': user})
+
+
+@require_http_methods(["GET"])
+def home(request):
+    return render(request, 'home/home.html')
