@@ -14,3 +14,8 @@ html, body {
 	background-color: rgba(23,23,23,1);
     border-color: rgba(23,23,23,1);
 }
+
+.container {
+    max-width: 1300px;
+}
+
