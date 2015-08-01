@@ -64,7 +64,7 @@ class MyUserAdmin(UserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('name', 'username', 'password')}),
-        ('Personal info', {'fields': ('describe', 'email', 'money', 'image')}),
+        ('Personal info', {'fields': ('describe', 'email', 'money', 'image', 'cropping')}),
         ('Permissions', {'fields': ('is_admin', 'is_active', 'can_comment', 'can_upload',  'can_bullet')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin

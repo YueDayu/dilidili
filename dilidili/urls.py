@@ -26,5 +26,8 @@ urlpatterns = [
     url(r'^personal/(?P<user_id>[0-9]+)/$', 'dilidili_dev.views.personal'),
     url(r'^home/$', 'dilidili_dev.views.home'),
     url(r'^upload/$', 'dilidili_dev.views.upload'),
+    url(r'^upload-photo/$', 'dilidili_dev.upload_photo.upload_photo'),
+    url(r'^upload-success/$', 'dilidili_dev.upload_photo.upload_success'),
+    url(r'^process-photo/$', 'dilidili_dev.upload_photo.process_img', name='process-photo'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]

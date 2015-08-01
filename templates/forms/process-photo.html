@@ -1,0 +1,23 @@
+{% load cropping %}
+{% load cropping thumbnail %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image cropping example {% block title %}{% endblock %}</title>
+    <style type="text/css">
+      th {text-align: left;}
+      #navigation li {
+        display: inline;
+        list-style-type: none;
+        padding-right: 10px;
+      }
+    </style>
+    {{ form.media }}
+  </head>
+  <body>
+    <form method="post" id="cropping_form" action="/upload-success/" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save"/>
+  </form>
+  </body>
+</html>

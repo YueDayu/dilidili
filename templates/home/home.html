@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 {% block title %}-个人中心{% endblock %}
 
 {% block extracss %}
@@ -33,7 +33,7 @@
                     <div class="profile-face">
                         <a id="photo" data-toggle="modal" data-target="#myModal" target="_blank">
                             <div class="mask">更换头像</div>
-                            <img src={{ user.image.url }}/>
+                            <img src={% thumbnail user.image 200x200 box=user.cropping crop detail %}/>
                         </a>
                     </div>
                     <div class="profile-infor">
@@ -75,14 +75,10 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">更换头像</h4>
                 </div>
                 <div class="modal-body">
-                    hahaha
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <iframe src="/upload-photo/"></iframe>
                 </div>
             </div>
         </div>

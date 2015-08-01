@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 {% block title %}-个人主页{% endblock %}
 
 {% block content %}
@@ -8,7 +8,7 @@
 <p>username={{ user.username }}</p>
 <p>nickname={{ user.name }}</p>
 <p>email={{ user.email }}</p>
-<p>avatar: <img src={{ user.image.url }}/></p>
+<p>avatar: <img src={% thumbnail user.image 200x200 box=user.cropping crop detail %}/></p>
 <p>discribe={{ user.discribe }}</p>
 <p>money={{ user.money }}</p>
 
