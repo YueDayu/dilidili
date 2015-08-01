@@ -34,6 +34,15 @@
                 <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value={{ video.describe }}>
             </div>
 
+            <div class="m-row">
+                <label for="id_categories">分类</label>
+                <select multiple='multiple' class="form-control" id="id-categories" name="category_set">
+                    {% for op in form.category_set %}
+                    <option value={{ form.op.pk }}>{{ op.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
             <input type="submit" class="btn btn-success m-btn" value="上传">
         </form>
     </div>

@@ -83,7 +83,7 @@ def home(request):
 def upload(request):
     if request.user.is_authenticated():
         if request.method == 'GET':
-            return render(request, 'upload/upload.html')
+            return render(request, 'upload/upload.html', {'form': VideoUploadForm()})
         else:
             form = VideoUploadForm(request.POST, request.FILES)
             if form.is_valid():
@@ -93,6 +93,6 @@ def upload(request):
                 video.save()
                 return HttpResponseRedirect("/home/")
             else:
-                return render(request, 'upload/upload.html', {'error': form.errors, 'video': request.POST })
+                return render(request, 'upload/upload.html', {'error': form.errors, 'video': request.POST, 'form': form })
     else:
         return HttpResponseRedirect("/login/")

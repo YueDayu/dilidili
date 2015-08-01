@@ -9,11 +9,12 @@ class Video(models.Model):
     name = models.CharField(max_length=100)
     video = models.FileField(upload_to='videos')
     image = models.ImageField(
-        upload_to='images', 
+        upload_to='images',
         default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
     )
     describe = models.CharField(max_length=200)
     tag = models.CharField(max_length=84)  # 每个tag允许20个字符，每个视频允许添加4个tag，tag间用'#'分隔
+    category_set = models.ManyToManyField('Category')
     play = models.IntegerField(default=0)  # 播放次数
     money = models.IntegerField(default=0)  # 硬币数
     owner = models.ForeignKey('User')
@@ -50,7 +51,8 @@ class Message(models.Model):
 # 分类 默认，一般不建立
 class Category(models.Model):
     name = models.CharField(max_length=40)
-    video_list = models.ManyToManyField('Video')
+    def __str__(x):
+        return name
 
 
 # 专辑
