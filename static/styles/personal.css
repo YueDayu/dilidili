@@ -1,0 +1,115 @@
+body {
+    background-color: #FFF;
+}
+
+.center {
+    text-align: center;
+    width: 80%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 3px solid white;
+}
+
+.new_video {
+    margin: 10px;
+    width: 30%;
+    height: auto;
+}
+
+.small_head {
+    margin: 3px;
+    width: 30%;
+    height: auto;
+}
+
+.page_username {
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bar_headImg {
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.bar_content {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.box-follow {
+    padding-right: 1%;
+    text-align: right;
+}
+
+.box-message {
+    padding-left: 1%;
+    text-align: left;
+}
+
+.btn-message {
+    width: 80%;
+    max-width: 150px;
+    margin: 2px;
+}
+
+.btn-follow {
+    width: 80%;
+    max-width: 150px;
+    margin: 2px;
+}
+
+.dd_grid .new_video {
+    margin: 2%;
+    width: 30%;
+    height: auto;
+}
+
+#top_area {
+    position: relative;
+    background: url('/static/images/register_bg.jpg') no-repeat bottom;
+    background-size: cover;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 100px;
+    margin-top: -60px;
+    z-index: -1;
+}
+
+#middle_content {
+    position: relative;
+}
+
+@media (max-width: 500px) {
+    .center {
+        width: 80%;
+    }
+
+    .box-follow {
+        text-align: center;
+        margin-right: 11px;
+    }
+
+    .box-message {
+        text-align: center;
+        margin-left: 11px;
+    }
+
+}
+
+@media (max-width: 500px) and (max-width: 992px) {
+    .center {
+        width: 60%;
+    }
+}
