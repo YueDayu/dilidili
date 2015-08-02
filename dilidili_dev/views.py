@@ -74,7 +74,9 @@ def personal(request, user_id):
 @require_http_methods(["GET"])
 def home(request):
     if request.user.is_authenticated():
-        return render(request, 'home/home.html', {'user': request.user})
+        return render(request, 'home/home.html', {'user': request.user,
+                                                  'home_video_set': request.user.video_set.all()[:8], 
+                                                  'home_video_collection': request.user.collection_videos.all()[:8]})
     else:
         return HttpResponseRedirect("/login/")
 
