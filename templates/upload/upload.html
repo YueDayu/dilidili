@@ -26,21 +26,26 @@
 
             <div class="m-row">
                 <label for="id_name">标题:</label>
-                <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name" value={{ video.name }}>
+                <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name" value="{{ form.name.value }}">
             </div>
 
             <div class="m-row">
                 <label for="id_description">描述</label>
-                <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value={{ video.describe }}>
+                <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value="{{ form.describe.value }}">
             </div>
 
             <div class="m-row">
                 <label for="id_categories">分类</label>
-                <select multiple='multiple' class="form-control" id="id-categories" name="category_set">
-                    {% for op in form.category_set %}
-                    <option value={{ form.op.pk }}>{{ op.name }}</option>
-                    {% endfor %}
-                </select>
+                {% for op in form.category_set %}
+                    <label class="checkbox-inline">
+                        {{ op.tag }} {{ op.choice_label }}
+                    </label>
+                {% endfor %}
+            </div>
+
+            <div class="m-row">
+                <label for="id_tag">关键词</label>
+                <input type="text" class="form-control" placeholder="呵呵,呵呵" id="id_tag" name="tag" value="{{ form.tag.value }}">
             </div>
 
             <input type="submit" class="btn btn-success m-btn" value="上传">

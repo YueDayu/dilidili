@@ -4,7 +4,7 @@ from dilidili import settings
 import os
 
 # models
-# 视频model
+# 脢脫脝碌model
 class Video(models.Model):
     name = models.CharField(max_length=100)
     video = models.FileField(upload_to='videos')
@@ -13,26 +13,26 @@ class Video(models.Model):
         default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
     )
     describe = models.CharField(max_length=200)
-    tag = models.CharField(max_length=84)  # 每个tag允许20个字符，每个视频允许添加4个tag，tag间用'#'分隔
+    tag = models.CharField(max_length=84, default="", blank=True)  # 脙驴赂枚tag脭脢脨铆20赂枚脳脰路没拢卢脙驴赂枚脢脫脝碌脭脢脨铆脤铆录脫4赂枚tag拢卢tag录盲脫脙'#'路脰赂么
     category_set = models.ManyToManyField('Category')
-    play = models.IntegerField(default=0)  # 播放次数
-    money = models.IntegerField(default=0)  # 硬币数
+    play = models.IntegerField(default=0)  # 虏楼路脜麓脦脢媒
+    money = models.IntegerField(default=0)  # 脫虏卤脪脢媒
     owner = models.ForeignKey('User')
-    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 记录上传时间
-    status = models.IntegerField(default=0)  # 审核中0、已审核1、禁播2
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 录脟脗录脡脧麓芦脢卤录盲
+    status = models.IntegerField(default=0)  # 脡贸潞脣脰脨0隆垄脪脩脡贸潞脣1隆垄陆没虏楼2
 
 
-# 弹幕
+# 碌炉脛禄
 class Bullet(models.Model):
     video = models.ForeignKey('Video')
     user = models.ForeignKey('User')
-    time = models.IntegerField(default=0)  # 记录添加时间，相对于视频开始时间的帧数。
-    send_date = models.DateTimeField(auto_now=False, auto_now_add=True)  # 上传时间，用来判断轮询
+    time = models.IntegerField(default=0)  # 录脟脗录脤铆录脫脢卤录盲拢卢脧脿露脭脫脷脢脫脝碌驴陋脢录脢卤录盲碌脛脰隆脢媒隆拢
+    send_date = models.DateTimeField(auto_now=False, auto_now_add=True)  # 脡脧麓芦脢卤录盲拢卢脫脙脌麓脜脨露脧脗脰脩炉
     content = models.CharField(max_length=200)
-    color = models.CharField(max_length=10)  # 弹幕颜色
+    color = models.CharField(max_length=10)  # 碌炉脛禄脩脮脡芦
 
 
-# 评论
+# 脝脌脗脹
 class Comment(models.Model):
     video = models.ForeignKey('Video')
     user = models.ForeignKey('User')
@@ -40,40 +40,40 @@ class Comment(models.Model):
     time = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 
-# 私信
+# 脣陆脨脜
 class Message(models.Model):
     user_from = models.ManyToManyField('User', related_name="user_from")
     user_to = models.ManyToManyField('User', related_name="user_to")
-    status = models.BooleanField(default=False)  # 已读 未读
-    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 记录创建时间
+    status = models.BooleanField(default=False)  # 脪脩露脕 脦麓露脕
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 录脟脗录麓麓陆篓脢卤录盲
 
 
-# 分类 默认，一般不建立
+# 路脰脌脿 脛卢脠脧拢卢脪禄掳茫虏禄陆篓脕垄
 class Category(models.Model):
     name = models.CharField(max_length=40)
-    def __str__(x):
-        return name
+    def __str__(self):
+        return self.name
 
 
-# 专辑
+# 脳篓录颅
 class Album(models.Model):
     image = models.ImageField()
-    money = models.IntegerField(default=0)  # 硬币数，计算从专辑页面加硬币的情况
+    money = models.IntegerField(default=0)  # 脫虏卤脪脢媒拢卢录脝脣茫麓脫脳篓录颅脪鲁脙忙录脫脫虏卤脪碌脛脟茅驴枚
     owner = models.ForeignKey('User')
-    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 记录上传时间
+    time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 录脟脗录脡脧麓芦脢卤录盲
     name = models.CharField(max_length=40)
     describe = models.CharField(max_length=200)
     video_list = models.ManyToManyField('Video', through="AlbumVideo")
 
 
-# 专辑--视频关系
+# 脳篓录颅--脢脫脝碌鹿脴脧碌
 class AlbumVideo(models.Model):
     album = models.ForeignKey('Album')
     video = models.ForeignKey('Video')
-    video_number = models.IntegerField()  # video在album中的序号
+    video_number = models.IntegerField()  # video脭脷album脰脨碌脛脨貌潞脜
 
 
-# 首页视频
+# 脢脳脪鲁脢脫脝碌
 class BestVideo(models.Model):
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
     video = models.ForeignKey('Video')
