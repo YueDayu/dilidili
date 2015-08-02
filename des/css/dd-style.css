@@ -186,15 +186,17 @@ figure.effect-sadie:hover p {
 	overflow: hidden;
 	border-bottom: 2px solid #ddd
 }
+
+
 .dd-video .player{
 	padding:0 10px 0 0;
 	position:relative;
-	top:100px;
+	top:110px;
 }
 
 .v-info {
 	position: relative;
-	top:100px;
+	top:110px;
 	right: 0;
 	margin:10px 0;
 	min-width: 230px;
@@ -257,12 +259,12 @@ figure.effect-sadie:hover p {
 }
 .dd-video .comm{
 	position:relative;
-	top:100px;
+	top:110px;
 	height:50px;
 }
 .dd-video .isComm{
 	position:relative;
-	top:100px;
+	top:110px;
 	cursor: pointer;
 	margin: 30px auto 50px;
 	display: block;
@@ -323,4 +325,51 @@ figure.effect-sadie:hover p {
 .banner-233 { width: 115px; height: 34px; background: url(../img/2233.png); margin-top: 27px; margin-right: 12px; float: right;}
 .container{
 	width:80%;
+}
+
+.dd-video .tminfo {
+	position:relative;
+	left:0;
+	float: left;
+	padding-left: 2px;
+	height: 16px;
+	line-height: 16px;
+	color: #666;
+	font-size: 12px
+}
+.dd-video .tminfo a {
+	color: #666
+}
+.dd-video .tminfo a.on {
+	color: #39C;
+	font-weight: 700
+}
+.dd-video .tminfo var {
+	color: #F93
+}
+.dd-video .tminfo i {
+	color: #999;
+	margin: 0 15px 0 0
+}
+.dd-video .tminfo i#dianji,.dd-video .tminfo i#stow_count,.dd-video .tminfo i#pt,.dd-video .tminfo i#pl,.dd-video .tminfo i#dm_count {
+	background: url(../img/icons_v.png) no-repeat;
+	padding-left: 15px;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+.dd-video .tminfo i#dianji {
+	background-position: 0 -202px
+}
+.dd-video .tminfo i#stow_count {
+	background-position: 0 -284px
+}
+.dd-video .tminfo i#pt {
+	background-position: 0 -408px
+}
+.dd-video .tminfo i#pl {
+	background-position: 0 -324px
+}
+.dd-video .tminfo i#dm_count {
+	background-position: 0 -243px
 }
