@@ -50,12 +50,13 @@
                 <div class="dd-user-title">
                     <p>我上传的视频</p>
                 </div>
-                    <!----按照大禹的参数放视频------>
                 <div id="main-content" class="box-inner clearfix">
                     <div class="m-row">
                     {% for video in home_video_set %}
                         <div class="col-md-3 col-sm-6 col-xs-12">
+                        <a href="/video/{{ video.id }}">
                             <img src="{% thumbnail video.image 400x300 crop detail %}" class="img-responsive center-block"/>
+                        </a>
                         </div>
                     {% endfor %}
                     </div>

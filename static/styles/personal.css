@@ -113,3 +113,40 @@ body {
         width: 60%;
     }
 }
+
+.show-video {
+    text-align: center;
+    overflow: hidden;
+}
+
+.show-video p {
+    white-space: nowrap;
+}
+
+.show-video i#dianji, .dshow-video i#stow_count, .show-video i#pt, .show-video i#pl, .show-video i#dm_count {
+    background: url('/static/images/icons_v.png') no-repeat;
+    padding-left: 15px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.show-video i#dianji {
+    background-position: 0 -202px
+}
+
+.show-video i#stow_count {
+    background-position: 0 -284px
+}
+
+.show-video i#pt {
+    background-position: 0 -408px
+}
+
+.show-video i#pl {
+    background-position: 0 -324px
+}
+
+.show-video i#dm_count {
+    background-position: 0 -243px
+}

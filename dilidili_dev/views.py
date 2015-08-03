@@ -68,14 +68,15 @@ def personal(request, user_id):
         user = User.objects.get(pk=user_id)
     except User.DoesNotExist:
         raise Http404("User does not exist")
-    return render(request, 'personal/personal.html', {'user': user})
+    return render(request, 'personal/personal.html', {'user': user,
+                                                      'video_set': user.video_set.all()[:8]})
 
 
 @require_http_methods(["GET"])
 def home(request):
     if request.user.is_authenticated():
         return render(request, 'home/home.html', {'user': request.user,
-                                                  'home_video_set': request.user.video_set.all()[:8], 
+                                                  'home_video_set': request.user.video_set.all()[:8],
                                                   'home_video_collection': request.user.collection_videos.all()[:8]})
     else:
         return HttpResponseRedirect("/login/")

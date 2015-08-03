@@ -7,98 +7,100 @@
 {% endblock %}
 
 {% block content %}
-{#<p>user_id={{ user.pk }}</p>#}
-{#<p>avatar: </p>#}
-{#<p>username={{ user.username }}</p>#}
-{#<p>nickname={{ user.name }}</p>#}
-{#<p>email={{ user.email }}</p>#}
-{#<p>avatar: <img src={% thumbnail user.image 200x200 box=user.cropping crop detail %}/></p>#}
-{#<p>discribe={{ user.discribe }}</p>#}
-{#<p>money={{ user.money }}</p>#}
+    <div id="top_area">
+        <div class="center">
+            <div class="row bar_headImg">
+                <div class="col-md-12 col-sm-12">
+                    <img class="headImg" src={% thumbnail user.image 200x200 box=user.cropping crop detail %}>
+                    <br>
+                    <label class="page_username">{{ user.name }}</label>
+                </div>
+            </div>
+            <div class="row bar_buttons">
+                <div class="col-sm-6 col-md-6 box-follow">
+                    <button type="button" class="btn btn-primary btn-follow">关注</button>
+                </div>
+                <div class="col-sm-6 col-md-6 box-message">
+                    <button type="button" class="btn btn-message">私信</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div id="top_area">
-  <div class="center">
-    <div class="row bar_headImg">
-      <div class="col-md-12 col-sm-12">
-        <img class="headImg" src={% thumbnail user.image 200x200 box=user.cropping crop detail %}>
-        <br>
-        <label class="page_username">{{ user.name }}</label>
-      </div>
-    </div>
-  <div class="row bar_buttons">
-    <div class="col-sm-6 col-md-6 box-follow">
-      <button type="button" class="btn btn-primary btn-follow">关注</button>
-    </div>
-    <div class="col-sm-6 col-md-6 box-message">
-      <button type="button" class="btn btn-message">私信</button>
-    </div>
-  </div>
-  </div>
-</div>
+    <div id="middle_content">
+        <div class="row bar_content">
+            <div class="col-sm-12 col-md-8 box-left">
+                <div class="panel panel-success">
+                    <div class="panel-heading">最新发布</div>
+                    <div class="panel-body">
+                        <div class="m-row">
+                            {% for video in video_set %}
+                                <div class="col-md-3 col-sm-6 col-xs-12 show-video">
+                                    <a href="/video/{{ video.id }}" title="{{ video.name }}">
+                                        <img src="{% thumbnail video.image 400x300 crop detail %}"
+                                             class="img-responsive center-block"/>
+                                    </a>
 
-<div id="middle_content">
-  <div class="row bar_content">
-    <div class="col-sm-12 col-md-8 box-left">
-      <div class="panel panel-success">
-        <div class="panel-heading">最新发布</div>
-        <div class="panel-body">
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                                    <p>{{ video.name }}</p>
+                                    <i id="dianji" title="播放">{{ video.play }}</i>
+                                    <i id="dm_count" title="弹幕">458</i>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Ta的专辑</div>
+                    <div class="panel-body">
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                    </div>
+                </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Ta的收藏</div>
+                    <div class="panel-body">
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 box-left">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Ta的资料</div>
+                    <div class="panel-body">
+                        <p>自我描述：{{ user.describe }}</p>
+                        <p>硬币： {{ user.money }}个</p>
+                    </div>
+                </div>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Ta的关注</div>
+                    <div class="panel-body">
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">Ta的粉丝</div>
+                    <div class="panel-body">
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-      <div class="panel panel-info">
-        <div class="panel-heading">Ta的专辑</div>
-        <div class="panel-body">
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-        </div>
-      </div>
-      <div class="panel panel-danger">
-        <div class="panel-heading">Ta的收藏</div>
-        <div class="panel-body">
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-{#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-        </div>
-      </div>
     </div>
-    <div class="col-sm-12 col-md-4 box-left">
-      <div class="panel panel-danger">
-        <div class="panel-heading">Ta的资料</div>
-        <div class="panel-body">
-        </div>
-      </div>
-      <div class="panel panel-warning">
-        <div class="panel-heading">Ta的关注</div>
-        <div class="panel-body">
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-        </div>
-      </div>
-      <div class="panel panel-success">
-        <div class="panel-heading">Ta的粉丝</div>
-        <div class="panel-body">
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-{#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 {% endblock %}
 
