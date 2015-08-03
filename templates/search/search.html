@@ -1,100 +1,93 @@
 {% extends "base.html" %}
-{% load thumbnail %}
-{% block title %}-搜索{% endblock %}
-
 {% block extracss %}
-<link href="/static/styles/index.css" rel="stylesheet">
+    <link href="/static/styles/home.css" rel="stylesheet">
 {% endblock %}
-
 {% block content %}
 	<div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
+		<div class ="col-md-2">
+			<img src="/static/images/dilidili_logo.png"/>
+		</div>
+		<div class="col-md-8">
+			<div class="input-group" style="margin-top:20px;">
+				<input text="text" class="form-control" placeholder="search for...">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">搜索</button>
+				</span>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<img src="/static/images/2233.png"/>
+		</div>
+	</div>
+	<div>
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active"><a href="">综合</a></li>
+			<li role="presentation"><a href="">视频</a></li>
+			<li role="presentation"><a href="">专题</a></li>
+			<li role="presentation"><a href="">up主</a></li>
+			<li role="presentation"><a href="">tag</a></li>
+		</ul>
+	</div>
 
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
+	<div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">综合<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">综合</a></li>
+            <li><a href="#">相关度</a></li>
+            <li><a href="#">修改日期</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">发布日期</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">点击</a></li>
+			<li><a href="#">评论</a></li>
+			<li><a href="#">弹幕数</a></li>
+			<li><a href="#">收藏数</a></li>
+          </ul>
+        </li>
+		<li class="active"><a href="#">全部<span class="sr-only">(current)</span></a></li>
+       <li><a href="#">动画</a></li>
+	   <li><a href="#">番剧</a></li>
+	   <li><a href="#">舞蹈</a></li>
+	   <li><a href="#">音乐</a></li>
+	   <li><a href="#">科技</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	</div>
+
+{% endblock %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(".banner-233").click(function () {
+            $(this).stop().fadeOut('fast', function () {
+                $(this).fadeIn('fast');
+            });
+        });
+    function setHeight(elem) {
+        var height = iFrame1.document.body.scrollHeight;
+        if (height < 240) {
+            height += 200;
+        }
+        elem.height = height;
+    }
+    </script>
 {% endblock %}

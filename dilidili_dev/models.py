@@ -14,7 +14,7 @@ class Video(models.Model):
     )
     describe = models.CharField(max_length=200)
     tag = models.CharField(max_length=84, default="", blank=True)  # Ã¿¸ötagÔÊÐí20¸ö×Ö·û£¬Ã¿¸öÊÓÆµÔÊÐíÌí¼Ó4¸ötag£¬tag¼äÓÃ'#'·Ö¸ô
-    category_set = models.ManyToManyField('Category')
+    category_set = models.ManyToManyField('Category', blank=True)
     play = models.IntegerField(default=0)  # ²¥·Å´ÎÊý
     money = models.IntegerField(default=0)  # Ó²±ÒÊý
     owner = models.ForeignKey('User')
