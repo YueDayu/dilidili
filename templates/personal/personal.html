@@ -34,6 +34,7 @@
                     <div class="panel-heading">最新发布</div>
                     <div class="panel-body">
                         <div class="m-row">
+                        {% if video_set %}
                             {% for video in video_set %}
                                 <div class="col-md-3 col-sm-6 col-xs-12 show-video">
                                     <a href="/video/{{ video.id }}" title="{{ video.name }}">
@@ -46,6 +47,9 @@
                                     <i id="dm_count" title="弹幕">458</i>
                                 </div>
                             {% endfor %}
+                        {% else %}
+                            <p>Ta还没有上传过视频哦</p>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
