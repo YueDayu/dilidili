@@ -18,6 +18,8 @@ def process_img(request):
             user.save()
             form = ImageForm(instance=user)
             return render(request, 'forms/process-photo.html', {'form': form})
+        else:
+            return render(request, 'forms/upload-photo.html', {'error': '请重新上传一张图像。'})
 
 
 @require_http_methods(["POST"])
@@ -29,3 +31,5 @@ def upload_success(request):
             form = ImageForm(request.POST, instance=user)
             form.save()
             return render(request, 'forms/upload-success.html')
+        else:
+            return render(request, 'forms/upload-photo.html', {'error': '发生错误，请重新上传。'})

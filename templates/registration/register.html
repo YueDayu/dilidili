@@ -13,7 +13,8 @@
                 <strong>Error!</strong> {{ error }}
             </div>
         {% endif %}
-        <form class="form-base" action="" method="post" enctype="multipart/form-data">
+        <div id="show-error"></div>
+        <form class="form-base" onsubmit="return check(this)" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="m-row">
@@ -53,4 +54,39 @@
 
 {% block extracss %}
     <link rel="stylesheet" type="text/css" href="/static/styles/register.css"/>
+{% endblock %}
+
+{% block extrascripts %}
+    <script src="/static/scripts/form-check.js"></script>
+    <script>
+        function check(thisform) {
+            with (thisform) {
+                if (validate_required(username, "请填写用户名") == false) {
+                    username.focus();
+                    return false
+                }
+                if (check_password(password1) == false) {
+                    password1.focus();
+                    return false
+                }
+                if (check_password(password2) == false) {
+                    password2.focus();
+                    return false
+                }
+                if (validate_required(name, "请填写昵称") == false) {
+                    name.focus();
+                    return false
+                }
+                if (validate_required(email, "请填写邮箱") == false) {
+                    email.focus();
+                    return false
+                }
+                if (validate_required(describe, "请填写自我描述") == false) {
+                    describe.focus();
+                    return false
+                }
+                return true;
+            }
+        }
+    </script>
 {% endblock %}
