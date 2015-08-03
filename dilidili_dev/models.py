@@ -15,7 +15,7 @@ class Video(models.Model):
     describe = models.CharField(max_length=200)
     tag = models.CharField(max_length=84, default="",
                            blank=True)  # 标签
-    category_set = models.ManyToManyField('Category')
+    category_set = models.ManyToManyField('Category', blank=True)
     play = models.IntegerField(default=0)  # 播放次数
     money = models.IntegerField(default=0)  # 硬币数量
     owner = models.ForeignKey('User')
