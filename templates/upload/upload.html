@@ -37,7 +37,7 @@
             <div class="m-row">
                 <label for="id_categories">分类</label>
                 {% for op in form.category_set %}
-                    <label class="checkbox-inline">
+                    <label class="checkbox-inline" for="{{ op.id_for_label }}">
                         {{ op.tag }} {{ op.choice_label }}
                     </label>
                 {% endfor %}
