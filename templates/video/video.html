@@ -1,17 +1,19 @@
 {% extends "base.html" %}
-
-{% block title %}-播放视频{% endblock %}
+{% load thumbnail %}
+{% block title %}-{{ video.name }}{% endblock %}
 
 {% block content %}
     <div class="dd-video">
         <div class="row">
             <div class="col-md-8">
                 <div class="info">
-                    <div class="video-title"><h2>燃起来！同步率爆表！当《西游记之大圣归来》MV遇到戴荃老师原创歌曲《悟空》</h2>
+                    <div class="video-title"><h2>{{ video.name }}</h2>
 
                         <div style="clear:both;"></div>
                     </div>
-                    <div class="tminfo"><a href="#">主页</a> > <a href="#">电影</a> > <a href="#">电影相关</a> &nbsp;&nbsp;&nbsp;<i
+{#                    <div class="tminfo"> 上传时间#}
+{#                    </div>#}
+                    <div class="tminfo"><a href="/">主页</a> > <a href="#">电影</a> &nbsp;&nbsp;&nbsp;<i
                             id="dianji" title="播放">8245</i><i id="dm_count" title="弹幕">458</i><i id="stow_count">25</i>
                     </div>
                     <div style="clear:both;"></div>
@@ -20,7 +22,7 @@
                     <video id="example_video_1" class="video-js  vjs-default-skin vjs-big-play-centered"
                            controls preload="auto" width="100%" height="400"
                            data-setup='{"example_option":true}'>
-                        <source src="/media/videos/达摩的礼物.mp4" type='video/mp4'/>
+                        <source src="{{ video.video.url }}" type='video/mp4'/>
                         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
                             web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
                                 HTML5 video</a></p>
@@ -28,11 +30,10 @@
                 </div>
                 <div class="v-info panel panel-default">
                     <div class="panel-heading">
-                        <span>tag:</span>
+                        <span>tag: </span> {{ video.tag }}
                     </div>
                     <div class="panel-body">
-                        <p>自制 在B站看到《西游记之大圣归来》ED发布《从前的我》陈洁仪主唱 这个视频自己觉得很伤感
-                            伤感过后突然觉得自己记忆中的一首歌很合乎这个MV的场景，所以拼凑了一下，同步率简直爆表。各位观众老爷需要的下载链接已经准备完毕了。MP3及视频都在里面，http://pan.baidu.com/s/1gdpPiCF</p>
+                        <p>{{ video.describe }}</p>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <a href="#">
-                            <div class="u-face"><img src="/static/images/hehe.jpg"></div>
+                            <div class="u-face"><img src={% thumbnail video.owner.image 200x200 box=video.owner.cropping crop detail %}></div>
                         </a>
 
                         <div class="r-info">
@@ -48,8 +49,8 @@
                                     style="position: absolute;right:30px;top:10px;">
                                 <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 关注
                             </button>
-                            <div class="usname"><a href="#" class="name">狐狸君</a></div>
-                            <div class="sign">微博：暗喵喵的祝福 主页：darkflamecat.lofter.com (安心填坑~）</div>
+                            <div class="usname"><a href="/personal/{{ video.owner.id }}" class="name">{{ video.owner.name }}</a></div>
+                            <div class="sign">{{ video.owner.describe }}</div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                             <table>
                                 <thead>
                                 <tr>
-                                    <th><span class="text">评论</span></th>
+                                    <th><span class="text">弹幕</span></th>
                                     <th><span class="text">日期</span></th>
                                 </tr>
                                 </thead>
