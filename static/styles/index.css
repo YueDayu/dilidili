@@ -1,0 +1,148 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+.dd-line {
+    padding: 0 20px 0;
+    margin: 30px 0;
+    line-height: 2px;
+    box-shadow: 0 0 6px #ccc;
+    text-align: center;
+}
+
+.dd-line p {
+    font-size: 30px;
+    text-shadow: 1px 1px 5px #004c7e;
+}
+
+.dd-grid {
+    height: 150px;
+    margin: 10px 0;
+}
+
+/* Common style */
+.dd-grid figure {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    background: black;
+}
+
+.dd-grid figure img {
+    position: relative;
+    /*display: block;*/
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.dd-grid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.dd-grid figure figcaption::before,
+.dd-grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.dd-grid figure figcaption,
+.dd-grid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.dd-grid figure figcaption > a {
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+
+.dd-grid figure h2 {
+    word-spacing: -0.15em;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.dd-grid figure h2 span {
+    font-weight: 800;
+}
+
+.dd-grid figure h2,
+.dd-grid figure p {
+    margin: 0;
+}
+
+.dd-grid figure p {
+    letter-spacing: 1px;
+    font-size: 80%;
+}
+
+.effect-sadie {
+    width: 80%;
+}
+
+figure.effect-sadie figcaption::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(top, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
+    background: linear-gradient(to bottom, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
+    content: '';
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+}
+
+figure.effect-sadie h2 {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    color: white;
+    -webkit-transition: -webkit-transform 0.35s, color 0.35s;
+    transition: transform 0.35s, color 0.35s;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+}
+
+figure.effect-sadie figcaption::before,
+figure.effect-sadie p {
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-sadie p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2em;
+    width: 100%;
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+}
+
+figure.effect-sadie:hover h2 {
+    color: #fff;
+    -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -100px, 0);
+    transform: translate3d(0, -50%, 0) translate3d(0, -100px, 0);
+}
+
+figure.effect-sadie:hover figcaption::before,
+figure.effect-sadie:hover p {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}

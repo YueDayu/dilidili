@@ -18,6 +18,18 @@ from django.contrib import admin
 import dilidili.settings as settings
 
 urlpatterns = [
+    url(r'^$', 'dilidili_dev.views.index'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^register/', 'dilidili_dev.views.register'),
+    url(r'^logout/', 'dilidili_dev.logout_in.logout'),
+    url(r'^login/', 'dilidili_dev.logout_in.login'),
+    url(r'^personal/(?P<user_id>[0-9]+)/$', 'dilidili_dev.views.personal'),
+    url(r'^home/$', 'dilidili_dev.views.home'),
+    url(r'^upload/$', 'dilidili_dev.views.upload'),
+    url(r'^upload-photo/$', 'dilidili_dev.upload_photo.upload_photo'),
+    url(r'^upload-success/$', 'dilidili_dev.upload_photo.upload_success'),
+    url(r'^process-photo/$', 'dilidili_dev.upload_photo.process_img', name='process-photo'),
+    url(r'^search/$', 'dilidili_dev.search.search_mainpage'),
+    url(r'^search/request/$', 'dilidili_dev.search.search'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]

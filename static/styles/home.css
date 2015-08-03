@@ -1,0 +1,153 @@
+.dd-user-info {
+    margin: 10px;
+}
+
+.dd-user-line {
+    height: 2px;
+    line-height: 2px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 6px #ccc;
+    padding: 2px 0;
+}
+
+#main_content {
+    min-height: 600px;
+}
+
+.box-inner {
+    background-color: #fff;
+    overflow: auto;
+}
+
+.box-inner.dyn {
+    position: relative;
+    overflow: visible;
+}
+
+.profile-face {
+    background-color: white;
+    border: #ddd solid 1px;
+    width: 90px;
+    height: 90px;
+    float: left;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-face .mask {
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    line-height: 90px;
+    text-align: center;
+    color: #fff
+}
+
+.profile-face:hover .mask {
+    display: block;
+}
+
+.profile-face img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-infor {
+    float: left;
+    margin-left: 20px;
+}
+
+.profile-infor-l1 {
+    height: 26px;
+    line-height: 26px;
+}
+
+.profile-infor-l2 {
+    line-height: 29px;
+}
+
+.profile-uid-tag {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    padding: 1px 5px;
+    color: #888;
+    vertical-align: middle;
+}
+
+.profile-uid-tag a {
+    color: #888;
+}
+
+.profile-uid-tag a:hover {
+    color: #2b99ce;
+}
+
+.profile-infor .id-state {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.profile-r {
+    float: right;
+}
+
+.dd-user-title {
+    height: 30px;
+    background: #fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: #DDD solid 1px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    line-height: 20px;
+    text-shadow: #fff 1px 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dd-user-title p {
+    display: block;
+    font-size: 16px;
+    color: #525659;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: url('/static/images/dot.png') no-repeat;
+    padding: 0 10px 0;
+}
+
+.banner-233 {
+    width: 115px;
+    height: 34px;
+    background: url('/static/images/2233.png') no-repeat 0 0;
+    margin-top: 27px;
+    margin-right: 12px;
+    float: right;
+}
+
+body {
+    background: url('/static/images/bg.jpg') no-repeat 0 0;
+}
+
+#photo {
+    cursor: pointer;
+}
+
+.dd-user-banner {
+    height: 60px;
+}
+
+.modal-body iframe {
+    width: 100%;
+    border: none;
+}

@@ -1,0 +1,21 @@
+.footer {
+    text-align: center;
+    bottom: 0;
+    color: #000;
+    width: 100%;
+    padding: 19px 15px 0 15px;
+}
+
+html, body {
+    font-family: "Roboto", "Microsoft YaHei", "÷ÚÌו", "ËÎÌו", sans-serif;
+}
+
+.navbar{
+	background-color: rgba(23,23,23,1);
+    border-color: rgba(23,23,23,1);
+}
+
+.container {
+    max-width: 1300px;
+}
+

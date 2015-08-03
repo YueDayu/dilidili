@@ -15,7 +15,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'name', 'email', 'describe')
+        fields = ('username', 'name', 'email', 'describe', 'image')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -64,7 +64,7 @@ class MyUserAdmin(UserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('name', 'username', 'password')}),
-        ('Personal info', {'fields': ('describe', 'email', 'money', 'image')}),
+        ('Personal info', {'fields': ('describe', 'email', 'money', 'image', 'cropping')}),
         ('Permissions', {'fields': ('is_admin', 'is_active', 'can_comment', 'can_upload',  'can_bullet')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -76,7 +76,7 @@ class MyUserAdmin(UserAdmin):
         ),
     )
     search_fields = ('username',)
-    ordering = ('username',)
+    ordering = ('id', 'username',)
     filter_horizontal = ()
 
 # Now register the new UserAdmin...

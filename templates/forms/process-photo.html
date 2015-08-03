@@ -1,0 +1,48 @@
+{% load cropping %}
+{% load cropping thumbnail %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image cropping example {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/bootstrap.min.css"/>
+    <style type="text/css">
+        body {
+            font-family: "Roboto", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            text-align: center;
+        }
+
+        label {
+            display: none;
+        }
+
+        .file-upload {
+            display: none;
+        }
+
+        .field-box {
+            display: none;
+        }
+
+        .title {
+            margin-bottom: 30px;
+        }
+
+        .center {
+            width: 30%;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    {{ form.media }}
+</head>
+<body>
+<p class="title">请选择区域：</p>
+
+<form class="center" method="post" id="cropping_form" action="/upload-success/"
+      enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" style="margin-top: 30px" class="btn btn-success m-btn" value="保存"/>
+</form>
+</body>
+</html>

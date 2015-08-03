@@ -1,0 +1,45 @@
+{% load thumbnail %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Image cropping example</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/bootstrap.min.css"/>
+    <style type="text/css">
+        body {
+            font-family: "Roboto", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            text-align: center;
+        }
+
+        .bigImg {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .center {
+            width: 30%;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+{% if error %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> {{ error }}
+    </div>
+{% endif %}
+<p class="image-label">当前头像:</p>
+<img class="bigImg" style="max-width:200px;height:auto;"
+     src={% thumbnail user.image 200x200 box=user.cropping crop detail %}>
+
+<form class="center" action="/process-photo/" method="post" id="cropping_form"
+      enctype="multipart/form-data">{% csrf_token %}
+    <input type="file" name="image" style="width: 200px; margin-bottom: 30px" accept="image/*">
+    <input type="submit" class="btn btn-success m-btn" value="提交">
+</form>
+</body>
+</html>

@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import os
 from dilidili import settings
+from image_cropping.fields import ImageRatioField, ImageCropField
 # from dilidili_dev.models import Video
 
 
@@ -41,12 +42,13 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     id = models.AutoField(primary_key=True, unique=True)
     username = models.CharField(max_length=50, unique=True, db_index=True)
-    email = models.EmailField(max_length=254)
-    name = models.CharField(max_length=50, db_index=True)
-    image = models.ImageField(
-        upload_to='photos',
-        default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
+    email = models.EmailField(max_length=254, unique=True)
+    name = models.CharField(max_length=50, db_index=True, unique=True)
+    image = ImageCropField(
+        upload_to='photos/',
+        default=os.path.join('photos', '001.jpg').replace('\\', '/')
     )
+    cropping = ImageRatioField('image', '200x200', allow_fullsize=True)
     describe = models.CharField(max_length=254, db_index=True)
     money = models.IntegerField(default=100)
     is_active = models.BooleanField(default=True)

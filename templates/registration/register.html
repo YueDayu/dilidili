@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}-用户注册{% endblock %}
+
+{% block content %}
+    <div class="center">
+    <div class="register_base panel panel-default ">
+        <h2>用户注册</h2>
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
+        <div id="show-error"></div>
+        <form class="form-base" onsubmit="return check(this)" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="m-row">
+                <label for="id_username">用户名:</label>
+                <input type="text" class="form-control" placeholder="Username" id="id_username" maxlength="50" name="username" value="{{ username }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_password1">密码:</label>
+                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password1" name="password1" maxlength="128">
+            </div>
+
+            <div class="m-row">
+                <label for="id_password2">重复密码:</label>
+                <input type="password" class="form-control" placeholder="不少于6个字符" id="id_password2" name="password2">
+            </div>
+
+            <div class="m-row">
+                <label for="id_name">昵称:</label>
+                <input type="text" class="form-control" placeholder="不超过10字" id="id_name" maxlength="50" name="name" value="{{ name }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_email">邮箱:</label>
+                <input class="form-control" placeholder="email" id="id_email" maxlength="254" name="email" type="email" value="{{ email }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_describe">自我描述:</label>
+                <input type="text" class="form-control" placeholder="不超过100字" id="id_describe" maxlength="254" name="describe" value="{{ describe }}">
+            </div>
+            <input type="submit" class="btn btn-success m-btn" value="创建用户">
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/register.css"/>
+{% endblock %}
+
+{% block extrascripts %}
+    <script src="/static/scripts/form-check.js"></script>
+    <script>
+        function check(thisform) {
+            with (thisform) {
+                if (validate_required(username, "请填写用户名") == false) {
+                    username.focus();
+                    return false
+                }
+                if (check_password(password1) == false) {
+                    password1.focus();
+                    return false
+                }
+                if (check_password(password2) == false) {
+                    password2.focus();
+                    return false
+                }
+                if (validate_required(name, "请填写昵称") == false) {
+                    name.focus();
+                    return false
+                }
+                if (validate_required(email, "请填写邮箱") == false) {
+                    email.focus();
+                    return false
+                }
+                if (validate_required(describe, "请填写自我描述") == false) {
+                    describe.focus();
+                    return false
+                }
+                return true;
+            }
+        }
+    </script>
+{% endblock %}

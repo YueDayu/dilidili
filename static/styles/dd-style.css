@@ -1,0 +1,363 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+.dd-nav-text {
+    font-size: 20px;
+}
+
+.dd-line {
+    padding: 0 20px 0;
+    margin: 30px 0;
+    line-height: 2px;
+    box-shadow: 0 0 6px #ccc;
+    text-align: center;
+}
+
+.dd-line p {
+    font-size: 30px;
+    text-shadow: 1px 1px 5px #004c7e;
+}
+
+.dd-grid {
+    height: 150px;
+    margin: 10px 0;
+}
+
+/* Common style */
+.dd-grid figure {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    background: black;
+}
+
+.dd-grid figure img {
+    position: relative;
+    /*display: block;*/
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.dd-grid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.dd-grid figure figcaption::before,
+.dd-grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.dd-grid figure figcaption,
+.dd-grid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.dd-grid figure figcaption > a {
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+
+.dd-grid figure h2 {
+    word-spacing: -0.15em;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.dd-grid figure h2 span {
+    font-weight: 800;
+}
+
+.dd-grid figure h2,
+.dd-grid figure p {
+    margin: 0;
+}
+
+.dd-grid figure p {
+    letter-spacing: 1px;
+    font-size: 80%;
+}
+
+.effect-sadie {
+    width: 80%;
+}
+
+figure.effect-sadie figcaption::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(top, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
+    background: linear-gradient(to bottom, rgba(72, 76, 97, 0) 0%, rgba(72, 76, 97, 0.8) 75%);
+    content: '';
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+}
+
+figure.effect-sadie h2 {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    color: white;
+    -webkit-transition: -webkit-transform 0.35s, color 0.35s;
+    transition: transform 0.35s, color 0.35s;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+}
+
+figure.effect-sadie figcaption::before,
+figure.effect-sadie p {
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-sadie p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2em;
+    width: 100%;
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+}
+
+figure.effect-sadie:hover h2 {
+    color: #fff;
+    -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -100px, 0);
+    transform: translate3d(0, -50%, 0) translate3d(0, -100px, 0);
+}
+
+figure.effect-sadie:hover figcaption::before,
+figure.effect-sadie:hover p {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* video*/
+.dd-video {
+
+}
+
+.dd-video h2 {
+    display: block;
+    font-size: 16px;
+    color: #525659;
+    font-weight: 700;
+    overflow: hidden;
+    line-height: 24px;
+    width: 825px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: url(/static/images/v_ttl.png) no-repeat 0 0;
+    padding: 8px 0 8px 45px
+}
+
+.dd-video .info {
+    padding: 5px 0 8px 0;
+    float: left;
+    width: 960px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #ddd
+}
+
+.dd-video .player {
+    padding: 0 10px 0 0;
+    position: relative;
+    top: 100px;
+}
+
+.v-info {
+    position: relative;
+    top: 100px;
+    right: 0;
+    margin: 10px 0;
+    min-width: 230px;
+    max-width: 950px;
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+}
+
+.tag-list ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tag-list li {
+    padding: 5px;
+    float: left;
+}
+
+.v-intro {
+    margin: 10px 0;
+}
+
+.v-intro p {
+    margin: 5px;
+}
+
+.dd-user-info {
+    margin: 10px;
+}
+
+.dd-user-line {
+    height: 2px;
+    line-height: 2px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 6px #ccc;
+    padding: 2px 0;
+}
+
+#main_content {
+    min-height: 600px;
+}
+
+.box-inner {
+    background-color: #fff;
+    overflow: auto;
+}
+
+.box-inner.dyn {
+    position: relative;
+    overflow: visible;
+}
+
+.profile-face {
+    background-color: white;
+    border: #ddd solid 1px;
+    width: 90px;
+    height: 90px;
+    float: left;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-face .mask {
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    line-height: 90px;
+    text-align: center;
+    color: #fff
+}
+
+.profile-face:hover .mask {
+    display: block;
+}
+
+.profile-face img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-infor {
+    float: left;
+    margin-left: 20px;
+}
+
+/*.profile-infor-l1 h1, h2, h3, h4 {*/
+    /*font-family: Microsoft YaHei;*/
+    /*float: left;*/
+/*}*/
+
+.profile-infor-l1 {
+    height: 26px;
+    line-height: 26px;
+}
+
+.profile-infor-l2 {
+    line-height: 29px;
+}
+
+.profile-uid-tag {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    padding: 1px 5px;
+    color: #888;
+    vertical-align: middle;
+}
+
+.profile-uid-tag a {
+    color: #888;
+}
+
+.profile-uid-tag a:hover {
+    color: #2b99ce;
+}
+
+.profile-infor .id-state {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.profile-r {
+    float: right;
+}
+
+.dd-user-title {
+    height: 30px;
+    background: #fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: #DDD solid 1px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    line-height: 20px;
+    text-shadow: #fff 1px 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dd-user-title p {
+    display: block;
+    font-size: 16px;
+    color: #525659;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: url(/static/images/dot.png) no-repeat;
+    background-position: 0px 0px;
+    padding: 0 10px 0;
+}
+
+.banner-233 {
+    width: 115px;
+    height: 34px;
+    background: url('/static/images/2233.png');
+    margin-top: 27px;
+    margin-right: 12px;
+    float: right;
+}
