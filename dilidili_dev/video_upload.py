@@ -9,3 +9,4 @@ class VideoUploadForm(forms.ModelForm):
         widgets = {
             'category_set': forms.CheckboxSelectMultiple
         }
+

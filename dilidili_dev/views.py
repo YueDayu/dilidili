@@ -93,6 +93,7 @@ def upload(request):
                 video.status = 4
                 video.owner = request.user
                 video.save()
+                form.save_m2m()
                 return HttpResponseRedirect("/home/")
             else:
                 return render(request, 'upload/upload.html', {'error': form.errors, 'form': form })
