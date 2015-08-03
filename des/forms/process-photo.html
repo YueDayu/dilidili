@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Image cropping example</title>
+    <style type="text/css">
+      th {text-align: left;}
+      #navigation li {
+        display: inline;
+        list-style-type: none;
+        padding-right: 10px;
+      }
+      label{
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" id="cropping_form" action="/upload-success/" enctype="multipart/form-data">
+      <div class="current_photo" style="margin-top: 10px; margin-left: 180px">
+        <label>当前头像：</label>
+        <br>
+        <img class="bigImg" style="max-width:200px;height:auto;" src="../hehe.jpg">
+        <img class="smallImg" style="max-width:80px;height:auto;" src="../hehe.jpg">
+      </div>
+      <input type="submit" value="Save" style="margin-top: 10px; margin-left: 180px"/>
+  </form>
+  </body>
+</html>
