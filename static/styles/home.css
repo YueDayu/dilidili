@@ -146,3 +146,8 @@ body {
 .dd-user-banner {
     height: 60px;
 }
+
+.modal-body iframe {
+    width: 100%;
+    border: none;
+}

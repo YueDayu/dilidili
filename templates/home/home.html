@@ -78,7 +78,8 @@
                     <h4 class="modal-title" id="myModalLabel">更换头像</h4>
                 </div>
                 <div class="modal-body">
-                    <iframe src="/upload-photo/"></iframe>
+                    <iframe id="iFrame1" name="iFrame1" onload="this.height=iFrame1.document.body.scrollHeight"
+                            src="/upload-photo/"></iframe>
                 </div>
             </div>
         </div>
@@ -86,7 +87,7 @@
 {% endblock %}
 
 {% block extrascripts %}
-    <script>
+    <script type="text/javascript">
         $(".banner-233").click(function () {
             $(this).stop().fadeOut('fast', function () {
                 $(this).fadeIn('fast');
