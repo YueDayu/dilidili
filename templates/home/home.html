@@ -91,7 +91,7 @@
                     <h4 class="modal-title" id="myModalLabel">更换头像</h4>
                 </div>
                 <div class="modal-body">
-                    <iframe id="iFrame1" name="iFrame1" onload="this.height=iFrame1.document.body.scrollHeight"
+                    <iframe id="iFrame1" name="iFrame1" onload="setHeight(this)"
                             src="/upload-photo/"></iframe>
                 </div>
             </div>
@@ -106,5 +106,12 @@
                 $(this).fadeIn('fast');
             });
         });
+    function setHeight(elem) {
+        var height = iFrame1.document.body.scrollHeight;
+        if (height < 240) {
+            height += 200;
+        }
+        elem.height = height;
+    }
     </script>
 {% endblock %}
