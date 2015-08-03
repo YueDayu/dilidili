@@ -8,18 +8,15 @@ from dilidili_dev.models import *
 # for ajax GET, return JSON
 @require_http_methods(["GET"])
 def search(request):
-    data = request.GET
-    objects = Video.objects.all()
-    if "filters" in data:
-        filters_tmp = QueryDict(data["filters"])
-        for field in filters_tmp:
-            field_new = field if "__" in field else field + "__iexact"
-            objects = objects.filter(**{field_new: filters_tmp.get(field)})
-    sortby = data["order_by"] if "sortby" in data else "?"
-    offset = int(data["offset"] if "offset" in data else "0")
-    limitto = int(data["limit_to"] if "limit_to" in data else "100")
-    objects = objects.order_by(sortby)[offset: offset + limitto]
-    return JsonResponse(serializers.serialize('json', objects), safe=False)
+	data = request.GET.copy()
+	sortby = data.pop("order_by")[0] if "order_by" in data else "?"
+	offset = int(data.pop("offset")[0] if "offset" in data else "0")
+	limitto = int(data.pop("limit_to")[0] if "limit_to" in data else "100")
+	objects = Video.objects.all()
+	for field, value in data.items():
+		objects = objects.filter(**{field:value})
+	objects = objects.order_by(sortby)[offset : offset+limitto]
+	return JsonResponse(serializers.serialize('json', objects), safe=False)
 
 
 @require_http_methods(["GET"])
