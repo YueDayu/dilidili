@@ -12,10 +12,7 @@ def search(request):
 	sortby = data.pop("order_by")[0] if "order_by" in data else "?"
 	offset = int(data.pop("offset")[0] if "offset" in data else "0")
 	limitto = int(data.pop("limit_to")[0] if "limit_to" in data else "100")
-	objects = Video.objects.all()
-	for field, value in data.items():
-		objects = objects.filter(**{field:value})
-	objects = objects.order_by(sortby)[offset : offset+limitto]
+	objects = Video.objects.all().filter(**data.dict()).order_by(sortby)[offset : offset+limitto]
 	return JsonResponse(serializers.serialize('json', objects), safe=False)
 
 
