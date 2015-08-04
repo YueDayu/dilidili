@@ -4,6 +4,7 @@
 
 {% block extracss %}
     <link href="/static/styles/personal.css" rel="stylesheet">
+    <link href="/static/styles/personal-admin.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -11,11 +12,12 @@
         <div class="center">
             <div class="row bar_headImg">
                 <div class="col-md-12 col-sm-12">
-                    <img class="headImg" src={% thumbnail user.image 200x200 box=user.cropping crop detail %}>
+                    <img class="headImg" src={% thumbnail pageuser.image 200x200 box=pageuser.cropping crop detail %}>
                     <br>
-                    <label class="page_username">{{ user.name }}</label>
+                    <label class="page_username">{{ pageuser.name }}</label>
                 </div>
             </div>
+            {% if user.is_authenticated and user.pk != pageuser.pk %}
             <div class="row bar_buttons">
                 <div class="col-sm-6 col-md-6 box-follow">
                     <button type="button" class="btn btn-primary btn-follow">关注</button>
@@ -24,6 +26,50 @@
                     <button type="button" class="btn btn-message">私信</button>
                 </div>
             </div>
+            {% endif %}
+            {% if user.is_admin %}
+            <div class="row bar_buttons">
+                <div class="col-sm-2 col-md-2 col-md-offset-1 col-sm-offset-1 box-admin">
+                    <button type="button" class="btn btn-primary btn-admin">编辑</button>
+                </div>
+                {% if pageuser.is_active %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-danger btn-admin">封禁</button>
+                </div>
+                {% else %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-success btn-admin">解除封禁</button>
+                </div>
+                {% endif %}
+                {% if pageuser.can_upload %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-danger btn-admin">封禁视频</button>
+                </div>
+                {% else %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-success btn-admin">解除视频封禁</button>
+                </div>
+                {% endif %}
+                {% if pageuser.can_comment %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-danger btn-admin">封禁评论</button>
+                </div>
+                {% else %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-success btn-admin">解除评论封禁</button>
+                </div>
+                {% endif %}
+                {% if pageuser.can_bullet %}
+                <div class="col-sm-2 col-md-2 box-admin">
+                    <button type="button" class="btn btn-danger btn-admin">封禁弹幕</button>
+                </div>
+                {% else %}
+                <div class="col-sm-6 col-md-6 box-admin">
+                    <button type="button" class="btn btn-success btn-admin">解除弹幕封禁</button>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -78,8 +124,8 @@
                 <div class="panel panel-danger">
                     <div class="panel-heading">Ta的资料</div>
                     <div class="panel-body">
-                        <p>自我描述：{{ user.describe }}</p>
-                        <p>硬币： {{ user.money }}个</p>
+                        <p>自我描述：{{ pageuser.describe }}</p>
+                        <p>硬币： {{ pageuser.money }}个</p>
                     </div>
                 </div>
                 <div class="panel panel-warning">
