@@ -1,0 +1,28 @@
+.center{
+  text-align: center;
+  width: 100%;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.album_title{
+  margin:100px 0 0 0;
+}
+
+.son_video{
+  width:90%;
+  margin:5px;
+}
+
+@media (max-width: 500px){
+  .center{
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) and (max-width: 992px){
+  .center{
+    width: 60%;
+  }
+}
