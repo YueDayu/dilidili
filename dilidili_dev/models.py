@@ -10,7 +10,7 @@ class Video(models.Model):
     video = models.FileField(upload_to='videos')
     image = models.ImageField(
         upload_to='images',
-        default=os.path.join(settings.MEDIA_URL, 'photos', '001.jpg').replace('\\', '/')
+        default=os.path.join('photos', '001.jpg').replace('\\', '/')
     )
     describe = models.CharField(max_length=200)
     tag = models.CharField(max_length=84, default="",
@@ -21,6 +21,12 @@ class Video(models.Model):
     owner = models.ForeignKey('User')
     time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 时间
     status = models.IntegerField(default=0)  # 视频状态
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return '/video/%u' % self.pk
 
 
 # 弹幕

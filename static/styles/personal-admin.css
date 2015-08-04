@@ -1,0 +1,18 @@
+.btn-admin {
+    width: 100%;
+    max-width: 150px;
+    margin: 2px;
+    z-index: 1000
+}
+
+.box-admin {
+    padding-left: 1%;
+    text-align: left;
+}
+
+@media (max-width: 500px) {
+    .box-admin {
+        text-align: center;
+        margin-right: 11px;
+    }
+}
