@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, JsonResponse
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
 from dilidili_dev.video_upload import VideoUploadForm
@@ -100,3 +100,14 @@ def upload(request):
                 return render(request, 'upload/upload.html', {'error': form.errors, 'form': form })
     else:
         return HttpResponseRedirect("/login/")
+
+
+@require_http_methods(['POST'])
+def video_play_add(request):
+    try:
+        video = Video.objects.get(pk=request.POST['id'])
+        video.play += 1
+        video.save()
+    except Video.DoesNotExist:
+        return JsonResponse(data={'res': False})
+    return JsonResponse(data={'res': True})

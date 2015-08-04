@@ -5,7 +5,7 @@
     font-weight: 700;
     overflow: hidden;
     line-height: 24px;
-    width: 825px;
+    /*width: 825px;*/
     text-overflow: ellipsis;
     white-space: nowrap;
     background: url('/static/images/v_ttl.png') no-repeat 0 0;
@@ -20,7 +20,7 @@
 }
 
 .dd-video .player {
-    margin: 10px 10px 0 0;
+    margin: 10px 0;
     position: relative;
 }
 
@@ -34,8 +34,8 @@
 
 .tag-list ul {
     list-style-type: none;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     border-bottom: 2px solid #ddd;
 }
 
@@ -99,16 +99,13 @@
     cursor: pointer;
     margin: 30px auto 50px;
     display: block;
-    width: 320px;
-    height: 80px;
+    width: 100%;
 }
 
 .dd-video .tminfo {
     position: relative;
     left: 0;
-    float: left;
     padding-left: 2px;
-    height: 16px;
     line-height: 16px;
     color: #666;
     font-size: 12px
@@ -179,5 +176,10 @@
     top: -20px;
     z-index: 2;
     height: 20px;
-    width: 35%;
+    /*width: 35%;*/
+}
+
+.isComm img {
+    width: 100%;
+    max-width: 320px;
 }
