@@ -1,4 +1,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
+.body{
+	font-family:Microsoft YaHei;
+}
 .dd-nav-text{
 	font-family:'Microsoft YaHei';
 	font-size:20px;
@@ -372,4 +375,49 @@ figure.effect-sadie:hover p {
 }
 .dd-video .tminfo i#dm_count {
 	background-position: 0 -243px
+}
+
+/*message.html*/
+.dd-msg-inner h2{
+		display: block;
+	font-size: 16px;
+	color: #525659;
+	font-weight: 700;
+	overflow: hidden;
+	line-height: 24px;
+	width: 825px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: url(../img/v_ttl.png) no-repeat 0 0;
+	padding: 8px 0 8px 45px;
+}
+.dd-pm-item{
+	border-bottom: 2px solid #ddd;
+	margin:10px;
+}
+.dd-pm-item img{
+	width:100%;
+	height:100%;
+	margin:5px;
+	box-shadow: 0 0 6px #ccc;
+}
+
+.dd-pm-item a{
+
+}
+.dd-pm-item-meta{
+	text-align:right;
+	margin:5px 0;
+}
+.dd-grey{
+	color:#999;
+}
+.dd-left{
+	float:left;
+}
+
+.dd-bull {
+	padding:0 3px;
+	color:#BBB;
+	font-family:Arial
 }

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+	
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+    <title>DiliDili</title>
+    <!-- Bootstrap core CSS -->
+	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/modal.js" type="text/javascript"></script>
+	<link href="css/message.css" rel="stylesheet">
+
+  </head>
+  <body>
+	<div class="main-content">
+      <div class="dd-msg-inner">
+	    <!-- 导航条 -->
+	    <nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <h2>我的私信</h2>
+			</div>
+			<div class="nav navbar-nav navbar-right">
+			  <button type="button" class="btn btn-primary" style="margin-top:12px;margin-right:5px;" data-toggle="modal" data-target="#sendModal">写私信</button>
+			</div>
+		  </div>
+		</nav>
+		<!-- 私信内容 -->
+		<div id="dd-pm-item-wrap" class="page">
+		  <div class="dd-pm-item" data-name="丑小蛇">
+		    <div class="row">
+			  <!-- user face -->
+			  <div class="col-md-1 col-sm-2 col-xs-3">
+			    <a href=""><img src="hehe.jpg" class="img-rounded"/></a>
+			  </div>
+			  <!-- main content -->
+			  <div class="col-md-11 col-sm-10 col-xs-9">
+				<a title="丑小蛇" href="" id="" class="">丑小蛇</a>
+				：
+				<p><br>丑小蛇，你好。<br><br>刚刚过去的 2014，你有哪些收获？<br><br>阅读的新知，是否带你领略了更广阔的世界？<br><br>关注的他人，是否让你领悟了生活的千差万别？<br><br>希望这一年，你因知乎而有所收获。<br></p>
+				
+				<div class="dd-pm-item-meta">
+					<span class="dd-grey dd-left">1月1日 12:00</span>
+					<a href="#hisModal"  data-toggle="modal" onclick="history(this)">共1条私信</a>
+					<span class="dd-bull">|</span>
+					<a href="#myModal"  data-toggle="modal" onclick="reply(this)">回复</a>
+					<span class="dd-bull">|</span>
+					<a href="">删除</a>
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="dd-pm-item" data-name="Another">
+		    <div class="row">
+			  <!-- user face -->
+			  <div class="col-md-1 col-sm-2 col-xs-3">
+			    <a href=""><img src="hehe.jpg" class="img-rounded"/></a>
+			  </div>
+			  <!-- main content -->
+			  <div class="col-md-11 col-sm-10 col-xs-9">
+				<a title="Another" href="" id="" class="">Another</a>
+				：
+				<p><br>Another，你好。<br><br>刚刚过去的 2014，你有哪些收获？<br><br>阅读的新知，是否带你领略了更广阔的世界？<br><br>关注的他人，是否让你领悟了生活的千差万别？<br><br>希望这一年，你因知乎而有所收获。<br></p>
+				
+				<div class="dd-pm-item-meta">
+					<span class="dd-grey dd-left">1月1日 12:00</span>
+					<a href="#hisModal"  data-toggle="modal" onclick="history(this)">共2条私信</a>
+					<span class="dd-bull">|</span>
+					<a href="#myModal"  data-toggle="modal" onclick="reply(this)">回复</a>
+					<span class="dd-bull">|</span>
+					<a href="">删除</a>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+<!-- 模态框（Modal） -->
+<!-- send） -->
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header" style="background-color:#337ab7">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel" style="font-family:Microsoft YaHei;color:white;">
+               发送私信
+            </h4>
+         </div>
+         <div class="modal-body">
+            <div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">发给：</span>
+				<input type="text" class="form-control" placeholder="搜索用户" aria-describedby="basic-addon1">
+			</div>
+			<input type="text" class="form-control" placeholder="输入您想发送的内容" style="display:inline;height:60px;margin:10px 0;">
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">取消
+            </button>
+            <button type="button" class="btn btn-primary">
+               发送
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+<!-- reply -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header" style="background-color:#337ab7">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel" style="font-family:Microsoft YaHei;color:white;">
+               发送私信
+            </h4>
+         </div>
+         <div class="modal-body">
+            <div class="send dd-grey">发给：</div>
+			<div class="user-name dd-black" id="user-name"></div>
+			<input type="text" class="form-control" placeholder="输入您想发送的内容" style="display:inline;height:60px;">
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">取消
+            </button>
+            <button type="button" class="btn btn-primary">
+               发送
+            </button>
+         </div>
+      </div>
+</div>
+</div>
+<!-- history -->
+<div class="modal fade" id="hisModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header" style="background-color:#337ab7">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel" style="font-family:Microsoft YaHei;color:white;">
+               查看私信
+            </h4>
+         </div>
+         <div class="modal-body">
+            <div class="send dd-grey">发给：</div>
+			<div class="user-name dd-black" id="user-name"></div>
+			<input type="text" class="form-control" placeholder="输入您想发送的内容" style="display:inline;height:60px;">
+			<div class="dd-right"><button type="button" class="btn btn-primary" style="margin:2px;">
+               发送
+            </button></div>
+			<div class="clear"></div> 
+			<div class="history" id="pm-history"></div>
+		 </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal">关闭窗口
+            </button>
+         </div><!-- /.modal-content -->
+		 <!-- /.modal -->
+	  </div>
+	</div>
+</div>
+	<script src="js/message.js" type="text/javascript"></script>
+  </body>
