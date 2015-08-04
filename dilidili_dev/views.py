@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404, JsonResponse
+from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
 from dilidili_dev.video_upload import VideoUploadForm
@@ -78,12 +79,15 @@ def home(request):
         return render(request, 'home/home.html', {'home_video_set': request.user.video_set.all()[:8],
                                                   'home_video_collection': request.user.collection_videos.all()[:8]})
     else:
-        return HttpResponseRedirect("/login/")
+        return render(request, "registration/login.html", {'error': "请登陆"})
 
 
 @require_http_methods(["GET", "POST"])
 def upload(request):
     if request.user.is_authenticated():
+        if not request.user.can_upload:
+            return render(request, 'home/home.html', {'error': "您已被封禁，不能上传视频" })
+
         if request.method == 'GET':
             return render(request, 'upload/upload.html', {'form': VideoUploadForm(initial={'name': "", 'describe': "", 'tag': ""})})
         else:
@@ -98,7 +102,7 @@ def upload(request):
             else:
                 return render(request, 'upload/upload.html', {'error': form.errors, 'form': form })
     else:
-        return HttpResponseRedirect("/login/")
+        return render(request, "registration/login.html", {'error': "请登陆"})
 
 
 @require_http_methods(['POST'])

@@ -1,7 +1,8 @@
 .btn-admin {
-    width: 90%;
+    width: 100%;
     max-width: 150px;
     margin: 2px;
+    z-index: 1000
 }
 
 .box-admin {
