@@ -12,5 +12,5 @@
         });
     };
 
-    player.one('play', send_play);
+    //player.one('play', send_play); TODO: add number.
 })();

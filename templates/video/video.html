@@ -26,8 +26,7 @@
                 </div>
                 <div class="player">
                     <video id="video" class="video-js  vjs-default-skin vjs-big-play-centered"
-                           controls preload="auto" width="100%" height="400"
-                           data-setup='{"example_option":true}'>
+                           controls preload="auto" width="100%" height="400">
                         <source src="{{ video.video.url }}" type='video/mp4'/>
                         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
                             web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
@@ -116,5 +115,6 @@
         videojs.options.flash.swf = '/static/swf/video-js.swf'
     </script>
     <script src="/static/scripts/ajax-send.js"></script>
-    <script src="/static/scripts/video-page.js"></script>
+    <script src="/static/scripts/video-page-post.js"></script>
+    <script src="/static/scripts/video-page-show.js"></script>
 {% endblock %}
