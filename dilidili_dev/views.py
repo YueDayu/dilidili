@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, Http404, JsonResponse
+from django.http import HttpResponseRedirect, Http404, JsonResponse, HttpResponseForbidden, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
@@ -115,3 +115,20 @@ def video_play_add(request):
     except Video.DoesNotExist:
         return JsonResponse(data={'res': False})
     return JsonResponse(data={'res': True})
+
+
+@require_http_methods(["POST"])
+def user_toggle_follow(request, user_id):
+    if not request.user.is_authenticated() or request.user.pk == user_id:
+        return HttpResponseForbidden()
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        raise Http404("User not found")
+
+    if user in request.user.follow_users.all():
+        request.user.follow_users.remove(user)
+    else:
+        request.user.follow_users.add(user)
+
+    return HttpResponse()

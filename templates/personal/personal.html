@@ -20,7 +20,11 @@
             {% if user.is_authenticated and user.pk != pageuser.pk %}
             <div class="row bar_buttons">
                 <div class="col-sm-6 col-md-6 box-follow">
-                    <button type="button" class="btn btn-primary btn-follow">关注</button>
+                    {% if pageuser in user.follow_users.all %}
+                    <button type="button" class="btn btn-default btn-follow" id="toggle-follow">取消关注</button>
+                    {% else %}
+                    <button type="button" class="btn btn-primary btn-follow" id="toggle-follow">关注</button>
+                    {% endif %}
                 </div>
                 <div class="col-sm-6 col-md-6 box-message">
                     <a href="/sendto/{{ pageuser.pk }}"><button type="button" class="btn btn-message">私信</button></a>
@@ -175,4 +179,5 @@
 {% block extrascripts %}
 <script type="text/javascript" src="/static/scripts/ajax-send.js"></script>
 <script type="text/javascript" src="/static/scripts/personal-admin.js"></script>
+<script type="text/javascript" src="/static/scripts/personal-follow.js"></script>
 {% endblock %}
