@@ -6,7 +6,7 @@ from dilidili_dev.models import *
 from django.contrib import auth
 from dilidili_dev.users import User
 
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def toggle_user_upload(request, user_id):
 	if not request.user.is_authenticated() or not request.user.is_admin:
 		return HttpResponseForbidden()

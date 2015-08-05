@@ -1,7 +1,7 @@
 ;(function () {
-	perm_upload = $("#btn-perm-upload");
-	perm_comment = $("#btn-perm-comment");
-	perm_bullet = $("#btn-perm-bullet");
+	var perm_upload = $("#btn-perm-upload");
+	var perm_comment = $("#btn-perm-comment");
+	var perm_bullet = $("#btn-perm-bullet");
 
 	perm_upload.click(function (e) {
 		perm_upload.attr("disabled", true);
