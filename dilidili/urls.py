@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^video-add-bullet/$', 'dilidili_dev.video_play.video_bullet_add'),
     url(r'^video-add-comment/$', 'dilidili_dev.video_play.video_comment_add'),
     url(r'^video-get-bullet/$', 'dilidili_dev.video_play.video_bullet_get'),
+    url(r'^video-get-comment/$', 'dilidili_dev.video_play.get_video_comment'),
+    url(r'^video-del-comment/$', 'dilidili_dev.video_play.del_video_comment'),
     url(r'^home/$', 'dilidili_dev.views.home'),
     url(r'^upload/$', 'dilidili_dev.views.upload'),
     url(r'^upload-photo/$', 'dilidili_dev.upload_photo.upload_photo'),

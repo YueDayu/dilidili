@@ -5,7 +5,7 @@ from .models import Video
 from django.http import Http404, JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import Bullet, Comment
-from django.core import serializers
+from easy_thumbnails.files import get_thumbnailer
 
 
 def video_play(request, video_id):
@@ -56,7 +56,7 @@ def video_bullet_get(request):
             temp = {
                 'content': x.content,
                 'color': x.color,
-                'send_date': str(x.send_date.month) + "-" + str(x.send_date.day),
+                'send_date': str(x.send_date.year) + "-" + str(x.send_date.month) + "-" + str(x.send_date.day),
                 'time': x.time
             }
             new_list.append(temp)
@@ -88,3 +88,62 @@ def video_comment_add(request):
     else:
         return JsonResponse(data={'res': False,
                                   'error': '用户没有权限！'})
+
+
+@require_http_methods(['POST'])
+def get_video_comment(request):
+    try:
+        video = Video.objects.get(pk=request.POST['id'])
+        c_set = Comment.objects.filter(video=video).order_by('-time')
+        new_list = []
+        if not request.user.is_authenticated():
+            flag = False
+        else:
+            flag = True
+        for x in c_set:
+            thumbnail_url = get_thumbnailer(x.user.image).get_thumbnail({
+                'size': (200, 200),
+                'box': x.user.cropping,
+                'crop': True,
+                'detail': True,
+            }).url
+            if flag:
+                if x.user == request.user or request.user.is_admin:
+                    flag = True
+                else:
+                    flag = False
+            temp = {
+                'user_id': x.user.id,
+                'user_name': x.user.name,
+                'user_image': thumbnail_url,
+                'can_del': flag,
+                'comment_id': x.pk,
+                'comment_context': x.content,
+                'comment_time':
+                    str(x.time.month) + '月' + str(x.time.day) + '日 ' + str(x.time.hour) + ':' + str(x.time.minute)
+            }
+            new_list.append(temp)
+        result = {
+            'res': True,
+            'list': new_list
+        }
+        return JsonResponse(data=result)
+    except Video.DoesNotExist:
+        return JsonResponse(data={'res': False})
+
+
+@require_http_methods(['POST'])
+def del_video_comment(request):
+    comment_id = int(request.POST['id'])
+    if request.user.is_authenticated():
+        try:
+            comment = Comment.objects.get(pk=comment_id)
+            if request.user == comment.user or request.user.is_admin:
+                comment.delete()
+                return JsonResponse(data={'res': True})
+            else:
+                return JsonResponse(data={'res': False})
+        except Comment.DoesNotExist:
+            return JsonResponse(data={'res': False})
+    else:
+        return JsonResponse(data={'res': False})

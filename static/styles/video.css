@@ -334,3 +334,8 @@ tr {
 .m-btn {
     width: 32%;
 }
+
+.cm-del-btn {
+    cursor: pointer;
+    margin-left: 10px;
+}

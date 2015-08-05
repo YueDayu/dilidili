@@ -5,7 +5,7 @@
 ;
 (function () {
     var player = videojs('video');
-    var show_comment_btn = $('#');
+    var show_comment_btn = $('#show-comment-btn');
     var video_id = $('#video-id').html();
 
     var max = 0;
@@ -39,6 +39,65 @@
 
     player.one('play', send_play);
     $(document).ready(function () {
-        //setInterval(get_bullet, 1500);
+        setInterval(get_bullet, 2000);
     });
+
+    function add_comment(item) {
+        var del_btn = item['can_del'] ? "<a class='cm-del-btn' onclick='del_cmt(" + item['comment_id']
+            + ")'>删除</a>" : "";
+        var c = document.createElement('div');
+        c.setAttribute('id', 'comment-' + item['comment_id']);
+        c.setAttribute('class', 'comment panel panel-default');
+        c.innerHTML = "<div class='row'> <div class='col-md-1 col-sm-1 col-xs-2'>" +
+            "<a href='/personal/" + item['user_id'] +
+            "' target='blank'> <div class='facebox'> " +
+            "<img src='" + item['user_image'] + "' " +
+            "class='img-rounded'/> </div> </a> </div>" +
+            "<div class='col-md-11 col-sm-11 col-xs-10'> <div class='comm-author'>" +
+            "<a href='/personal/" + item['user_id'] + "' target='blank'>" +
+            item['user_name'] + "</a></div><div class='content'>" + item['comment_context'] +
+            "</div> <div class='comm-info'>" + item['comment_time'] + del_btn + "</div> </div> </div>";
+        $('#comment-area').append(c);
+    }
+
+    function add_no_comment() {
+        var c = document.createElement('div');
+        c.setAttribute('class', 'comment panel panel-default');
+        c.innerHTML = "暂时没有评论";
+        $('#comment-area').append(c);
+    }
+
+    function get_all_comment() {
+        $.post('/video-get-comment/', {
+            id: video_id
+        }, function(data) {
+            if (data['res']) {
+                show_comment_btn.hide();
+                if (data['list'].length == 0) {
+                    add_no_comment();
+                } else {
+                    for (var x in data['list']) {
+                        add_comment(data['list'][x]);
+                    }
+                }
+            }
+        });
+    }
+
+    show_comment_btn.click(function() {
+        get_all_comment();
+    });
+
+    window.del_cmt = function(id) {
+        var r = confirm("您要删除这条评论么？");
+        if (r) {
+            $.post('/video-del-comment/', {
+                id: id
+            }, function (data) {
+                if (data['res']) {
+                    $('#comment-' + id).remove();
+                }
+            });
+        }
+    }
 })();
