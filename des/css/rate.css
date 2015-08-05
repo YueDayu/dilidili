@@ -1,0 +1,87 @@
+em{
+	font-style:normal;
+}
+i{
+	font-style:normal;
+}
+.rate-frm span{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 16px;
+	font-weight:bold;
+	padding-top:10px;
+}
+
+.rate-frm .rate-slt {
+	font-size: 14px
+}
+.rate-slt {
+	display: inline;
+}
+.rate-frm ul{
+	font-family:Microsoft YaHei;
+}
+ .rate-frm .rate-slt li {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 2px 10px;
+	padding: 5px 5px 2px 30px;
+	height: 35px;
+	line-height: 30px;
+	border: 2px solid #fff;
+	cursor: pointer;
+	background: url(../img/icons3.png) no-repeat;
+	position: relative;
+	transition: .1s;
+	min-width: 30px
+}
+
+.rate-slt li:hover {
+	background-color: #f5f5f5
+}
+.rate-frm .rate-slt li.on {
+	background-color: #fff;
+	border: 2px solid #00a1d6
+}
+
+.rate-frm .rate-slt li#r100 {
+	background-position: 7px -622px;
+}
+.rate-frm .rate-slt li#r2 {
+	background-position: 7px -732px
+}
+.fav{
+	border:0;
+}
+.fav_btn {
+	display: inline-block;
+	height: 100%;
+	vertical-align: top;
+	color: #222
+}
+.fav_btn  i{
+	font-family:Microsoft YaHei;
+	font-size:16px;
+	font-weight:bold;
+	margin:0 2px 2px 0; 
+	height:35px; 
+	line-height:30px;
+	color: black; 
+	min-width:40px; 
+	display: block; 
+	float: left; 
+	padding-left:35px;
+	padding-top:8px;
+	background: url(../img/icons3.png) 1px -516px no-repeat;
+	vertical-align: middle;
+}
+.fav_btn i.icon {
+	background-position: 1px -516px;
+	max-width:110px; 
+	position:relative;
+}
+.fav_btn:hover .icon {
+	background-position: 1px -569px;
+	background-color: #f5f5f5;
+	cursor:pointer;
+}

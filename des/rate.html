@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+	
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+    <title>DiliDili</title>
+    <!-- Bootstrap core CSS -->
+	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/rate.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+		  <div class="col-md-4 col-sm-4 col-xs-4">
+		  <div class="fav_btn" title="收藏">
+			<i class="icon" onclick="stow(this)">收藏视频</i>
+		  </div>
+		  </div>
+		  <div class="col-md-8 col-sm-8 col-xs-8">
+			  <div class="rate-frm">
+			    <ul class="rate-slt">
+				  <span class="title">评分</span>
+				  <li id="r100"><em>150</em></li>
+				  <li id="r2" onclick="likeit(this)"><em>赞</em></li>
+				</ul>
+			  </div>
+			</div>
+		</div>
+      </div>
+    </div>
+	<script>
+	  function stow(obj){
+		if(obj.innerHTML == "收藏视频"){
+			obj.innerHTML = "已收藏";
+		}
+		else{
+			obj.innerHTML = "已收藏";
+		}
+	  }
+	  function likeit(obj){
+		if(obj.innerHTML == "<em>赞</em>"){
+			obj.innerHTML = "<em>取消赞</em>";
+			$(obj).css('background-position','7px -676px');
+		}
+		else{
+			obj.innerHTML = "<em>赞</em>";
+			$(obj).css('background-position','7px -732px');
+		}
+	  }
+	</script>
+  </body>
