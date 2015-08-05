@@ -34,29 +34,29 @@
                 </div>
                 {% if pageuser.can_upload %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin">封禁视频</button>
+                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-upload">封禁视频</button>
                 </div>
                 {% else %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin">解除视频封禁</button>
+                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-upload">解除视频封禁</button>
                 </div>
                 {% endif %}
                 {% if pageuser.can_comment %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin">封禁评论</button>
+                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-comment">封禁评论</button>
                 </div>
                 {% else %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin">解除评论封禁</button>
+                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-comment">解除评论封禁</button>
                 </div>
                 {% endif %}
                 {% if pageuser.can_bullet %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin">封禁弹幕</button>
+                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-bullet">封禁弹幕</button>
                 </div>
                 {% else %}
                 <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin">解除弹幕封禁</button>
+                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-bullet">解除弹幕封禁</button>
                 </div>
                 {% endif %}
             </div>
@@ -146,5 +146,6 @@
 {% endblock %}
 
 {% block extrascripts %}
+<script type="text/javascript" src="/static/scripts/ajax-send.js"></script>
 <script type="text/javascript" src="/static/scripts/personal-admin.js"></script>
 {% endblock %}

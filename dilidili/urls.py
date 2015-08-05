@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^register/', 'dilidili_dev.views.register'),
     url(r'^logout/', 'dilidili_dev.logout_in.logout'),
     url(r'^login/', 'dilidili_dev.logout_in.login'),
-    url(r'^personal/(?P<user_id>[0-9]+)/$', 'dilidili_dev.views.personal'),
+    url(r'^personal/(?P<user_id>[0-9]+)/', include('dilidili_dev.admin_user_urls')),
     url(r'^video/(?P<video_id>[0-9]+)/$', 'dilidili_dev.video_play.video_play'),
     url(r'^video-add-play/$', 'dilidili_dev.views.video_play_add'),
     url(r'^video-add-bullet/$', 'dilidili_dev.video_play.video_bullet_add'),
