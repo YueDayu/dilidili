@@ -69,6 +69,44 @@
                     </div>
                 </div>
 
+
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <a id="is_show" class="btn btn-success btn-sm active" role="button">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </a>
+
+                        <div id="slider"></div>
+                    </div>
+                    <div>
+                        <div id="show-bullet-error"></div>
+                        <div class="send-area">
+                            {% if user.is_authenticated %}
+                                {% if user.can_bullet %}
+                                    <h4>发送弹幕</h4>
+                                    <p>内容：</p>
+                                    <textarea id="input-bullet" class="form-control" maxlength="200"
+                                              placeholder="弹幕弹幕biu~不要超过200字哦"
+                                              aria-describedby="basic-addon1"></textarea>
+                                    <div class="right">
+                                        <button id="send-bullet" class="btn btn-info bullet-send-btn">发送</button>
+                                    </div>
+                                    <p>颜色：</p>
+                                    <div id="red"></div>
+                                    <div id="green"></div>
+                                    <div id="blue"></div>
+
+                                    <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+                                {% else %}
+                                    <p>您已经被禁止发送弹幕，请与管理员联系。</p>
+                                {% endif %}
+                            {% else %}
+                                <p>游客无法发送弹幕，请<a href="/register">注册</a>或者<a href="/login">登陆</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">弹幕池</div>
@@ -87,42 +125,6 @@
                                 </tbody>
                             </table>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">
-                        <a id="is_show" class="btn btn-success btn-sm active" role="button">
-                            <span class="glyphicon glyphicon-comment"></span>
-                        </a>
-
-                        <div id="slider"></div>
-                    </div>
-                    <div>
-                    <div id="show-bullet-error"></div>
-                        {% if user.is_authenticated %}
-                            <div class="send-area">
-                            {% if user.can_bullet %}
-                                <h4>发送弹幕</h4>
-                                <p>内容：</p>
-                                <textarea id="input-bullet" class="form-control" maxlength="200"
-                                          placeholder="弹幕弹幕biu~不要超过200字哦" aria-describedby="basic-addon1"></textarea>
-                                <div class="right">
-                                    <button id="send-bullet" class="btn btn-info bullet-send-btn">发送</button>
-                                </div>
-                                <p>颜色：</p>
-                                <div id="red"></div>
-                                <div id="green"></div>
-                                <div id="blue"></div>
-
-                                <div id="swatch" class="ui-widget-content ui-corner-all"></div>
-                            {% else %}
-                                <p>您已经被禁止发送弹幕，请与管理员联系。</p>
-                            {% endif %}
-                        {% else %}
-                            <p>游客无法发送弹幕，请<a href="/register">注册</a>或者<a href="/login">登陆</a></p>
-                        {% endif %}
                         </div>
                     </div>
                 </div>
