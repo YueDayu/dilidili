@@ -8,7 +8,20 @@
             <div class="col-md-8">
                 <div class="info">
                     <div class="video-title"><h2>{{ video.name }}</h2>
-
+                        <div class="m-row">
+                            {% if user.is_authenticated %}
+                                {% if user.is_admin %}
+                                    {% if video.status != 0 %}
+                                    <btn class="btn btn-success" id="btn-togglepublish">审核通过</btn>
+                                    {% else %}
+                                    <btn class="btn btn-danger" id="btn-togglepublish">审核不通过</btn>
+                                    {% endif %}
+                                {% endif %}
+                                {% if user.pk == video.owner.pk %}
+                                    <a href="remove/" class="btn btn-danger" id="btn-remove">删除视频</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
                         <div style="clear:both;"></div>
                     </div>
                     <div class="tminfo"><a href="/">主页</a> >
@@ -200,6 +213,14 @@
         {% endif %}
         {% if user.can_comment %}
             <script src="/static/scripts/comment-send.js"></script>
+        {% endif %}
+
+        {% if user.is_admin %}
+            <script type="text/javascript" src="/static/scripts/video-page-admin.js"></script>
+        {% endif %}
+
+        {% if user.pk == video.owner.pk %}
+            <script type="text/javascript" src="/static/scripts/video-page-own.js"></script>
         {% endif %}
     {% endif %}
 {% endblock %}
