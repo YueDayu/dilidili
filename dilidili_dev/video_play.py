@@ -13,6 +13,8 @@ def video_play(request, video_id):
         video = Video.objects.get(pk=video_id)
     except Video.DoesNotExist:
         raise Http404("Video does not exist")
+    if (not request.user.is_authenticated() or not request.user.is_admin) and video.status != 0:
+        return render(request, "video/video-notfound.html")
     return render(request, 'video/video.html', {'video': video})
 
 

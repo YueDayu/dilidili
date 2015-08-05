@@ -100,6 +100,7 @@ class VideoAdmin(admin.ModelAdmin):
         ('Files', {'fields': ['video', 'image']}),
         ('Status', {'fields': ['status']})
     ]
+    actions = ['mark_as_invalid', 'make_published']
 
     def view_link(self, obj):
         return format_html('<a href={}>View</a>', obj.get_absolute_url())
@@ -108,6 +109,14 @@ class VideoAdmin(admin.ModelAdmin):
     def published(self, obj):
         return obj.status == 0
     published.boolean = True
+
+    def make_published(self, request, queryset):
+        queryset.update(status=0)
+    make_published.short_description = "发布选中的视频"
+
+    def mark_as_invalid(self, request, queryset):
+        queryset.update(status=2)
+    mark_as_invalid.short_description = "标记为审核不通过"
 
 
 admin.site.register(Video, VideoAdmin)
