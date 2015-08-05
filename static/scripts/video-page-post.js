@@ -60,32 +60,35 @@
         $('#comment-area').append(c);
     }
 
-    function add_no_comment() {
+    function add_no_comment(str) {
         var c = document.createElement('div');
-        c.setAttribute('class', 'comment panel panel-default');
-        c.innerHTML = "暂时没有评论";
+        c.setAttribute('class', 'comment panel panel-default no-comment');
+        c.innerHTML = str + "<a onclick='comment_refresh()' class='cm-del-btn' id='comment-refresh'>点我刷新</a>";
         $('#comment-area').append(c);
     }
 
-    function get_all_comment() {
+    window.comment_refresh = function () {
         $.post('/video-get-comment/', {
             id: video_id
         }, function(data) {
             if (data['res']) {
                 show_comment_btn.hide();
                 if (data['list'].length == 0) {
-                    add_no_comment();
+                    $('#comment-area').empty();
+                    add_no_comment("暂时没有评论");
                 } else {
+                    $('#comment-area').empty();
                     for (var x in data['list']) {
                         add_comment(data['list'][x]);
                     }
+                    add_no_comment("一共" + data['list'].length + "条评论。");
                 }
             }
         });
-    }
+    };
 
     show_comment_btn.click(function() {
-        get_all_comment();
+        comment_refresh();
     });
 
     window.del_cmt = function(id) {

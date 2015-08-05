@@ -339,3 +339,9 @@ tr {
     cursor: pointer;
     margin-left: 10px;
 }
+
+.no-comment {
+    line-height: 50px;
+    height: 50px;
+    padding-left: 10px;
+}
