@@ -12,7 +12,7 @@ def video_play(request, video_id):
     try:
         video = Video.objects.get(pk=video_id)
     except Video.DoesNotExist:
-        raise Http404("User does not exist")
+        raise Http404("Video does not exist")
     return render(request, 'video/video.html', {'video': video})
 
 
@@ -147,3 +147,70 @@ def del_video_comment(request):
             return JsonResponse(data={'res': False})
     else:
         return JsonResponse(data={'res': False})
+
+
+@require_http_methods(['POST'])
+def set_collection(request):
+    if request.user.is_authenticated():
+        try:
+            video = Video.objects.get(pk=request.POST['id'])
+            user = request.user
+            if video in user.collection_videos.all():
+                flag = False
+                user.collection_videos.remove(video)
+            else:
+                flag = True
+                user.collection_videos.add(video)
+            return JsonResponse(data={'res': True,
+                                      'flag': flag})
+        except Video.DoesNotExist:
+            return JsonResponse(data={'res': False})
+    else:
+        return JsonResponse(data={'res': False})
+
+
+@require_http_methods(['POST'])
+def set_like(request):
+    if request.user.is_authenticated():
+        try:
+            video = Video.objects.get(pk=request.POST['id'])
+            user = request.user
+            if video in user.like_videos.all():
+                flag = False
+                user.like_videos.remove(video)
+            else:
+                flag = True
+                user.like_videos.add(video)
+            return JsonResponse(data={'res': True,
+                                      'flag': flag})
+        except Video.DoesNotExist:
+            return JsonResponse(data={'res': False})
+    else:
+        return JsonResponse(data={'res': False})
+
+
+@require_http_methods(['POST'])
+def add_money(request):
+    if request.user.is_authenticated():
+        try:
+            video = Video.objects.get(pk=request.POST['id'])
+            user = request.user
+            if user.money > 0:
+                user.money -= 1
+                user.save()
+                video.money += 1
+                money = video.money
+                video.save()
+                video.owner.money += 1
+                video.owner.save()
+                return JsonResponse(data={'res': True,
+                                          'video_money': money})
+            else:
+                return JsonResponse(data={'res': False,
+                                          'error': "硬币不足"})
+        except Video.DoesNotExist:
+            return JsonResponse(data={'res': False,
+                                      'error': "视频不存在"})
+    else:
+        return JsonResponse(data={'res': False,
+                                  'error': "用户未登录"})

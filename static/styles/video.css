@@ -319,8 +319,16 @@ tr {
 	line-height: 26px;
 	padding-left: 30px;
 	padding-top: 2px;
-	background: url('/static/images/icons3.png') 7px -737px no-repeat;
+	background: url('/static/images/icons3.png') no-repeat;
 	vertical-align: middle;
+}
+
+.like-yes {
+    background-position: 7px -737px;
+}
+
+.like-no {
+    background-position: 7px -681px;
 }
 
 .money {

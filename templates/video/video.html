@@ -17,8 +17,8 @@
                         {% endfor %}
                         &nbsp;&nbsp;&nbsp;
                         <i id="dianji" title="播放">{{ video.play }}</i>
-                        <i id="dm_count" title="弹幕">458 todo</i>
-                        <i id="stow_count">25 todo</i>
+                        <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
+                        <i id="stow_count" title="收藏">{{ video.collection_videos.count }}</i>
                         &nbsp;&nbsp;&nbsp;
                         <span>上传时间：{{ video.time|date:"Y年m月d日" }}</span>
                     </div>
@@ -91,13 +91,27 @@
                 </div>
                 {% if user.is_authenticated %}
                     <div>
-                        <div class="btn btn-default m-btn" id="collect-btn">
-                            <div class="collect" id="collect-text">已收藏</div>
+                        <div class="btn btn-default m-btn" title="收藏下来" id="collect-btn">
+                            <div class="collect" id="collect-text">
+                                {% if user in video.collection_videos.all %}
+                                    已收藏
+                                {% else %}
+                                    收藏
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="btn btn-default m-btn" id="like-btn">
-                            <div class="like" id="like-text">赞</div>
+                        <div class="btn btn-default m-btn" title="赞一个" id="like-btn">
+                            {% if user in video.like_videos.all %}
+                                <div class="like like-yes" id="like-text">
+                                    取消赞
+                                </div>
+                            {% else %}
+                                <div class="like like-no" id="like-text">
+                                    赞
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="btn btn-default m-btn" id="money-btn">
+                        <div class="btn btn-default m-btn" title="投喂硬币" id="money-btn">
                             <div class="money" id="money-num">{{ video.money }}</div>
                         </div>
                     </div>
@@ -115,7 +129,7 @@
                     </div>
                 </div>
                 <div class="comm">
-                    <h3>评论</h3>
+                    <h3>评论({{ video.comment_set.count }}条)</h3>
                 </div>
                 <div>
                     <div id="show-comment-error"></div>
@@ -179,7 +193,8 @@
     <script src="/static/scripts/ajax-send.js"></script>
     <script src="/static/scripts/video-page-show.js"></script>
     <script src="/static/scripts/video-page-post.js"></script>
-    {% if user.can_bullet %}
+    {% if user.is_authenticated %}
+        <script src="/static/scripts/video-page-action.js"></script>
         {% if user.can_bullet %}
             <script src="/static/scripts/bullet-send.js"></script>
         {% endif %}
