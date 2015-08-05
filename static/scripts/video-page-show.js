@@ -2,6 +2,16 @@
  * Created by Yue Dayu on 2015/8/4.
  */
 
+// example:
+//    show_bullet_ready.push(
+//        {
+//            time: player.currentTime() * 1000 + 200,
+//            send_data: 111,
+//            content: "测试",
+//            color: "#ffffff"
+//        }
+//    );
+
 ;
 (function () {
     'use strict';
@@ -16,38 +26,7 @@
 
     var show_loop;
 
-    var ready = [
-        {
-            time: 5000,
-            send_data: 111,
-            content: "长长长长长长长长长长长长长长长长长长长长的测试",
-            color: "#ffffff"
-        },
-        {
-            time: 6000,
-            send_data: 111,
-            content: "长长长长长长长长长长长长长长长长长长长长的测试",
-            color: "#ffffff"
-        },
-        {
-            time: 6000,
-            send_data: 111,
-            content: "测试",
-            color: "#ffffff"
-        },
-        {
-            time: 6500,
-            send_data: 111,
-            content: "测试",
-            color: "#ffffff"
-        },
-        {
-            time: 6900,
-            send_data: 111,
-            content: "测试",
-            color: "#ffffff"
-        }
-    ];
+    var ready = [];
     var no_ready = [];
     var show = [];
     var lines = [];
@@ -68,7 +47,7 @@
         player = videojs('video');
         c = document.createElement('canvas');
         video = $('#video');
-        c.setAttribute('style', 'position:absolute;top:0;left:0;pointer-events:none;');
+        c.setAttribute('id', 'canvas_show');
         height = video.height();
         width = video.width();
         c.setAttribute('height', height.toString());
@@ -83,7 +62,7 @@
             on_window_change();
         });
 
-        $(window).on('resize', function() {
+        $(window).on('resize', function () {
             on_window_change();
         });
 
@@ -110,7 +89,7 @@
             show.length = 0;
         });
 
-        slider_btn.click(function() {
+        slider_btn.click(function () {
             btn_click();
         });
     };
@@ -137,7 +116,7 @@
         } else {
             slider_btn.toggleClass("active", true);
         }
-        c.setAttribute("style", "style', 'position:absolute;top:0;left:0;pointer-events:none;z-index:100;opacity:" + (val / 100));
+        c.setAttribute("style", "opacity:" + (val / 100));
     }
 
     function on_window_change() {
@@ -265,4 +244,6 @@
     }
 
     init();
+
+    window.show_bullet_ready = ready;
 })();

@@ -194,3 +194,11 @@
 #slider .ui-slider-range {
     background: #5bc0de;
 }
+
+#canvas_show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
