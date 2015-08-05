@@ -1,0 +1,49 @@
+.comment{
+	padding:10px; 
+	border-bottom:1px solid #ddd; 
+	margin:10px 0 10px 0; 
+	overflow:hidden; 
+	background: #fff;
+	font-family:Microsoft YaHei;
+}
+.facebox{
+	margin:5px;
+}
+.facebox img{
+	width:100%;
+	height:100%;
+	min-height:50px;
+	min-width:50px;
+	box-shadow: 0 0 6px #ccc;
+}
+
+.comm-author{
+	color: #aaa;
+	line-height: 18px;
+}
+
+.comm-author a {
+	color:#01a0d8;
+	margin-left: 1px;
+	vertical-align: middle
+}
+.comm-author a:hover{
+	text-decoration:none;
+	background-color:#E3E3E3;
+}
+
+.content{
+	line-height: 20px;
+	padding: 5px 0 5px 0;
+	margin-left: 5px;
+	font-size: 14px;
+	text-shadow: none;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.comm-info{
+	color: #999;
+	line-height: 26px;
+	margin-left: 1px;
+}
