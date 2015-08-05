@@ -36,5 +36,6 @@ urlpatterns = [
     url(r'^process-photo/$', 'dilidili_dev.upload_photo.process_img', name='process-photo'),
     url(r'^search/$', 'dilidili_dev.search.search_mainpage'),
     url(r'^search/request/$', 'dilidili_dev.search.search'),
+    url(r'^search/resulthtml/$', 'dilidili_dev.search.search_html'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]

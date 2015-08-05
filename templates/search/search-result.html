@@ -1,0 +1,30 @@
+{% for video in video_set %}
+<div class="search-res">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-4">
+		  <a href="{{ video.get_absolute_url }}"><div class="v-preview"><img src="{{ video.image.url }}" class="img-rounded content-img"/></div></a>
+		</div>
+		<!-- main content -->
+		<div class="col-md-10 col-sm-10 col-xs-8">
+		  <a href="{{ video.get_absolute_url }}" class="video-link">
+		    <div class="v-title">{{ video.name }}</div>
+		  </a>
+		  <div class="v-info">
+			<i class="up"><a href="{{ video.owner.get_absolute_url }}">{{ video.owner.name }}</a></i>
+			<i class="hit" title="播放数">{{ video.play }}</i>
+		    <i class="date" title="日期">{{ video.time.date }}</i>
+		  </div>
+		  <div class="v-intro">{{ video.describe }}</div>
+		  <div class="v-tag">{{ video.tag }}</div>
+		</div>
+	</div>
+</div>
+{% empty %}
+<div class="search-res">
+	<div class="m-row">
+		<div class="col-md-12">
+			<p>抱歉，没有找到相关视频</p>
+		</div>
+	</div>
+</div>
+{% endfor %}
