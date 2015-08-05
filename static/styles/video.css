@@ -162,7 +162,7 @@
 }
 
 #table-scroll {
-    height: 350px;
+    height: 340px;
     overflow: auto;
     margin-top: 20px;
 }
@@ -182,4 +182,15 @@
 .isComm img {
     width: 100%;
     max-width: 320px;
+}
+
+#slider {
+    float: right;
+    width: 80%;
+    margin-top: 10px;
+    line-height: 30px;
+}
+
+#slider .ui-slider-range {
+    background: #5bc0de;
 }

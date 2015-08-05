@@ -4,6 +4,8 @@
 
 ;
 (function () {
+    'use strict';
+
     var player = null;
     var height = 0;
     var width = 0;
@@ -50,7 +52,19 @@
     var show = [];
     var lines = [];
 
+    var slider = null;
+    var slider_btn = null;
+
     var init = function () {
+        slider = $('#slider');
+        slider.slider({
+            orientation: "horizontal",
+            range: "min",
+            max: 99,
+            value: 100,
+            change: refresh
+        });
+        slider_btn = $('#is_show');
         player = videojs('video');
         c = document.createElement('canvas');
         video = $('#video');
@@ -65,18 +79,11 @@
         cxt.font = "26px 黑体";
         set_lines(true);
 
-        var myButton = player.controlBar.addChild('button', {
-            text: 'Press Me',
-
-        });
-
-        //myButton.addClass("vjs-mute-control vjs-control");
-
         player.on('fullscreenchange', function () {
             on_window_change();
         });
 
-        player.on('resize', function () {
+        $(window).on('resize', function() {
             on_window_change();
         });
 
@@ -102,7 +109,36 @@
             set_lines(true);
             show.length = 0;
         });
+
+        slider_btn.click(function() {
+            btn_click();
+        });
     };
+
+    function btn_click() {
+        if (slider_btn.hasClass("active")) {
+            slider_btn.toggleClass("active", false);
+            slider.slider({
+                value: 0
+            });
+        } else {
+            slider_btn.toggleClass("active", true);
+            slider.slider({
+                value: 99
+            });
+        }
+        refresh();
+    }
+
+    function refresh() {
+        var val = slider.slider("value");
+        if (val == 0) {
+            slider_btn.toggleClass("active", false);
+        } else {
+            slider_btn.toggleClass("active", true);
+        }
+        c.setAttribute("style", "style', 'position:absolute;top:0;left:0;pointer-events:none;z-index:100;opacity:" + (val / 100));
+    }
 
     function on_window_change() {
         clear();

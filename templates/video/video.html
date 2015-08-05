@@ -41,6 +41,11 @@
                         <p>{{ video.describe }}</p>
                     </div>
                 </div>
+            <div class="comm">
+                    <h3>评论</h3>
+                </div>
+                <div class="isComm" style="text-align:center;"><a href="#"><img src="/static/images/morecomm.gif"></a>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -90,14 +95,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="comm">
-                    <h3>评论</h3>
-                </div>
-                <div class="isComm" style="text-align:center;"><a href="#"><img src="/static/images/morecomm.gif"></a>
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <a id="is_show" class="btn btn-success btn-sm active" role="button">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </a>
+                        <div id="slider"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,14 +112,16 @@
 {% block extracss %}
     <link href="/static/styles/video-js.min.css" rel="stylesheet">
     <link href="/static/styles/video.css" rel="stylesheet">
+    <link href="/static/styles/jquery-ui.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block extrascripts %}
+    <script src="/static/scripts/jquery-ui.min.js"></script>
     <script src="/static/scripts/video.js"></script>
     <script>
         videojs.options.flash.swf = '/static/swf/video-js.swf'
     </script>
     <script src="/static/scripts/ajax-send.js"></script>
-    <script src="/static/scripts/video-page-post.js"></script>
     <script src="/static/scripts/video-page-show.js"></script>
+    <script src="/static/scripts/video-page-post.js"></script>
 {% endblock %}
