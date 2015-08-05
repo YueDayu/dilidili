@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^personal/(?P<user_id>[0-9]+)/$', 'dilidili_dev.views.personal'),
     url(r'^video/(?P<video_id>[0-9]+)/$', 'dilidili_dev.video_play.video_play'),
     url(r'^video-add-play/$', 'dilidili_dev.views.video_play_add'),
+    url(r'^video-add-bullet/$', 'dilidili_dev.video_play.video_bullet_add'),
+    url(r'^video-get-bullet/$', 'dilidili_dev.video_play.video_bullet_get'),
     url(r'^home/$', 'dilidili_dev.views.home'),
     url(r'^upload/$', 'dilidili_dev.views.upload'),
     url(r'^upload-photo/$', 'dilidili_dev.upload_photo.upload_photo'),
