@@ -27,7 +27,6 @@
             id: video_id,
             last: max
         }, function (data) {
-            console.log(data);
             if (data['res']) {
                 max = data['max'];
                 for (var x in data['list']) {

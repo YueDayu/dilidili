@@ -56,7 +56,7 @@
         cxt = c.getContext("2d");
         cxt.fillStyle = "#FF0000";
         cxt.font = "26px 黑体";
-        set_lines(true);
+        set_lines();
 
         player.on('fullscreenchange', function () {
             on_window_change();
@@ -78,14 +78,14 @@
             ready = ready.concat(no_ready);
             no_ready.length = 0;
             stop();
-            set_lines(true);
+            set_lines();
             show.length = 0;
         });
 
         player.on('seeked', function () {
             seeked(player.currentTime());
             clear();
-            set_lines(true);
+            set_lines();
             show.length = 0;
         });
 
@@ -126,7 +126,7 @@
         c.setAttribute('height', height.toString());
         c.setAttribute('width', width.toString());
         cxt.font = "26px 黑体";
-        set_lines(false);
+        set_lines();
     }
 
     function start() {
@@ -137,13 +137,11 @@
         clearInterval(show_loop);
     }
 
-    function set_lines(flag) {
+    function set_lines() {
         num = parseInt(height / 28);
         lines.length = num;
-        if (flag) {
-            for (var i = 0; i < num; i++) {
-                lines[i] = 0;
-            }
+        for (var i = 0; i < num; i++) {
+            lines[i] = 0;
         }
     }
 
