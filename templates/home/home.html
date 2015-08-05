@@ -61,9 +61,16 @@
                     <div class="m-row">
                     {% for video in home_video_set %}
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                        <a href="/video/{{ video.id }}">
-                            <img src="{% thumbnail video.image 400x300 crop detail %}" class="img-responsive center-block"/>
-                        </a>
+                            <figure class="effect-sadie">
+                                <img src="{% thumbnail video.image 400x300 crop detail %}" class="img-responsive center-block" alt="thumbnail"/>
+                                <figcaption>
+                                    {% if video.status != 0 %}
+                                        <h4><span style="color: red">待审核</span></h4>
+                                    {% endif %}
+                                    <h3>{{ video.name }}</h3>
+                                    <p>播放量: {{ video.play }}</p>
+                                </figcaption>
+                            </figure>
                         </div>
                     {% endfor %}
                     </div>

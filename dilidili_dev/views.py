@@ -70,14 +70,14 @@ def personal(request, user_id):
     except User.DoesNotExist:
         raise Http404("User does not exist")
     return render(request, 'personal/personal.html', {'pageuser': user,
-                                                      'video_set': user.video_set.all()[:8]})
+                                                      'video_set': user.video_set.all().filter(status=0).order_by("-time")[:8]})
 
 
 @require_http_methods(["GET"])
 def home(request):
     if request.user.is_authenticated():
-        return render(request, 'home/home.html', {'home_video_set': request.user.video_set.all()[:8],
-                                                  'home_video_collection': request.user.collection_videos.all()[:8]})
+        return render(request, 'home/home.html', {'home_video_set': request.user.video_set.all().order_by("-time")[:8],
+                                                  'home_video_collection': request.user.collection_videos.all().order_by("-time")[:8]})
     else:
         return render(request, "registration/login.html", {'error': "请登陆"})
 

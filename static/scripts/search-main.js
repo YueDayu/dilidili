@@ -11,7 +11,7 @@
 
 	btn_search.click(function(event) {
 		btn_search.attr("disabled", true);
-		var form_data = { "order_by": search_orderby };
+		var form_data = { "order_by": search_orderby, "status": 0 };
 		form_data[search_field + "__icontains"] = input_text.val();
 
 		if (search_category != "") {
