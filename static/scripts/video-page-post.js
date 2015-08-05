@@ -5,7 +5,7 @@
 ;
 (function () {
     var player = videojs('video');
-
+    var show_comment_btn = $('#');
     var video_id = $('#video-id').html();
 
     var max = 0;
@@ -39,6 +39,6 @@
 
     player.one('play', send_play);
     $(document).ready(function () {
-        setInterval(get_bullet, 1500);
+        //setInterval(get_bullet, 1500);
     });
 })();

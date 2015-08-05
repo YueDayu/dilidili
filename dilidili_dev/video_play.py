@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import Video
 from django.http import Http404, JsonResponse
 from django.views.decorators.http import require_http_methods
-from .models import Bullet
+from .models import Bullet, Comment
 from django.core import serializers
 
 
@@ -68,3 +68,23 @@ def video_bullet_get(request):
         return JsonResponse(data=result)
     except Video.DoesNotExist:
         return JsonResponse(data={'res': False})
+
+
+@require_http_methods(['POST'])
+def video_comment_add(request):
+    if request.user.is_authenticated() and request.user.can_comment:
+        try:
+            video = Video.objects.get(pk=request.POST['id'])
+            user = request.user
+            content = request.POST['content']
+            c = Comment(video=video,
+                        user=user,
+                        content=content)
+            c.save()
+        except Video.DoesNotExist:
+            return JsonResponse(data={'res': False,
+                                      'error': '发送失败！'})
+        return JsonResponse(data={'res': True})
+    else:
+        return JsonResponse(data={'res': False,
+                                  'error': '用户没有权限！'})
