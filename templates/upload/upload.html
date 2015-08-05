@@ -13,9 +13,10 @@
                 <strong>Error!</strong> {{ error }}
             </div>
         {% endif %}
-        <form class="form-base" action="" method="post"  enctype="multipart/form-data"> {% csrf_token %}
+        <div id="show-error"></div>
+        <form class="form-base" onsubmit="return check(this)" action="" method="post"  enctype="multipart/form-data"> {% csrf_token %}
             <div class="m-row">
-                <label for="id_video">文件:</label>
+                <label for="id_video">文件*</label>
                 <input type="file" accept="video/*" class="form-control" id="id_video" name="video">
             </div>
 
@@ -25,12 +26,12 @@
             </div>
 
             <div class="m-row">
-                <label for="id_name">标题:</label>
+                <label for="id_name">标题*</label>
                 <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name" value="{{ form.name.value }}">
             </div>
 
             <div class="m-row">
-                <label for="id_description">描述</label>
+                <label for="id_description">描述*</label>
                 <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value="{{ form.describe.value }}">
             </div>
 
@@ -52,4 +53,9 @@
         </form>
     </div>
     </div>
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript" src="/static/scripts/form-check.js"></script>
+<script type="text/javascript" src="/static/scripts/video-upload-form.js"></script>
 {% endblock %}
