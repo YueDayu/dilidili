@@ -81,7 +81,7 @@
 
                                     <p>{{ video.name }}</p>
                                     <i id="dianji" title="播放">{{ video.play }}</i>
-                                    <i id="dm_count" title="弹幕">458</i>
+                                    <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
                                 </div>
                             {% endfor %}
                         {% else %}
@@ -93,21 +93,32 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">Ta的专辑</div>
                     <div class="panel-body">
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        <div class="m-row">
+                            <p>Ta还没有制作过专辑哦</p>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-danger">
                     <div class="panel-heading">Ta的收藏</div>
                     <div class="panel-body">
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
-                        {#          <img class="new_video" src="pic/0.jpg" alt="img02"/>#}
+                        <div class="m-row">
+                        {% if collection_set %}
+                            {% for video in collection_set %}
+                                <div class="col-md-3 col-sm-6 col-xs-12 show-video">
+                                    <a href="/video/{{ video.id }}" title="{{ video.name }}">
+                                        <img src="{% thumbnail video.image 400x300 crop detail %}"
+                                             class="img-responsive center-block"/>
+                                    </a>
+
+                                    <p>{{ video.name }}</p>
+                                    <i id="dianji" title="播放">{{ video.play }}</i>
+                                    <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>Ta还没有收藏过视频哦</p>
+                        {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,21 +133,37 @@
                 <div class="panel panel-warning">
                     <div class="panel-heading">Ta的关注</div>
                     <div class="panel-body">
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        <div class="m-row">
+                            {% for fuser in pageuser.follow_users.all %}
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <a href="{{ fuser.get_absolute_url }}">
+                                        <img src="{% thumbnail fuser.image 150x150 box=fuser.cropping crop detail %}"
+                                             class="img-responsive center-block"/>
+                                    </a>
+                                    <p>{{ fuser.name }}</p>
+                                </div>
+                            {% empty %}
+                                <p>Ta还没有关注的人哦</p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-success">
                     <div class="panel-heading">Ta的粉丝</div>
                     <div class="panel-body">
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
-                        {#          <img class="small_head" src="pic/head_eg.jpg" alt="img02"/>#}
+                        <div class="m-row">
+                            {% for fuser in pageuser.following_users.all %}
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <a href="{{ fuser.get_absolute_url }}">
+                                        <img src="{% thumbnail fuser.image 150x150 box=fuser.cropping crop detail %}"
+                                             class="img-responsive center-block"/>
+                                    </a>
+                                    <p>{{ fuser.name }}</p>
+                                </div>
+                            {% empty %}
+                                <p>Ta还没有粉丝哦</p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>

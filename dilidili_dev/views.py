@@ -70,7 +70,8 @@ def personal(request, user_id):
     except User.DoesNotExist:
         raise Http404("User does not exist")
     return render(request, 'personal/personal.html', {'pageuser': user,
-                                                      'video_set': user.video_set.all().filter(status=0).order_by("-time")})
+                                                      'video_set': user.video_set.all().filter(status=0).order_by("-time"),
+                                                      'collection_set': user.collection_videos.all().filter(status=0).order_by("-time")})
 
 
 @require_http_methods(["GET"])
