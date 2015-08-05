@@ -37,5 +37,17 @@
 		})
 	};
 
+	window.click_upload_err = function(event) {
+	    var error = document.createElement('div');
+	    error.setAttribute('class', 'alert alert-danger alert-dismissible');
+	    error.setAttribute('role', 'alert');
+	    error.innerHTML = "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span \
+	                    aria-hidden='true'>&times;</span></button> \
+	                    <strong>Error!</strong>" + " 您已被封禁，不能上传视频" + "</div>";
+	    document.getElementById('show-error').innerHTML = "";
+	    document.getElementById('show-error').appendChild(error);
+	    return false;
+	};
+
 	$("#nav-home").trigger("click");
 })();
