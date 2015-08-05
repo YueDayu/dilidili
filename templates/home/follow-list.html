@@ -1,0 +1,16 @@
+{% load thumbnail %}
+<div class="m-row">
+	{% for follow_user in follow_set %}
+	<div class="col-md-1 col-sm-2 col-xs-6">
+        <a href="{{ follow_user.get_absolute_url }}">
+            <img src="{% thumbnail follow_user.image 150x150 box=follow_user.cropping crop detail %}"
+                 class="img-responsive center-block"/>
+        </a>
+        <p>{{ follow_user.name }}</p>
+	</div>
+	{% empty %}
+	<div class="col-md-12">
+		<p>{{ empty_msg }}</p>
+	</div>
+	{% endfor %}
+</div>

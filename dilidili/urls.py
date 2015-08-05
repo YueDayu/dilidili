@@ -34,7 +34,13 @@ urlpatterns = [
     url(r'^video-set-collcetion/$', 'dilidili_dev.video_play.set_collection'),
     url(r'^video-set-like/$', 'dilidili_dev.video_play.set_like'),
     url(r'^video-add-money/$', 'dilidili_dev.video_play.add_money'),
-    url(r'^home/$', 'dilidili_dev.views.home'),
+    url(r'^home/', include([
+        url(r'^$', 'dilidili_dev.views.home'),
+        url(r'^following/$', 'dilidili_dev.home_view.following'),
+        url(r'^follower/$', 'dilidili_dev.home_view.follower'),
+        url(r'^collection/$', 'dilidili_dev.home_view.collection'),
+        url(r'^center/$', 'dilidili_dev.home_view.center')
+    ])),
     url(r'^upload/$', 'dilidili_dev.views.upload'),
     url(r'^upload-photo/$', 'dilidili_dev.upload_photo.upload_photo'),
     url(r'^upload-success/$', 'dilidili_dev.upload_photo.upload_success'),
