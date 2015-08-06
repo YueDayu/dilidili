@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_http_methods
 from dilidili_dev.admin import UserCreationForm
 from dilidili_dev.video_upload import VideoUploadForm
-from dilidili_dev.models import Video
+from dilidili_dev.models import *
 from django.contrib import auth
 from dilidili_dev.users import User
 
@@ -60,7 +60,10 @@ def register(request):
 
 @require_http_methods(["GET"])
 def index(request):
-    return render(request, "index/index.html")
+    return render(request, "index/index.html",
+                  context={
+                    'popular_video_set': Video.objects.filter(status=0).order_by("-play")[:12],
+                  })
 
 
 @require_http_methods(["GET"])
@@ -132,3 +135,14 @@ def user_toggle_follow(request, user_id):
         request.user.follow_users.add(user)
 
     return HttpResponse()
+
+
+@require_http_methods(["GET"])
+def category_index(request, category_id):
+    try:
+        category = Category.objects.get(pk=category_id)
+    except Category.DoesNotExist:
+        raise Http404("Category not found")
+
+    return render(request, "index/index.html",
+                  context={'category': category, 'category_set_ordered': category.video_set.all().order_by('-play')})

@@ -63,6 +63,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return '/category/%u' % self.pk
+
 
 # 专辑
 class Album(models.Model):
