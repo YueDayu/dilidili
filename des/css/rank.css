@@ -1,0 +1,61 @@
+i{
+	font-style:normal;
+}
+.rlist {
+	list-style:none;
+	margin-left: -20px;
+	padding-top: 15px;
+	min-height: 300px;
+	font-family:Microsoft YaHei;
+}
+.rlist li {
+	overflow: hidden;
+	padding:0 0 10px;
+	margin: 0 0 10px;
+	position: relative;
+	border-bottom:1px solid #d8d8d8;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.rlist li .number {
+	display:inline-block;
+	color: #fff;
+	width: 15px;
+	height: 15px;
+	line-height: 16px;
+	font-size: 15px;
+	font-family: Arial;
+	text-align: center;
+	background: #aaa;
+	z-index: 20;
+	margin-right:2px;
+}
+.rlist li .number.n1,.rlist li .number.n2,.rlist li .number.n3 {
+	background: #f489ad
+}
+.rlist li .t{
+	overflow: hidden;
+	color:#222;
+}
+.rlist li:hover .t {
+	color: #00a1d6;
+	text-decoration:none;
+}
+
+.v-info i{
+	margin:0 25px 1px 5px; 
+	height:15px; 
+	line-height:20px; 
+	color: #999; 
+	min-width:40px; 
+	display: block; 
+	float: left; 
+	padding-left:14px; 
+	background: url(../img/icons_v.png) no-repeat -100px -500px;
+}
+.v-info i.hit{ 
+	background-position: 0 -200px;
+}
+.v-info i.dm{
+	background-position: 0 -241px;
+}
