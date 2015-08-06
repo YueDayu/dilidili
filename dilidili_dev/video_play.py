@@ -6,6 +6,7 @@ from django.http import Http404, JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import Bullet, Comment
 from easy_thumbnails.files import get_thumbnailer
+from django.utils.html import escape
 
 
 def video_play(request, video_id):
@@ -56,7 +57,7 @@ def video_bullet_get(request):
             if x.send_date.timestamp() > max:
                 max = x.send_date.timestamp()
             temp = {
-                'content': x.content,
+                'content': escape(x.content),
                 'color': x.color,
                 'send_date': str(x.send_date.year) + "-" + str(x.send_date.month) + "-" + str(x.send_date.day),
                 'time': x.time
@@ -116,11 +117,11 @@ def get_video_comment(request):
                     flag = False
             temp = {
                 'user_id': x.user.id,
-                'user_name': x.user.name,
+                'user_name': escape(x.user.name),
                 'user_image': thumbnail_url,
                 'can_del': flag,
                 'comment_id': x.pk,
-                'comment_context': x.content,
+                'comment_context': escape(x.content),
                 'comment_time':
                     str(x.time.month) + '月' + str(x.time.day) + '日 ' + str(x.time.hour) + ':' + str(x.time.minute)
             }
