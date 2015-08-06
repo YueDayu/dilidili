@@ -21,11 +21,11 @@
     function check() {
         str = input.val();
         if (str == "") {
-            show_error("ÇëÊäÈëÄÚÈİ");
+            show_error("è¯·è¾“å…¥å†…å®¹");
             input.focus();
             return false;
         } else if (str.length > 400) {
-            show_error("ÊäÈëÄÚÈİÌ«³¤");
+            show_error("è¾“å…¥å†…å®¹å¤ªé•¿");
             input.focus();
             return true;
         }
