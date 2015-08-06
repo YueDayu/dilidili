@@ -34,7 +34,7 @@
                         {% if video.status != 0 %}
                             <p><span style="color: red">待审核</span></p>
                         {% endif %}
-                        <h3><a href="/video/{{ video.pk }}">{{ video.name }}</a></h3>
+                        <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
 
                         <p>播放量: {{ video.play }}</p>
                     </div>
@@ -56,7 +56,7 @@
                         {% if video.status != 0 %}
                             <p><span style="color: red">待审核</span></p>
                         {% endif %}
-                        <h3><a href="/video/{{ video.pk }}">{{ video.name }}</a></h3>
+                        <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
 
                         <p>播放量: {{ video.play }}</p>
                     </div>
