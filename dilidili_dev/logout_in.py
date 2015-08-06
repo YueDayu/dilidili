@@ -49,7 +49,7 @@ def change_password(request):
                     return render(request, "registration/change-password.html", {'error': "新密码长度太短"})
                 user.set_password(new_password1)
                 user.save()
-                return HttpResponseRedirect('/home/')
+                return HttpResponseRedirect('/login/')
             else:
                 return render(request, "registration/change-password.html", {'error': "密码错误"})
         else:
