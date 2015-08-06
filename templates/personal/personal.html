@@ -18,52 +18,63 @@
                 </div>
             </div>
             {% if user.is_authenticated and user.pk != pageuser.pk %}
-            <div class="row bar_buttons">
-                <div class="col-sm-6 col-md-6 box-follow">
-                    {% if pageuser in user.follow_users.all %}
-                    <button type="button" class="btn btn-default btn-follow" id="toggle-follow">取消关注</button>
-                    {% else %}
-                    <button type="button" class="btn btn-primary btn-follow" id="toggle-follow">关注</button>
-                    {% endif %}
+                <div class="row bar_buttons">
+                    <div class="col-sm-6 col-md-6 box-follow">
+                        {% if pageuser in user.follow_users.all %}
+                            <button type="button" class="btn btn-default btn-follow" id="toggle-follow">取消关注</button>
+                        {% else %}
+                            <button type="button" class="btn btn-primary btn-follow" id="toggle-follow">关注</button>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6 col-md-6 box-message">
+                        <a href="/sendto/{{ pageuser.pk }}">
+                            <button type="button" class="btn btn-message">私信</button>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-sm-6 col-md-6 box-message">
-                    <a href="/sendto/{{ pageuser.pk }}"><button type="button" class="btn btn-message">私信</button></a>
-                </div>
-            </div>
             {% endif %}
             {% if user.is_admin %}
-            <div class="row bar_buttons">
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <a href="/admin/dilidili_dev/user/{{ pageuser.pk }}" class="btn btn-primary btn-admin">编辑</a>
-                </div>
-                {% if pageuser.can_upload %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-upload">封禁视频</button>
-                </div>
-                {% else %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-upload">解除视频封禁</button>
-                </div>
-                {% endif %}
-                {% if pageuser.can_comment %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-comment">封禁评论</button>
-                </div>
-                {% else %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-comment">解除评论封禁</button>
-                </div>
-                {% endif %}
-                {% if pageuser.can_bullet %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-danger btn-admin" id="btn-perm-bullet">封禁弹幕</button>
-                </div>
-                {% else %}
-                <div class="col-sm-3 col-md-3 box-admin">
-                    <button type="button" class="btn btn-success btn-admin" id="btn-perm-bullet">解除弹幕封禁</button>
-                </div>
-                {% endif %}
-            </div>
+                {% ifnotequal pageuser user %}
+                    <div class="row bar_buttons">
+                        <div class="col-sm-3 col-md-3 box-admin">
+                            <a href="/admin/dilidili_dev/user/{{ pageuser.pk }}"
+                               class="btn btn-primary btn-admin">编辑</a>
+                        </div>
+                        {% if pageuser.can_upload %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-danger btn-admin" id="btn-perm-upload">封禁视频
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-success btn-admin" id="btn-perm-upload">解除视频封禁
+                                </button>
+                            </div>
+                        {% endif %}
+                        {% if pageuser.can_comment %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-danger btn-admin" id="btn-perm-comment">封禁评论
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-success btn-admin" id="btn-perm-comment">解除评论封禁
+                                </button>
+                            </div>
+                        {% endif %}
+                        {% if pageuser.can_bullet %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-danger btn-admin" id="btn-perm-bullet">封禁弹幕
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-3 col-md-3 box-admin">
+                                <button type="button" class="btn btn-success btn-admin" id="btn-perm-bullet">解除弹幕封禁
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endifnotequal %}
             {% endif %}
         </div>
     </div>
@@ -75,30 +86,22 @@
                     <div class="panel-heading">最新发布</div>
                     <div class="panel-body">
                         <div class="m-row">
-                        {% if video_set %}
-                            {% for video in video_set %}
-                                <div class="col-md-3 col-sm-6 col-xs-12 show-video">
-                                    <a href="/video/{{ video.id }}" title="{{ video.name }}">
-                                        <img src="{% thumbnail video.image 400x300 crop detail %}"
-                                             class="img-responsive center-block"/>
-                                    </a>
+                            {% if video_set %}
+                                {% for video in video_set %}
+                                    <div class="col-md-3 col-sm-6 col-xs-12 show-video">
+                                        <a href="/video/{{ video.id }}" title="{{ video.name }}">
+                                            <img src="{% thumbnail video.image 400x300 crop detail %}"
+                                                 class="img-responsive center-block"/>
+                                        </a>
 
-                                    <p>{{ video.name }}</p>
-                                    <i id="dianji" title="播放">{{ video.play }}</i>
-                                    <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <p>Ta还没有上传过视频哦</p>
-                        {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-info">
-                    <div class="panel-heading">Ta的专辑</div>
-                    <div class="panel-body">
-                        <div class="m-row">
-                            <p>Ta还没有制作过专辑哦</p>
+                                        <p>{{ video.name }}</p>
+                                        <i id="dianji" title="播放">{{ video.play }}</i>
+                                        <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>Ta还没有上传过视频哦</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -106,22 +109,22 @@
                     <div class="panel-heading">Ta的收藏</div>
                     <div class="panel-body">
                         <div class="m-row">
-                        {% if collection_set %}
-                            {% for video in collection_set %}
-                                <div class="col-md-3 col-sm-6 col-xs-12 show-video">
-                                    <a href="/video/{{ video.id }}" title="{{ video.name }}">
-                                        <img src="{% thumbnail video.image 400x300 crop detail %}"
-                                             class="img-responsive center-block"/>
-                                    </a>
+                            {% if collection_set %}
+                                {% for video in collection_set %}
+                                    <div class="col-md-3 col-sm-6 col-xs-12 show-video">
+                                        <a href="/video/{{ video.id }}" title="{{ video.name }}">
+                                            <img src="{% thumbnail video.image 400x300 crop detail %}"
+                                                 class="img-responsive center-block"/>
+                                        </a>
 
-                                    <p>{{ video.name }}</p>
-                                    <i id="dianji" title="播放">{{ video.play }}</i>
-                                    <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <p>Ta还没有收藏过视频哦</p>
-                        {% endif %}
+                                        <p>{{ video.name }}</p>
+                                        <i id="dianji" title="播放">{{ video.play }}</i>
+                                        <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>Ta还没有收藏过视频哦</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -131,6 +134,7 @@
                     <div class="panel-heading">Ta的资料</div>
                     <div class="panel-body">
                         <p>自我描述：{{ pageuser.describe }}</p>
+
                         <p>硬币： {{ pageuser.money }}个</p>
                     </div>
                 </div>
@@ -144,9 +148,10 @@
                                         <img src="{% thumbnail fuser.image 150x150 box=fuser.cropping crop detail %}"
                                              class="img-responsive center-block"/>
                                     </a>
+
                                     <p>{{ fuser.name }}</p>
                                 </div>
-                            {% empty %}
+                                {% empty %}
                                 <p>Ta还没有关注的人哦</p>
                             {% endfor %}
                         </div>
@@ -162,9 +167,10 @@
                                         <img src="{% thumbnail fuser.image 150x150 box=fuser.cropping crop detail %}"
                                              class="img-responsive center-block"/>
                                     </a>
+
                                     <p>{{ fuser.name }}</p>
                                 </div>
-                            {% empty %}
+                                {% empty %}
                                 <p>Ta还没有粉丝哦</p>
                             {% endfor %}
                         </div>
@@ -177,7 +183,7 @@
 {% endblock %}
 
 {% block extrascripts %}
-<script type="text/javascript" src="/static/scripts/ajax-send.js"></script>
-<script type="text/javascript" src="/static/scripts/personal-admin.js"></script>
-<script type="text/javascript" src="/static/scripts/personal-follow.js"></script>
+    <script type="text/javascript" src="/static/scripts/ajax-send.js"></script>
+    <script type="text/javascript" src="/static/scripts/personal-admin.js"></script>
+    <script type="text/javascript" src="/static/scripts/personal-follow.js"></script>
 {% endblock %}
