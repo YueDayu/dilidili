@@ -120,3 +120,4 @@ class VideoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Video, VideoAdmin)
+admin.site.register(BestVideo)

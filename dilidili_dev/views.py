@@ -65,6 +65,9 @@ def index(request):
                       'popular_video_set': Video.objects.filter(status=0).order_by("-play")[:8],
                       'latest_video_set': Video.objects.filter(status=0).order_by("-time")[:8],
                       'richest_video_set': Video.objects.filter(status=0).order_by("-money")[:8],
+                      'first': BestVideo.objects.all().order_by("-date")[0],
+                      'second': BestVideo.objects.all().order_by("-date")[1],
+                      'third': BestVideo.objects.all().order_by("-date")[2],
                   })
 
 

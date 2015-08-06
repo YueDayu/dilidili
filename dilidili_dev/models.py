@@ -88,4 +88,8 @@ class AlbumVideo(models.Model):
 # 最佳视频
 class BestVideo(models.Model):
     date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    image = models.ImageField(
+        upload_to='images',
+        default=os.path.join('photos', '001.jpg').replace('\\', '/')
+    )
     video = models.ForeignKey('Video')

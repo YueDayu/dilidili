@@ -18,13 +18,13 @@
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="/static/images/aa0.jpg" alt="First slide">
+                    <a href="/video/{{ first.video.pk }}"><img src="{{ first.image.url }}" alt="First slide"></a>
                 </div>
                 <div class="item">
-                    <img src="/static/images/aa1.jpg" alt="Second slide">
+                    <a href="/video/{{ second.video.pk }}"><img src="{{ second.image.url }}" alt="Second slide"></a>
                 </div>
                 <div class="item">
-                    <img src="/static/images/aa2.jpg" alt="Third slide">
+                    <a href="/video/{{ third.video.pk }}"><img src="{{ third.image.url }}" alt="Third slide"></a>
                 </div>
             </div>
             <!-- 轮播（Carousel）导航 -->
