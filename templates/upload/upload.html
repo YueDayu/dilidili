@@ -4,58 +4,67 @@
 
 {% block content %}
     <div class="center">
-    <div class="panel panel-default ">
-        <h2>上传视频</h2>
-        {% if error %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <strong>Error!</strong> {{ error }}
-            </div>
-        {% endif %}
-        <div id="show-error"></div>
-        <form class="form-base" onsubmit="return check(this)" action="" method="post"  enctype="multipart/form-data"> {% csrf_token %}
-            <div class="m-row">
-                <label for="id_video">文件*</label>
-                <input type="file" accept="video/*" class="form-control" id="id_video" name="video">
-            </div>
+        <div class="panel panel-default panel-body">
+            <h2>上传视频</h2>
+            {% if error %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> {{ error }}
+                </div>
+            {% endif %}
+            <div id="show-error"></div>
+            <form class="form-base" onsubmit="return check(this)" action="" method="post"
+                  enctype="multipart/form-data"> {% csrf_token %}
+                <div class="m-row">
+                    <label for="id_video">文件*</label>
+                    <input type="file" accept="video/*" class="form-control" id="id_video" name="video">
+                </div>
 
-            <div class="m-row">
-                <label for="id_image">缩略图</label>
-                <input type="file" accept="image/*" class="form-control" id="id_image" name="image">
-            </div>
+                <div class="m-row">
+                    <label for="id_image">缩略图</label>
+                    <input type="file" accept="image/*" class="form-control" id="id_image" name="image">
+                </div>
 
-            <div class="m-row">
-                <label for="id_name">标题*</label>
-                <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name" value="{{ form.name.value }}">
-            </div>
+                <div class="m-row">
+                    <label for="id_name">标题*</label>
+                    <input type="text" class="form-control" placeholder="请输入标题" id="id_name" maxlength="100" name="name"
+                           value="{{ form.name.value }}">
+                </div>
 
-            <div class="m-row">
-                <label for="id_description">描述*</label>
-                <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe" value="{{ form.describe.value }}">
-            </div>
+                <div class="m-row">
+                    <label for="id_description">描述*</label>
+                    <input type="text" class="form-control" placeholder="请输入视频描述" id="id_description" name="describe"
+                           value="{{ form.describe.value }}">
+                </div>
 
-            <div class="m-row">
-                <label for="id_categories">分类</label>
-                {% for op in form.category_set %}
-                    <label class="checkbox-inline" for="{{ op.id_for_label }}">
-                        {{ op.tag }} {{ op.choice_label }}
-                    </label>
-                {% endfor %}
-            </div>
+                <div class="m-row">
+                    <label for="id_categories">分类</label>
+                    {% for op in form.category_set %}
+                        <label class="checkbox-inline" for="{{ op.id_for_label }}">
+                            {{ op.tag }} {{ op.choice_label }}
+                        </label>
+                    {% endfor %}
+                </div>
 
-            <div class="m-row">
-                <label for="id_tag">关键词</label>
-                <input type="text" class="form-control" placeholder="呵呵,呵呵" id="id_tag" name="tag" value="{{ form.tag.value }}">
-            </div>
-
-            <input type="submit" class="btn btn-success m-btn" value="上传">
-        </form>
-    </div>
+                <div class="m-row">
+                    <label for="id_tag">关键词</label>
+                    <input type="text" class="form-control" placeholder="呵呵,呵呵" id="id_tag" name="tag"
+                           value="{{ form.tag.value }}">
+                </div>
+                <div class="m-row" style="text-align: center">
+                    <input type="submit" class="btn btn-success m-btn" style="margin-top: 10px" value="上传">
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}
 
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/upload.css"/>
+{% endblock %}
+
 {% block extrascripts %}
-<script type="text/javascript" src="/static/scripts/form-check.js"></script>
-<script type="text/javascript" src="/static/scripts/video-upload-form.js"></script>
+    <script type="text/javascript" src="/static/scripts/form-check.js"></script>
+    <script type="text/javascript" src="/static/scripts/video-upload-form.js"></script>
 {% endblock %}
