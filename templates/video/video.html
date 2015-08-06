@@ -13,7 +13,7 @@
                     </div>
                     <div class="tminfo"><a href="/">主页</a> >
                         {% for ca in video.category_set.all %}
-                            <a href="/category/{{ ca.index }}">{{ ca.name }}{% if not forloop.last %},{% endif %}</a>
+                            <a href="/category/{{ ca.pk }}">{{ ca.name }}{% if not forloop.last %},{% endif %}</a>
                         {% endfor %}
                         &nbsp;&nbsp;&nbsp;
                         <i id="dianji" title="播放">{{ video.play }}</i>
