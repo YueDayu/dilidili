@@ -14,7 +14,6 @@
 
 .dd-grid {
     height: 150px;
-    max-width: 300px;
     margin: 10px 0;
 }
 
@@ -145,4 +144,8 @@ figure.effect-sadie:hover p {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+.bar_content {
+    margin-top: 30px;
 }

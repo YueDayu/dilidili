@@ -62,7 +62,9 @@ def register(request):
 def index(request):
     return render(request, "index/index.html",
                   context={
-                    'popular_video_set': Video.objects.filter(status=0).order_by("-play")[:12],
+                      'popular_video_set': Video.objects.filter(status=0).order_by("-play")[:8],
+                      'latest_video_set': Video.objects.filter(status=0).order_by("-time")[:8],
+                      'richest_video_set': Video.objects.filter(status=0).order_by("-money")[:8],
                   })
 
 
@@ -73,15 +75,18 @@ def personal(request, user_id):
     except User.DoesNotExist:
         raise Http404("User does not exist")
     return render(request, 'personal/personal.html', {'pageuser': user,
-                                                      'video_set': user.video_set.all().filter(status=0).order_by("-time"),
-                                                      'collection_set': user.collection_videos.all().filter(status=0).order_by("-time")})
+                                                      'video_set': user.video_set.all().filter(status=0).order_by(
+                                                          "-time"),
+                                                      'collection_set': user.collection_videos.all().filter(
+                                                          status=0).order_by("-time")})
 
 
 @require_http_methods(["GET"])
 def home(request):
     if request.user.is_authenticated():
         return render(request, 'home/home.html', {'home_video_set': request.user.video_set.all().order_by("-time"),
-                                                  'home_video_collection': request.user.collection_videos.all().order_by("-time")})
+                                                  'home_video_collection': request.user.collection_videos.all().order_by(
+                                                      "-time")})
     else:
         return render(request, "registration/login.html", {'error': "请登陆"})
 
@@ -90,10 +95,11 @@ def home(request):
 def upload(request):
     if request.user.is_authenticated():
         if not request.user.can_upload:
-            return render(request, 'home/home.html', {'error': "您已被封禁，不能上传视频" })
+            return render(request, 'home/home.html', {'error': "您已被封禁，不能上传视频"})
 
         if request.method == 'GET':
-            return render(request, 'upload/upload.html', {'form': VideoUploadForm(initial={'name': "", 'describe': "", 'tag': ""})})
+            return render(request, 'upload/upload.html',
+                          {'form': VideoUploadForm(initial={'name': "", 'describe': "", 'tag': ""})})
         else:
             form = VideoUploadForm(request.POST, request.FILES)
             if form.is_valid():
@@ -104,7 +110,7 @@ def upload(request):
                 form.save_m2m()
                 return HttpResponseRedirect("/home/")
             else:
-                return render(request, 'upload/upload.html', {'error': form.errors, 'form': form })
+                return render(request, 'upload/upload.html', {'error': form.errors, 'form': form})
     else:
         return render(request, "registration/login.html", {'error': "请登陆"})
 
