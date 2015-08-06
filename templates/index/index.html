@@ -1,10 +1,12 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block extracss %}
 <link href="/static/styles/index.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+    {% if popular_video_set %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
@@ -16,13 +18,13 @@
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="../../static/images/aa.jpg" alt="First slide">
+                <img src="/static/images/aa0.jpg" alt="First slide">
             </div>
             <div class="item">
-                <img src="../../static/images/aa.jpg" alt="Second slide">
+                <img src="/static/images/aa1.jpg" alt="Second slide">
             </div>
             <div class="item">
-                <img src="../../static/images/aa.jpg" alt="Third slide">
+                <img src="/static/images/aa2.jpg" alt="Third slide">
             </div>
         </div>
         <!-- 轮播（Carousel）导航 -->
@@ -36,53 +38,41 @@
         </a>
     </div>
 
-    <!-- ANIMATION -->
-    <div class="dd-line"><p>ANIMATION</p></div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
+    <div class="dd-line"><p>POPULAR</p></div>
+    <div class="center">
+        <div class="row">
+            {% for video in popular_video_set %}
+            <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
+                <figure class="effect-sadie">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" alt="img02" class="img-responsive center-block"/>
+                    <figcaption>
+                        <h2>{{ video.name }}</h2>
+                        <p>up主: {{ video.owner.name }} <br>播放量: {{ video.play }}</p>
+                        <a href="{{ video.get_absolute_url }}">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
         </div>
     </div>
+    {% else %}
+    <div class="dd-line"><p>{{ category.name }}</p></div>
+    <div class="center">
+        <div class="row">
+            {% for video in category_set_ordered %}
+            <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
+                <figure class="effect-sadie">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" alt="img02" class="img-responsive center-block"/>
+                    <figcaption>
+                        <h2>{{ video.name }}</h2>
+                        <p>up主: {{ video.owner.name }} <br>播放量: {{ video.play }}</p>
+                        <a href="{{ video.get_absolute_url }}">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 

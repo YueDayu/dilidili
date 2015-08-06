@@ -89,3 +89,6 @@ class User(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+    def get_absolute_url(self):
+        return '/personal/%u' % self.pk

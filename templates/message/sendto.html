@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}-私信{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <a href="/inbox">« 返回</a>
+
+        <p class="send-title">发私信给 {{ to_user.name }}:</p>
+
+        <form action="/sendto/{{ to_user.id }}/" method="post">{% csrf_token %}
+        <textarea id="input-message" class="form-control" maxlength="400" name="content"
+                  aria-describedby="basic-addon1"></textarea>
+
+            <div class="right">
+                <button type="submit" id="send-messaget" class="btn btn-info bullet-send-btn">发送</button>
+            </div>
+        </form>
+        <hr/>
+        {% if msg_set %}
+            {% for item in msg_set %}
+                <div class="dd-pm-item">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-2 col-xs-3">
+                            <a href="/personal/{{ item.user_from.id }}">
+                                <img src={% thumbnail item.user_from.image 200x200 box=pageuser.cropping crop detail %}
+                                             class="img-rounded"/>
+                            </a>
+                        </div>
+                        <div class="col-md-11 col-sm-10 col-xs-9">
+                        {% ifequal user item.user_from %}
+                            <span>我</span>
+                        {% else %}
+                            <a href="/personal/{{ item.user_from.id }}">{{ item.user_from.name }}</a>
+                        {% endifequal %}
+                            <span>：</span>
+
+                            <p>{{ item.content }}</p>
+
+                            <div class="dd-pm-item-meta">
+                                <span class="dd-grey dd-left">{{ item.time|date:"Y年m月d日 H时i分" }}</span>
+                                {% ifequal user item.user_from %}
+                                    <a href="/del-msg/{{ item.user_to.id }}/{{ item.pk }}/">删除</a>
+                                {% endifequal %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            暂时没有聊天内容
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block extracss %}
+    <link href="/static/styles/sendto.css" rel="stylesheet">
+{% endblock %}
+
+{% block extrascripts %}
+
+{% endblock %}

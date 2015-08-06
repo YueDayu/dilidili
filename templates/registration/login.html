@@ -14,7 +14,7 @@
                 </div>
             {% endif %}
             <div id="show-error"></div>
-            <form class="form-base" onsubmit="return check(this)" action="" method="post" enctype="multipart/form-data">
+            <form class="form-base" onsubmit="return check(this)" action="/login/" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <div class="m-row">
@@ -37,7 +37,7 @@
 {% endblock %}
 
 {% block extracss %}
-    <link rel="stylesheet" type="text/css" href="../../static/styles/register.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/styles/register.css"/>
 {% endblock %}
 
 {% block extrascripts %}

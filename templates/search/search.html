@@ -1,100 +1,84 @@
 {% extends "base.html" %}
-{% load thumbnail %}
 {% block title %}-搜索{% endblock %}
-
 {% block extracss %}
-<link href="/static/styles/index.css" rel="stylesheet">
+    <link href="/static/styles/home.css" rel="stylesheet">
+    <link href="/static/styles/search-result.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 	<div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="input-group" style="margin-top:20px;">
+				<input text="text" class="form-control" placeholder="search for..." id="input-text" value="{{ title_contain }}">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="btn-search">搜索</button>
+				</span>
+			</div>
+		</div>
 
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
+	</div>
+	<div>
+		<ul class="nav nav-tabs" id="tab-nav">
+			<li role="presentation" class="active" id="tab-name"><a href="#" role="button">视频</a></li>
+			<li role="presentation" id="tab-owner"><a href="#" role="button">up主</a></li>
+			<li role="presentation" id="tab-tag"><a href="#" role="button">tag</a></li>
+		</ul>
+	</div>
 
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
-            <figure class="effect-sadie">
-                <img src="../../static/images/0.jpg" alt="img02"/>
-                <figcaption>
-                    <h2>【AMV】灰姑娘的毒苹果</h2>
-
-                    <p>up主:请你次苹果 <br>播放量:2500</p>
-                    <a href="#">View more</a>
-                </figcaption>
-            </figure>
-        </div>
+	<div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdown-sort">发布日期<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="sortby-time" onclick="click_sort('-time')">发布日期</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" id="sortby-play" onclick="click_sort('-play')">播放数</a></li>
+          </ul>
+        </li>
+		   <li id="cat-all" class="active"><a href="#">全部</a></li>
+       {% for cat in category_set %}
+       <li id="cat-{{ cat.pk }}" onclick="click_cat({{ cat.pk }})"><a href="#">{{ cat.name }}</a></li>
+       {% endfor %}
+    </ul>
+
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container-fluid -->
+</nav>
+</div>
+
+<div class="container-fluid" id="result-container"></div>
+{% endblock %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(".banner-233").click(function () {
+            $(this).stop().fadeOut('fast', function () {
+                $(this).fadeIn('fast');
+            });
+        });
+    function setHeight(elem) {
+        var height = iFrame1.document.body.scrollHeight;
+        if (height < 240) {
+            height += 200;
+        }
+        elem.height = height;
+    }
+    </script>
+    <script type="text/javascript" src="/static/scripts/ajax-send.js"></script>
+    <script type="text/javascript" src="/static/scripts/search-main.js"></script>
 {% endblock %}

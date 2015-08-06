@@ -3,8 +3,10 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.utils.html import format_html
 
 from dilidili_dev.users import User
+from dilidili_dev.models import *
 
 
 class UserCreationForm(forms.ModelForm):
@@ -60,7 +62,7 @@ class MyUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('id', 'username', 'name', 'email', 'is_admin',)
+    list_display = ('id', 'username', 'name', 'email', 'is_admin', 'view_page', )
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('name', 'username', 'password')}),
@@ -79,6 +81,42 @@ class MyUserAdmin(UserAdmin):
     ordering = ('id', 'username',)
     filter_horizontal = ()
 
+    def view_page(self, obj):
+        return format_html('<a href={}>View</a>', obj.get_absolute_url())
+    view_page.allow_tags = True
+
+
 # Now register the new UserAdmin...
 admin.site.register(User, MyUserAdmin)
 admin.site.unregister(Group)
+
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'tag', 'time', 'status', 'published', 'view_link',)
+    list_filter = ('status', )
+    ordering = ('-time', 'id',)
+    search_fields = ('name', 'describe',)
+    fieldsets = [
+        ('Basic info', {'fields': ['name', 'describe', 'tag', 'category_set']}),
+        ('Files', {'fields': ['video', 'image']}),
+        ('Status', {'fields': ['status']})
+    ]
+    actions = ['mark_as_invalid', 'make_published']
+
+    def view_link(self, obj):
+        return format_html('<a href={}>View</a>', obj.get_absolute_url())
+    view_link.allow_tags = True
+
+    def published(self, obj):
+        return obj.status == 0
+    published.boolean = True
+
+    def make_published(self, request, queryset):
+        queryset.update(status=0)
+    make_published.short_description = "发布选中的视频"
+
+    def mark_as_invalid(self, request, queryset):
+        queryset.update(status=2)
+    mark_as_invalid.short_description = "标记为审核不通过"
+
+
+admin.site.register(Video, VideoAdmin)

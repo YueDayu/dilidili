@@ -1,0 +1,66 @@
+{% load thumbnail %}
+<div class="dd-user-info">
+    <div class="dd-user-title">
+        <p>我的信息</p>
+    </div>
+    <div id="main-content" class="box-inner clearfix">
+        <div class="profile-face">
+            <a id="photo" data-toggle="modal" data-target="#myModal" target="_blank">
+                <div class="mask">更换头像</div>
+                <img src="{% thumbnail user.image 200x200 box=user.cropping crop detail %}"/>
+            </a>
+        </div>
+        <div class="profile-infor">
+            <div class="profile-infor-l1">
+                <h3>{{ user.name }}</h3>
+            </div>
+            <div class="profile-infor-l2">
+                <h4>{{ user.describe }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dd-user-info">
+    <div class="dd-user-title">
+        <p>我上传的视频</p>
+    </div>
+    <div id="main-content" class="box-inner clearfix">
+        <div class="m-row">
+            {% for video in home_video_set %}
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel panel-default panel-body" style="text-align: center">
+                        <img src="{% thumbnail video.image 480x270 crop detail %}" class="img-responsive center-block"
+                             alt="thumbnail"/>
+                        {% if video.status != 0 %}
+                            <p><span style="color: red">待审核</span></p>
+                        {% endif %}
+                        <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
+
+                        <p>播放量: {{ video.play }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="dd-user-info">
+    <div class="dd-user-title">
+        <p>我收藏的视频</p>
+    </div>
+    <div id="main-content" class="box-inner clearfix">
+        {% for video in home_video_collection %}
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="panel panel-default panel-body" style="text-align: center">
+                        <img src="{% thumbnail video.image 480x270 crop detail %}" class="img-responsive center-block"
+                             alt="thumbnail"/>
+                        {% if video.status != 0 %}
+                            <p><span style="color: red">待审核</span></p>
+                        {% endif %}
+                        <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
+
+                        <p>播放量: {{ video.play }}</p>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</div>

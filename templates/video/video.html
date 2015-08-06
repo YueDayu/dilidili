@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}-{{ video.name }}{% endblock %}
+
+{% block content %}
+    <div class="dd-video">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="info">
+                    <div class="video-title"><h2>{{ video.name }}</h2>
+
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="tminfo"><a href="/">主页</a> >
+                        {% for ca in video.category_set.all %}
+                            <a href="/category/{{ ca.pk }}">{{ ca.name }}{% if not forloop.last %},{% endif %}</a>
+                        {% endfor %}
+                        &nbsp;&nbsp;&nbsp;
+                        <i id="dianji" title="播放">{{ video.play }}</i>
+                        <i id="dm_count" title="弹幕">{{ video.bullet_set.count }}</i>
+                        <i id="stow_count" title="收藏">{{ video.collection_videos.count }}</i>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>上传时间：{{ video.time|date:"Y年m月d日" }}</span>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="player">
+                    <div id="video-id" style="display: none;">{{ video.pk }}</div>
+                    <video id="video" class="video-js  vjs-default-skin vjs-big-play-centered"
+                           controls preload="auto" width="100%" height="400">
+                        <source src="{{ video.video.url }}" type='video/mp4'/>
+                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
+                                HTML5 video</a></p>
+                    </video>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="#">
+                            <div class="u-face"><img
+                                    src={% thumbnail video.owner.image 200x200 box=video.owner.cropping crop detail %}>
+                            </div>
+                        </a>
+
+                        <div class="r-info">
+                            <div class="usname"><a href="/personal/{{ video.owner.id }}"
+                                                   class="name">{{ video.owner.name }}</a></div>
+                            <div class="sign">{{ video.owner.describe }}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <a id="is_show" class="btn btn-success btn-sm active" role="button">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </a>
+
+                        <div id="slider"></div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="show-bullet-error"></div>
+                        {% if user.is_authenticated %}
+                            {% if user.can_bullet %}
+                                <h4>发送弹幕</h4>
+                                <p>内容：</p>
+                                <textarea id="input-bullet" class="form-control" maxlength="200"
+                                          placeholder="弹幕弹幕biu~不要超过200字哦"
+                                          aria-describedby="basic-addon1"></textarea>
+                                <div class="right">
+                                    <button id="send-bullet" class="btn btn-info bullet-send-btn">发送</button>
+                                </div>
+                                <p>颜色：</p>
+                                <div id="red"></div>
+                                <div id="green"></div>
+                                <div id="blue"></div>
+
+                                <div id="swatch" class="ui-widget-content ui-corner-all"></div>
+                            {% else %}
+                                <p>您已经被禁止发送弹幕，请与管理员联系。</p>
+                            {% endif %}
+                        {% else %}
+                            <p>游客无法发送弹幕，请<a href="/register">注册</a>或者<a href="/login">登陆</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                    <div>
+                        <div class="btn btn-default m-btn" title="收藏下来" id="collect-btn">
+                            <div class="collect" id="collect-text">
+                                {% if user in video.collection_videos.all %}
+                                    已收藏
+                                {% else %}
+                                    收藏
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="btn btn-default m-btn" title="赞一个" id="like-btn">
+                            {% if user in video.like_videos.all %}
+                                <div class="like like-yes" id="like-text">
+                                    取消赞
+                                </div>
+                            {% else %}
+                                <div class="like like-no" id="like-text">
+                                    赞
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="btn btn-default m-btn" title="投喂硬币" id="money-btn">
+                            <div class="money" id="money-num">{{ video.money }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="v-info panel panel-default">
+                    <div class="panel-heading">
+                        <span>tag: </span> {{ video.tag }}
+                            {% if user.is_authenticated %}
+                                {% if user.is_admin %}
+                                    {% if video.status != 0 %}
+                                    <btn class="btn btn-success pull-right btn-xs" id="btn-togglepublish">审核通过</btn>
+                                    {% else %}
+                                    <btn class="btn btn-danger pull-right btn-xs" id="btn-togglepublish">审核不通过</btn>
+                                    {% endif %}
+                                {% endif %}
+                                {% if user.pk == video.owner.pk %}
+                                    <a href="remove/" class="btn btn-danger pull-right btn-xs" id="btn-remove">删除视频</a>
+                                {% endif %}
+                            {% endif %}
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ video.describe }}</p>
+                    </div>
+                </div>
+                <div class="comm">
+                    <h3>评论({{ video.comment_set.count }}条)</h3>
+                </div>
+                <div>
+                    <div id="show-comment-error"></div>
+                    {% if user.is_authenticated %}
+                        {% if user.can_comment %}
+                            <textarea id="input-comment" class="form-control" maxlength="400"
+                                      placeholder="留下你的脚印吧~不要超过400字哦"
+                                      aria-describedby="basic-addon1"></textarea>
+                            <div class="right">
+                                <button id="send-comment" class="btn btn-info bullet-send-btn">发送</button>
+                            </div>
+                        {% else %}
+                            <p>您已经被禁止进行评论，请与管理员联系。</p>
+                        {% endif %}
+                    {% else %}
+                        <p>游客无法进行评论，请<a href="/register">注册</a>或者<a href="/login">登陆</a></p>
+                    {% endif %}
+                </div>
+                <div id="show-comment-btn" class="isComm" style="text-align:center;">
+                    <a><img src="/static/images/morecomm.gif"></a>
+                </div>
+                <div id="comment-area"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">弹幕池</div>
+                    <!-- Table -->
+                    <div id="table-wrapper">
+                        <div id="table-scroll">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th class="col1"><span class="text">弹幕</span></th>
+                                    <th><span class="text">日期</span></th>
+                                </tr>
+                                </thead>
+                                <tbody id="bullet-collect">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link href="/static/styles/video-js.min.css" rel="stylesheet">
+    <link href="/static/styles/video.css" rel="stylesheet">
+    <link href="/static/styles/jquery-ui.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block extrascripts %}
+    <script src="/static/scripts/jquery-ui.min.js"></script>
+    <script src="/static/scripts/video.js"></script>
+    <script>
+        videojs.options.flash.swf = '/static/swf/video-js.swf'
+    </script>
+    <script src="/static/scripts/ajax-send.js"></script>
+    <script src="/static/scripts/video-page-show.js"></script>
+    <script src="/static/scripts/video-page-post.js"></script>
+    {% if user.is_authenticated %}
+        <script src="/static/scripts/video-page-action.js"></script>
+        {% if user.can_bullet %}
+            <script src="/static/scripts/bullet-send.js"></script>
+        {% endif %}
+        {% if user.can_comment %}
+            <script src="/static/scripts/comment-send.js"></script>
+        {% endif %}
+
+        {% if user.is_admin %}
+            <script type="text/javascript" src="/static/scripts/video-page-admin.js"></script>
+        {% endif %}
+
+        {% if user.pk == video.owner.pk %}
+            <script type="text/javascript" src="/static/scripts/video-page-own.js"></script>
+        {% endif %}
+    {% endif %}
+{% endblock %}

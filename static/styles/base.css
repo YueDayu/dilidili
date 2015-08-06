@@ -13,9 +13,14 @@ html, body {
 .navbar{
 	background-color: rgba(23,23,23,1);
     border-color: rgba(23,23,23,1);
+    z-index: 1000;
 }
 
 .container {
     max-width: 1300px;
 }
 
+.num {
+    color: orange;
+    margin-left: 3px;
+}

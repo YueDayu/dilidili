@@ -1,0 +1,58 @@
+.send-title {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #aaaaaa;
+}
+
+#input-message {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    overflow: auto;
+}
+
+#send-messaget {
+    margin-top: 10px;
+}
+
+.right {
+    width: 100%;
+    text-align: right;
+}
+
+.main-container {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.dd-pm-item{
+	border-bottom: 1px solid #ddd;
+	padding:5px;
+	margin:10px;
+}
+
+.dd-pm-item img{
+	width:100%;
+	height:100%;
+	box-shadow: 0 0 6px #ccc;
+}
+
+.dd-pm-item a{
+
+}
+
+.dd-pm-item-meta{
+	text-align:right;
+	margin:5px 0;
+}
+.dd-grey{
+	color:#999;
+}
+
+.dd-left{
+	float:left;
+}
+
+.dd-right{
+	float:right;
+}
