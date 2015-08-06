@@ -43,7 +43,7 @@
                             <li><a href="/personal/{{ user.id }}">个人主页</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/home">个人信息</a></li>
-                            <li><a href="/inbox">私信</a></li>
+                            <li><a href="/inbox" id="msg-num">私信</a></li>
                             <li><a href="/logout">登出</a></li>
                         </ul>
                     </li>
@@ -79,6 +79,10 @@
 
 <script src="/static/scripts/jquery.min.js"></script>
 <script src="/static/scripts/bootstrap.min.js"></script>
+{% if user.is_authenticated %}
+    <script src="/static/scripts/ajax-send.js"></script>
+    <script src="/static/scripts/message.js"></script>
+{% endif %}
 {% block extrascripts %}{% endblock %}
 
 </body>

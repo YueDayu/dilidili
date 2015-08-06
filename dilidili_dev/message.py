@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .users import User
 from .models import Message
-from django.http import Http404
+from django.http import Http404, JsonResponse
+from django.views.decorators.http import require_http_methods
 
 
 def inbox(request):
@@ -67,3 +68,13 @@ def del_msg(request, user_id, msg_id):
             raise Http404("Message does not exist")
     else:
         return HttpResponseRedirect('/login/')
+
+
+@require_http_methods(['POST'])
+def get_unread_num(request):
+    if request.user.is_authenticated():
+        user = request.user
+        num = Message.objects.filter(user_to=user, status=False).count()
+        return JsonResponse(data={'num': num})
+    else:
+        return JsonResponse(data={'num': 0})

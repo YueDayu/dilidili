@@ -20,3 +20,7 @@ html, body {
     max-width: 1300px;
 }
 
+.num {
+    color: orange;
+    margin-left: 3px;
+}
