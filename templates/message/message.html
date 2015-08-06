@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}-私信{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <h4>我的私信</h4>
+        <hr/>
+        {% if list %}
+            {% for item in list %}
+                <div class="dd-pm-item">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-2 col-xs-3">
+                            <a href="/personal/{{ item.user.id }}">
+                                <img src={% thumbnail item.user.image 200x200 box=pageuser.cropping crop detail %}
+                                             class="img-rounded"/>
+                            </a>
+                        </div>
+                        <div class="col-md-11 col-sm-10 col-xs-9">
+                            <a href="/personal/{{ item.user.id }}">{{ item.user.name }}</a>
+
+                            <div class="dd-pm-item-meta">
+                                <a href="/sendto/{{ item.user.id }}/">有{{ item.num }}条未读</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            暂时没有聊天内容
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link href="/static/styles/sendto.css" rel="stylesheet">
+{% endblock %}
+
+{% block extrascripts %}
+{% endblock %}

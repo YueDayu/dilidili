@@ -48,5 +48,8 @@ urlpatterns = [
     url(r'^search/$', 'dilidili_dev.search.search_mainpage'),
     url(r'^search/request/$', 'dilidili_dev.search.search'),
     url(r'^search/resulthtml/$', 'dilidili_dev.search.search_html'),
+    url(r'^inbox/$', 'dilidili_dev.message.inbox'),
+    url(r'^sendto/(?P<user_id>[0-9]+)/$', 'dilidili_dev.message.sendto'),
+    url(r'^del-msg/(?P<user_id>[0-9]+)/(?P<msg_id>[0-9]+)/$', 'dilidili_dev.message.del_msg'),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]

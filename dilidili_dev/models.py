@@ -49,8 +49,9 @@ class Comment(models.Model):
 
 # 私信
 class Message(models.Model):
-    user_from = models.ManyToManyField('User', related_name="user_from")
-    user_to = models.ManyToManyField('User', related_name="user_to")
+    user_from = models.ForeignKey('User', related_name="msg_send")
+    user_to = models.ForeignKey('User', related_name="msg_receive")
+    content = models.CharField(max_length=400)
     status = models.BooleanField(default=False)  # 已读未读
     time = models.DateTimeField(auto_now=False, auto_now_add=True)  # 发送时间
 
