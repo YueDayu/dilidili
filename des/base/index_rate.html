@@ -55,100 +55,66 @@
 </div>
 <!-- end topbar -->
 <div class="container" id="middle_content">
-  <div class="row bar_content">
-    <div class="col-sm-12 col-md-4 box-left">
-      <div class="panel panel-danger">
-        <div class="panel-heading">最新发布</div>
-        <div class="panel-body">
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
+  <div class="center">
+    <div class="row bar_content">
+      <div class="col-sm-12 col-md-4 box-left">
+        <div class="panel panel-danger">
+          <div class="panel-heading">最新发布</div>
+          <div class="panel-body">
+            {% for video in popular_video_set %}
+            <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
+                <figure class="effect-sadie">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" alt="img02" class="img-responsive center-block"/>
+                    <figcaption>
+                        <h2>{{ video.name }}</h2>
+                        <p>up主: {{ video.owner.name }} <br>播放量: {{ video.play }}</p>
+                        <a href="{{ video.get_absolute_url }}">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
           </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
-          </div>
-        <div class="col-sm-12 col-md-12 album_cover">
-          <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-        </div>
-        <div class="col-sm-12 col-md-12 album_intro">
-          <h3>Videoname</h3>
-          <p>创建者：Username</p>
-          <p>创建时间：20xx-xx-xx</p>
-        </div>
-        <div class="col-sm-12 col-md-12 album_cover">
-          <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-        </div>
-        <div class="col-sm-12 col-md-12 album_intro">
-          <h3>Videoname</h3>
-          <p>创建者：Username</p>
-          <p>创建时间：20xx-xx-xx</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-12 col-md-4 box-left">
-      <div class="panel panel-warning">
-        <div class="panel-heading">最多硬币</div>
-        <div class="panel-body">
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-          </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
-          </div>
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-          </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
-          </div>
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-          </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
           </div>
         </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-4 box-left">
-      <div class="panel panel-info">
-        <div class="panel-heading">最多播放</div>
-        <div class="panel-body">
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
+      <div class="col-sm-12 col-md-4 box-left">
+        <div class="panel panel-warning">
+          <div class="panel-heading">最多硬币</div>
+          <div class="panel-body">
+            {% for video in popular_video_set %}
+            <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
+                <figure class="effect-sadie">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" alt="img02" class="img-responsive center-block"/>
+                    <figcaption>
+                        <h2>{{ video.name }}</h2>
+                        <p>up主: {{ video.owner.name }} <br>播放量: {{ video.play }}</p>
+                        <a href="{{ video.get_absolute_url }}">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
+            </div>
           </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
           </div>
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-          </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
-          </div>
-          <div class="col-sm-12 col-md-12 album_cover">
-            <img src="pic/head_eg.jpg" style="width:100%;height:auto;">
-          </div>
-          <div class="col-sm-12 col-md-12 album_intro">
-            <h3>Videoname</h3>
-            <p>创建者：Username</p>
-            <p>创建时间：20xx-xx-xx</p>
+      <div class="col-sm-12 col-md-4 box-left">
+        <div class="panel panel-info">
+          <div class="panel-heading">最多播放</div>
+          <div class="panel-body">
+            {% for video in popular_video_set %}
+            <div class="col-md-3 col-sm-6 col-xs-12 dd-grid">
+                <figure class="effect-sadie">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" alt="img02" class="img-responsive center-block"/>
+                    <figcaption>
+                        <h2>{{ video.name }}</h2>
+                        <p>up主: {{ video.owner.name }} <br>播放量: {{ video.play }}</p>
+                        <a href="{{ video.get_absolute_url }}">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 
