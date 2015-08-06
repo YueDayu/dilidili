@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^logout/', 'dilidili_dev.logout_in.logout'),
     url(r'^login/', 'dilidili_dev.logout_in.login'),
     url(r'^change-password/', 'dilidili_dev.logout_in.change_password'),
+    url(r'^change-info/', 'dilidili_dev.logout_in.change_info'),
     url(r'^personal/(?P<user_id>[0-9]+)/', include('dilidili_dev.admin_user_urls')),
     url(r'^video/(?P<video_id>[0-9]+)/', include([
         url(r'^$', 'dilidili_dev.video_play.video_play'),

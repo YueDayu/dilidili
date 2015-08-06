@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from .users import User
 
 
 @login_required
@@ -54,5 +55,26 @@ def change_password(request):
                 return render(request, "registration/change-password.html", {'error': "密码错误"})
         else:
             return render(request, "registration/change-password.html")
+    else:
+        return HttpResponseRedirect("/")
+
+
+def change_info(request):
+    if request.user.is_authenticated():
+        user = request.user
+        if request.method == 'POST':
+            name = request.POST.get('name', user.name)
+            describe = request.POST.get('describe', user.describe)
+            if name != user.name and User.objects.filter(name=name):
+                return render(request, "registration/change-info.html", {'name': user.name,
+                                                                         'describe': user.describe,
+                                                                         'error': "昵称已经存在"})
+            user.name = name
+            user.describe = describe
+            user.save()
+            return HttpResponseRedirect('/home/')
+        else:
+            return render(request, "registration/change-info.html", {'name': user.name,
+                                                                     'describe': user.describe})
     else:
         return HttpResponseRedirect("/")

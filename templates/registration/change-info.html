@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}-用户注册{% endblock %}
+
+{% block content %}
+    <div class="center">
+    <div class="register_base panel panel-default ">
+        <h2>修改资料</h2>
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endif %}
+        <div id="show-error"></div>
+        <form class="form-base" onsubmit="return check(this)" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="m-row">
+                <label for="id_username">用户名:</label>
+                <input type="text" class="form-control" readonly="readonly" placeholder="Username" id="id_username" maxlength="50" name="username" value="{{ user.username }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_name">昵称:</label>
+                <input type="text" class="form-control" placeholder="不超过10字" id="id_name" maxlength="50" name="name" value="{{ name }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_email">邮箱:</label>
+                <input class="form-control" placeholder="email" id="id_email" type="email" readonly="readonly" value="{{ user.email }}">
+            </div>
+
+            <div class="m-row">
+                <label for="id_describe">自我描述:</label>
+                <input type="text" class="form-control" placeholder="不超过100字" id="id_describe" maxlength="254" name="describe" value="{{ describe }}">
+            </div>
+            <input type="submit" class="btn btn-success m-btn" value="保存">
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="/static/styles/register.css"/>
+{% endblock %}
