@@ -31,8 +31,14 @@
                     <div class="panel panel-default panel-body" style="text-align: center">
                         <img src="{% thumbnail video.image 480x270 crop detail %}" class="img-responsive center-block"
                              alt="thumbnail"/>
-                        {% if video.status != 0 %}
+                        {% if video.status == 4 %}
+                            <p><span style="color: red">转码中</span></p>
+                        {% endif %}
+                        {% if video.status == 1 %}
                             <p><span style="color: red">待审核</span></p>
+                        {% endif %}
+                        {% if video.status == 2 %}
+                            <p><span style="color: red">审核未通过</span></p>
                         {% endif %}
                         <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
 
@@ -50,17 +56,23 @@
     <div id="main-content" class="box-inner clearfix">
         {% for video in home_video_collection %}
             <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="panel panel-default panel-body" style="text-align: center">
-                        <img src="{% thumbnail video.image 480x270 crop detail %}" class="img-responsive center-block"
-                             alt="thumbnail"/>
-                        {% if video.status != 0 %}
-                            <p><span style="color: red">待审核</span></p>
-                        {% endif %}
-                        <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
+                <div class="panel panel-default panel-body" style="text-align: center">
+                    <img src="{% thumbnail video.image 480x270 crop detail %}" class="img-responsive center-block"
+                         alt="thumbnail"/>
+                    {% if video.status == 4 %}
+                        <p><span style="color: red">转码中</span></p>
+                    {% endif %}
+                    {% if video.status == 1 %}
+                        <p><span style="color: red">待审核</span></p>
+                    {% endif %}
+                    {% if video.status == 2 %}
+                        <p><span style="color: red">审核未通过</span></p>
+                    {% endif %}
+                    <h4><a href="/video/{{ video.pk }}">{{ video.name }}</a></h4>
 
-                        <p>播放量: {{ video.play }}</p>
-                    </div>
+                    <p>播放量: {{ video.play }}</p>
                 </div>
+            </div>
         {% endfor %}
     </div>
 </div>
