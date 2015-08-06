@@ -24,7 +24,11 @@ urlpatterns = [
     url(r'^logout/', 'dilidili_dev.logout_in.logout'),
     url(r'^login/', 'dilidili_dev.logout_in.login'),
     url(r'^personal/(?P<user_id>[0-9]+)/', include('dilidili_dev.admin_user_urls')),
-    url(r'^video/(?P<video_id>[0-9]+)/$', 'dilidili_dev.video_play.video_play'),
+    url(r'^video/(?P<video_id>[0-9]+)/', include([
+        url(r'^$', 'dilidili_dev.video_play.video_play'),
+        url(r'^remove/$', 'dilidili_dev.admin_video.remove'),
+        url(r'^togglepublish/$', 'dilidili_dev.admin_video.togglepublish')
+    ])),
     url(r'^video-add-play/$', 'dilidili_dev.views.video_play_add'),
     url(r'^video-add-bullet/$', 'dilidili_dev.video_play.video_bullet_add'),
     url(r'^video-add-comment/$', 'dilidili_dev.video_play.video_comment_add'),
